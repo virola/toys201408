@@ -1,0 +1,124 @@
+@import '../../../dep/est/src/all.less';
+
+.map-tab {
+    margin-bottom: 20px;
+
+    li {
+        display: inline;
+        margin-right: 25px;
+        position: relative;
+
+        a {
+            color: #888;
+            text-decoration: none;
+
+            &.on, &:hover {
+                color: #333;
+            }
+        } 
+
+        span {
+            position: absolute;
+            top: -20px;
+            left: 85px;
+            .size(58px, 25px);
+            font-size: 12px;
+            line-height: 20px;
+            color: #fff;
+            text-align: center;
+        }
+    }
+     
+
+    
+}
+
+.map-box {
+
+    .left {
+        width: 196px;
+    }
+    .right {
+        .size(690px, 377px);
+    }
+}
+
+.map-indicator {
+
+    li {
+        .size(83px);
+        float: left;
+        margin: 0 14px 15px 0;
+
+        &.last-row {
+            margin-bottom: 0;
+        }
+
+        a {
+            display: block;
+            height: 81px - 55px;
+            position: relative;
+            border: 1px solid #d5d5d5;
+            padding-top: 55px;
+            color: #555;
+            font-size: 12px;
+            text-align: center;
+            text-decoration: none;
+
+            .count {
+                position: absolute;
+                color: #bfbfbf;
+                top: 5px;
+                right: 5px;
+                font-size: 11px;
+            }
+
+            &:hover {
+                border-color: #a0a5ab;
+                .transition(border-color, 0.2s, ease);
+            }
+
+            .dt-ico {
+                position: absolute;
+                left: 24px;
+                top: 15px;
+            }
+        }
+    }
+}
+
+.map-content {
+    .size(690px, 377px);
+}
+
+// icons
+.map-indicator .dt-ico {
+    display: block;
+    .size(32px);
+}
+
+.ico-trans {
+    background-position: 0 0;
+}
+.ico-edu {
+    background-position: -32px 0;
+}
+.ico-med {
+    background-position: -64px 0;
+}
+.ico-fun {
+    background-position: -96px 0;
+}
+.ico-market {
+    background-position: 0 -32px;
+}
+.ico-spot {
+    background-position: -32px -32px;
+}
+.ico-bank {
+    background-position: -64px -32px;
+}
+.ico-shop {
+    background-position: -96px -32px;
+}
+

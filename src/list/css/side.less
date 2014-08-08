@@ -1,0 +1,46 @@
+@import '../../../dep/est/src/all.less';
+
+.main-box {
+
+    .side-bar {
+        width: 382px;
+        float: right;
+    }
+
+    .side-bar .map-box {
+        border: 1px solid #cfd4dd;
+        margin-bottom: 10px;
+    }
+
+
+    .side-bar .search-widget {
+        font-size: 0;
+
+        .txt {
+            font-size: 12px;
+            border: 1px solid #b6c4d6;
+            border-right: 0 none;
+            height: 24px;
+            line-height: 24px;
+            .border-radius(3px 0 0 3px);
+            padding: 5px 10px;
+            width: 298px;
+        }
+
+        .btn {
+            width: 63px;
+            height: 36px;
+            overflow: hidden;
+            cursor: pointer;
+            .border-radius(0 3px 3px 0);
+            border: 1px solid #1f66c3;
+            background: #1f6bdf url(./img/search-btn-side.png) no-repeat center 0;
+        }
+
+    }
+
+    .side-bar .search-widget .btn:hover {
+        background-position: bottom center;
+    }
+
+}

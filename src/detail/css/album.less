@@ -1,0 +1,67 @@
+
+// 相册显示相关样式
+.album-panel {
+    float: left;
+    .size(107px, 440px);
+
+    img {
+        .size(107px, 80px);
+
+        &:hover {
+            .opacity(90);
+        }
+    }
+
+    a.ctrl-btn {
+        display: block;
+        .size(107px, 24px);
+        text-indent: -9999px;
+    }
+
+    .ico-arr-top {
+        background-position: -244px 0;
+
+        &:hover {
+            background-position: -244px -26px;
+        }
+    }
+
+    .ico-arr-bottom {
+        background-position: -244px -52px;
+
+        &:hover {
+            background-position: -244px -78px;
+        }
+    }
+
+    .album-view-wrap {
+        padding-top: 14px;
+        height: 390px - 14px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    ul {
+        li {
+            padding-bottom: 14px;
+
+            a {
+                display: block;
+            }
+        }
+
+        li.on {
+            a {
+                border: 3px solid #262626;
+            }
+        }
+    }
+}
+.pic-panel {
+    float: right;
+    .size(586px, 440px);
+
+    img {
+        .size(586px, 440px);
+    }
+}

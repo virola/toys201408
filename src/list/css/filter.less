@@ -1,0 +1,179 @@
+
+.filter-box {
+    border-bottom: 1px solid #cfd4dd;
+
+    em {
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    .hd {
+        border-bottom: 3px solid #0664c4;
+    }
+
+    .hd .info {
+        float: right;
+        height: 40px;
+        overflow: hidden;
+    }
+
+    .hd .info .num {
+        line-height: 50px;
+        color: #888;
+        font-size: 12px;
+    }
+
+    .bd {
+        border-width: 0 1px;
+        border-style: none solid;
+        border-color: #cfd4dd;
+        padding: 20px 25px 10px 25px;
+        background: #fff;
+        font-size: 12px;
+    }
+
+    .bd dl {
+        padding-bottom: 7px;
+    }
+
+    .bd .txt-box {
+        width: 60px;
+        height: 22px;
+        border: 1px solid #b8c6d8;
+        position: relative;
+    }
+
+    .bd .txt-box label {
+        position: absolute;
+        right: 4px;
+        top: 0;
+        display: block;
+        height: 22px;
+        line-height: 22px;
+        color: #999;
+        font-size: 12px;
+    }
+
+    .bd .txt-box .txt {
+        display: block;
+        border: 0 none;
+        padding-left: 5px;
+        width: 35px;
+        height: 21px;
+    }
+
+    .bd .ok {
+        width: 43px;
+        height: 24px;
+        text-align: center;
+        border: 1px solid #b8c6d8;
+        background-color: #FFFFFF;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
+    .bd .custom {
+        margin-left: 10px;
+        padding-bottom: 1px;
+    }
+
+    // filter bar
+    .fd {
+        width: 1150px - 26 * 2;
+        background-color: #f7f7f7;
+        height: 48px;
+        line-height: 48px;
+        border: 1px solid #cfd4dd;
+        border-bottom: none;
+        padding: 0 25px;
+        font-size: 0;
+    }
+
+    .fd .left .del {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .fd .left .red {
+        color: #ee552a;
+        margin: 0 5px;
+    }
+
+    .fd .left a.del-all {
+        background: none;
+        border: 0 none;
+        color: #999;
+        font-size: 12px;
+    }
+
+    .fd .left a.del-all:hover {
+        background: none;
+        text-decoration: underline;
+    }
+
+    .fd a {
+        height: 28px;
+        line-height: 28px;
+        color: #ee552a;
+        border: 1px solid #ee552a;
+        background: #fff9f7;
+        padding: 0 10px;
+        margin-left: 10px;
+        font-size: 0;
+        .border-radius(2px);
+    }
+
+    .fd a:hover {
+        background: #fff2ee;
+        text-decoration: none;
+    }
+
+    .fd span {
+        font-size: 12px;
+    }
+
+    .fd span.fs14 {
+        font-size: 14px;
+        margin: 0 10px 0 0;
+    }
+
+    .fd .right a {
+        color: #555;
+        border-color: #f7f7f7;
+        margin-left: 0;
+        background: none;
+    }
+
+    .fd .right a.on {
+        color: #333;
+        background-color: #f2f7fc;
+        border-color: #0664c4;
+    }
+
+    .fd .right a.on:hover {
+        background-color: #f2f7fc;
+        border-color: #0664c4;
+    }
+
+    .fd .right a:hover {
+        background-color: #ececec;
+        border-color: #ddd;
+    }
+}
+.dl-lst {
+
+    dd a.on {
+        color: #ee552a;
+    }
+}
+
+.filter-box .bd .txt-box,
+.filter-box .bd .ok,
+.filter-box .bd .custom,
+.filter-box .fd a,
+.filter-box .fd span {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: middle;
+}

@@ -1,0 +1,70 @@
+@import 'base';
+@import 'nav';
+@import 'footer';
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+a:focus {
+    outline: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.clear:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+}
+.clear {
+    *zoom: 1;
+}
+
+// 选中色的修改
+::selection {
+    color: #fff;
+    background-color: #ff6a00;
+}
+
+::-moz-selection {
+    color: #fff;
+    background-color: #ff6a00;
+}
+
+::-webkit-selection {
+    color: #fff;
+    background-color: #ff6a00;
+}
+
+// 通用样式的设定
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.fs14 {
+    font-size: 14px;
+}
+.ft-num {
+    font-family: Arial, sans-serif;
+}
+.wrapper {
+    width: 1150px;
+    margin: 0 auto;
+}
+.p {
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+@import 'icon';
+@import 'pager';

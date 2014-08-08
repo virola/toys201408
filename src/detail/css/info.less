@@ -1,0 +1,220 @@
+@import '../../../dep/est/src/all.less';
+
+@padding-width: 30px;
+@seperate-padding: @padding-width - 5;
+
+@panel-border-color: #cfd4dd;
+@color-main: #ee552a;
+@color-link: #176db5;
+
+.ft-num {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+// 主信息区域
+.panel-box-info {
+    padding: @padding-width;
+    padding-right: 0;
+
+    .album-box {
+        width: 706px;
+    }
+
+    .info-box {
+        margin-left: @padding-width;
+        width: 1148px - (@padding-width * 2) - 706px;
+    }
+}
+
+.info-box {
+
+    h3 {
+        font-size: 34px;
+        margin-top: -10px;
+
+        span {
+            margin-left: 5px;
+            font-size: 14px;
+        }
+    }
+
+    h4 {
+        padding-right: @padding-width;
+        font-size: 12px;
+    }
+
+    h5 {
+        font-size: 22px;
+    }
+
+    h4, h5, .breif-text {
+        margin-bottom: 10px;
+    }
+
+
+    .seperate {
+        border-top: 1px solid @panel-border-color;
+        padding: @seperate-padding;
+        padding-left: 0;
+    }
+
+    .location {
+        a {
+            color: #333
+        }
+
+        .zone a {
+            color: @color-main;
+        }
+
+        .map a {
+            color: @color-link;
+        }
+    }
+
+    .contact-panel {
+        // 联系电话的按钮
+        a {
+            display: block;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            height: 50px;
+            line-height: 50px;
+            background: @color-main;
+            text-align: center;
+            color: #fff;
+            font-size: 22px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: default;
+
+            span {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .agent {
+        padding-bottom: 0;
+
+        .agent-info {
+            margin-left: 18px;
+
+            p {
+                color: #555;
+            }
+            .name {
+                color: #333;
+            }
+
+            a {
+                color: @color-link;
+            }
+        }
+    } 
+}
+
+// 详情信息区域
+.panel-box-content {
+    margin-top: 25px;
+    background: #fff;
+
+    article {
+        width: 1147px - 200px;
+    }
+
+    aside {
+        border-left: 1px solid @panel-border-color;
+        width: 200px;
+        
+    }
+}
+
+// 详情导航tab
+.panel-tab {
+    background: #fafafa;
+    height: 43px;
+    border-bottom: 1px solid @panel-border-color;
+
+    li {
+        display: inline;
+
+        a {
+            float: left;
+            display: block;
+            _display: inline;
+            padding: 0 30px;
+            line-height: 43px;
+            color: #333;
+            text-decoration: none;
+            border-right: 1px solid @panel-border-color;
+            .linear-gradient(to bottom, #fafafa, #f5f5f5);
+            *background: #f5f5f5;
+        }
+
+        a.on {
+            background: #fff;
+            line-height: 44px;
+        } 
+
+        a:hover {
+            .linear-gradient(to bottom, #fff, #eee);
+            *background: #eee;
+            .transition(background-color 2s linear);
+        }
+    }
+}
+
+.panel-box-content article .tab-content {
+    padding: 30px;
+
+    p {
+        line-height: 30px;
+    }
+
+    .detail-title {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+.detail-title {
+    .clearfix();
+    position: relative;
+    font-size: 22px;
+
+    h3 {
+        float: left;
+        position: relative;
+        z-index: 2;
+        background: #fff;
+        padding-right: 10px;
+    }
+
+    .line {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 100%;
+        border-bottom: 1px solid @panel-border-color;
+    }
+}
+
+.detail-album {
+    .clearfix();
+
+    li {
+        float: left;
+        margin: 0 25px 25px 0;
+
+        &.row-last {
+            margin-right: 0;
+        }
+    }
+
+    img {
+        .size(430px, 322px);
+    }
+}

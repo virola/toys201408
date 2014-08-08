@@ -1,0 +1,97 @@
+.side-box {
+    padding: 20px;
+
+    img {
+        .size(156px, 117px);
+    }
+
+    .side-title {
+        font-size: 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #d9d9d9;
+    }
+
+    .side-list {
+        margin-top: 20px;
+        font-size: 12px;
+
+        li {
+            margin-bottom: 25px;
+
+            &.last {
+                margin-bottom: 0;
+            }
+
+            h4 {
+                // margin: 5px 0 0 0;
+                a {
+                    color: #888;
+                }
+            }
+
+            .side-img {
+                margin-bottom: 10px;
+            }
+
+            .price-box {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .price-text, .room-text {
+        color: #000;
+    }
+
+    .price-text em {
+        color: @color-main;
+        font-size: 18px;
+    }
+
+    .desc-text {
+        margin-top: 7px;
+    }
+
+    .desc-status-0, .desc-status-green {
+        color: green;
+    }
+    .desc-status-1, .desc-status-red {
+        color: red;
+    }
+
+    .side-img {
+        display: block;
+        position: relative;
+
+        .album-count {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            .size(34px, 23px);
+            color: #fff;
+            line-height: 23px;
+        }
+        .bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: #000;
+            .size(34px, 23px);
+            .opacity(60);
+        }
+    }
+
+    .view-per {
+        // margin-top: 6px;
+    }
+}
+
+.side-img {
+    img:hover {
+        .opacity(90);
+    }
+}
+
+.ico-pic-white {
+    .size(11px);
+}

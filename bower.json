@@ -1,0 +1,26 @@
+{
+  "name": "betafang-fe",
+  "version": "1.0.0",
+  "authors": [
+    "Virola <virola.zhu@gmail.com>"
+  ],
+  "description": "betafang",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    ".jshintrc"
+  ],
+  "keywords": [
+    "amd"
+  ],
+  "license": "MIT",
+  "homepage": "betafang.com",
+  "private": true,
+  "devDependencies": {
+    "jquery": "~2.1.1",
+    "est": "https://github.com/ecomfe/est.git",
+    "ECharts": "~2.0.1",
+    "font-awesome": "~4.1.0"
+  }
+}

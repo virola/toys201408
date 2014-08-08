@@ -1,0 +1,133 @@
+@import '../../../dep/est/src/all.less';
+
+.inline-block() {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: middle;
+}
+
+// 面包屑导航
+.crumb {
+    padding: 20px 0;
+    font-size: 0;
+
+    a, span {
+        font-size: 12px;
+        color: #888;
+        .inline-block();
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.crumb .stp {
+    margin: 0 5px;
+    font-size: 12px;
+}
+
+// 导航条tab
+.tab-lst {
+    float: left;
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        float: left;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
+        font-size: 16px;
+    }
+
+    li a:hover {
+        background-color: #ececec;
+        .transition(all 0.2s ease);
+    }
+
+    li a span {
+        .inline-block();
+    }
+
+    li a span, li a .ico {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    li.on a {
+        background-color: #0664c4;
+        color: #FFFFFF;
+    }
+
+    li a {
+        color: #555;
+    }
+
+    li .p {
+        width: 24px;
+        height: 23px;
+    }
+
+    li .ico-new {
+        position: absolute;
+        top: -2px;
+        right: -3px;
+        margin: 0;
+    }
+}
+
+// 导航tab的图标设定
+.tab-lst {
+
+    a:hover {
+        .ico-all {
+            background-position: 0px -20px;
+        }
+
+        .ico-train {
+            background-position: -20px -20px;
+        }
+
+        .ico-map {
+            background-position: -40px -20px;
+        }
+    }
+
+    .on {
+
+        .ico-all {
+            background-position: 0px -40px;
+        }
+
+        .ico-train {
+            background-position: -20px -40px;
+        }
+
+        .ico-map {
+            background-position: -40px -40px;
+        }
+
+        a:hover {
+            .ico-all {
+                background-position: 0px -40px;
+            }
+
+            .ico-train {
+                background-position: -20px -40px;
+            }
+
+            .ico-map {
+                background-position: -40px -40px;
+            }
+        }
+    }
+}
+
+
+
+
+

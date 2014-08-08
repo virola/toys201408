@@ -1,0 +1,97 @@
+// 引入style toolkit
+@import '../../../dep/est/src/all.less';
+
+@import '../../list/css/nav';
+@import '../../list/css/recommend';
+
+strong, b, em, i {
+    font-weight: 400;
+    font-style: normal;
+}
+
+// ICON Related
+
+.dt-ico {
+    background: url(./img/detail-ico.png) no-repeat;
+    _background-image: url(./img/detail-ico_ie6.png);
+}
+.ico-bg-orange {
+    background-position: -130px -90px;
+}
+
+.bg-favor-bar {
+    background-position: 0 -66px;
+
+    &:hover {
+        background-position: 0 -99px;
+    }
+}
+
+.bg-favor-bar-active {
+    background-position: 0 -132px;
+}
+
+
+.title-box {
+    height: 40px;
+    margin-bottom: 15px;
+
+    h2 {
+        font-size: 26px;
+    }
+
+    .favor-bar {
+        display: block;
+        .size(100px, 30px);
+        margin-top: 10px;
+        line-height: 30px;
+        cursor: pointer;
+        text-decoration: none;
+
+        em {
+            padding-left: 40px;
+            font-size: 12px;
+            color: #6e7a83;
+        }
+    }
+
+}
+
+@panel-border-color: #cfd4dd;
+
+.sub-text {
+    color: #888;
+}
+.em-text {
+    color: #e73d21;
+}
+
+.panel-box {
+    border: 1px solid @panel-border-color;
+}
+
+.hide {
+    display: none;
+}
+
+@media screen {
+
+    .lazyload {
+        opacity: 0;
+    }
+
+    .lazyload.loaded {
+        .transition(opacity 0.3s ease-in);
+        opacity: 1;
+    }
+}
+
+
+@import 'album';
+@import 'info';
+.zone-chart {
+    height: 260px;
+}
+
+@import 'map';
+@import 'side';
