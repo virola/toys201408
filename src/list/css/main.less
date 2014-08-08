@@ -1,6 +1,8 @@
 // 引入style toolkit
 @import '../../../dep/est/src/all.less';
 
+@import '../../common/css/mixin';
+
 @import 'nav';
 @import 'filter';
 @import 'list';
@@ -37,13 +39,11 @@
 .filter-box .fd,
 .main-box .side-bar .map-box,
 .main-box .side-bar .search-widget {
-    .box-shadow(0 2px 4px 0 rgba(158,158,158,0.2));
+    .ui-box-shadow();
 }
 
-.nav-box,
 .tab-lst li a span,
 .main-box .house-lst h2 a,
 .main-box .house-lst .num {
-    font-smoothing: subpixel-antialiased;
-    -webkit-font-smoothing: subpixel-antialiased;
+    .font-smooth();
 }

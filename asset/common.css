@@ -79,8 +79,9 @@ body {
   color: #FFFFFF;
   -webkit-box-shadow: 0 3px 3px #e1e1e1;
   -moz-box-shadow: 0 3px 3px #e1e1e1;
-  -o-box-shadow: 0 3px 3px #e1e1e1;
   box-shadow: 0 3px 3px #e1e1e1;
+  font-smoothing: subpixel-antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 .nav-box .nav-wrap {
   width: 1150px;
@@ -336,7 +337,7 @@ a:hover {
   background-position: -40px 0px;
 }
 .ico-star {
-  background-position: -82px 0px;
+  background-position: -80px 0px;
 }
 .ico-arr-down {
   background-position: -80px -20px;

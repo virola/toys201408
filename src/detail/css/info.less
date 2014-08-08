@@ -1,5 +1,7 @@
 @import '../../../dep/est/src/all.less';
 
+@import '../../common/css/mixin';
+
 @padding-width: 30px;
 @seperate-padding: @padding-width - 5;
 
@@ -8,13 +10,16 @@
 @color-link: #176db5;
 
 .ft-num {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    letter-spacing: -1px;
+    font-weight: 700;
 }
 
 // 主信息区域
 .panel-box-info {
     padding: @padding-width;
     padding-right: 0;
+    background: #fff;
 
     .album-box {
         width: 706px;
@@ -31,6 +36,7 @@
     h3 {
         font-size: 34px;
         margin-top: -10px;
+        margin-bottom: 3px;
 
         span {
             margin-left: 5px;
@@ -48,12 +54,15 @@
     }
 
     h4, h5, .breif-text {
-        margin-bottom: 10px;
+        margin-bottom: 14px;
     }
 
+    .breif-text {
+        font-size: 14px;
+    }
 
     .seperate {
-        border-top: 1px solid @panel-border-color;
+        border-top: 1px solid #eee;
         padding: @seperate-padding;
         padding-left: 0;
     }
@@ -78,14 +87,14 @@
             display: block;
             margin-top: 30px;
             margin-bottom: 15px;
-            height: 50px;
-            line-height: 50px;
+            height: 48px;
+            line-height: 48px;
             background: @color-main;
             text-align: center;
             color: #fff;
             font-size: 22px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
             cursor: default;
 
             span {
@@ -99,6 +108,7 @@
 
         .agent-info {
             margin-left: 18px;
+            line-height: 22px;
 
             p {
                 color: #555;
@@ -132,7 +142,8 @@
 
 // 详情导航tab
 .panel-tab {
-    background: #fafafa;
+    *background: #fafafa;
+    .linear-gradient(to bottom, #fff, #f5f5f5);
     height: 43px;
     border-bottom: 1px solid @panel-border-color;
 
@@ -148,20 +159,25 @@
             color: #333;
             text-decoration: none;
             border-right: 1px solid @panel-border-color;
-            .linear-gradient(to bottom, #fafafa, #f5f5f5);
-            *background: #f5f5f5;
         }
-
-        a.on {
-            background: #fff;
-            line-height: 44px;
-        } 
 
         a:hover {
             .linear-gradient(to bottom, #fff, #eee);
             *background: #eee;
             .transition(background-color 2s linear);
         }
+
+        a.on {
+            background: #fff;
+            line-height: 44px;
+
+            &:hover {
+                cursor: default;
+                background: #fff;
+            }
+        } 
+
+        
     }
 }
 
@@ -169,7 +185,8 @@
     padding: 30px;
 
     p {
-        line-height: 30px;
+        line-height: 28px;
+        font-size: 16px;
     }
 
     .detail-title {
@@ -212,9 +229,20 @@
         &.row-last {
             margin-right: 0;
         }
+
+        &:hover {
+            .opacity(90);
+        }
     }
 
     img {
         .size(430px, 322px);
     }
+}
+
+
+// UI enhancement
+.panel-box-info,
+.panel-box-content {
+    .ui-box-shadow();
 }
