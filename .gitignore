@@ -1,5 +1,4 @@
-dep/ 
-node_modules/ 
-.bowerrc
+dep 
+node_modules 
 .jshintrc
 
