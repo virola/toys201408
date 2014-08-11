@@ -1,0 +1,139 @@
+
+.my-center {
+    background: #fff;
+    padding: 35px 0;
+    .ui-box-shadow();
+
+    .main-wrap {
+        position: relative;
+    }
+
+
+    a {
+        color: #333;
+    }
+    em {
+        font-style: normal;
+    }
+
+    .col-box {
+        float: left;
+        width: 262px;
+        padding-right: 32px;
+
+        ul {
+            font-size: 12px;
+        }
+
+        // 无数据的时候
+        li.no-data {
+            height: 200px;
+            text-align: center;
+            color: #888;
+            font-size: 16px;
+            border: 0;
+
+            .ico-cond {
+                margin: 40px auto 25px;
+            }
+        }
+
+        &-title {
+            font-size: 20px;
+            border-bottom: 1px solid #dddddd;
+            margin-bottom: 8px;
+
+            h3 {
+                float: left;
+            }
+
+            i {
+                float: right;
+            }
+        }
+    }
+
+    .right-box {
+        padding-right: 0;
+    }
+
+    .cond {
+        margin-top: 12px;
+
+        li {
+            padding: 9px 0;
+
+            a {
+                color: #555;
+            }
+
+            .label {
+                margin-left: 5px;
+                color: #999;
+            }
+
+            .count {
+                color: #888;
+
+                em {
+                    color: #e55128;
+                }
+            }
+        }
+    }
+
+    .house {
+        li {
+            padding: 16px 0;
+            border-bottom: 1px solid #f1f1f1;
+
+            a {
+                display: block;
+                float: left;
+            }
+            .box {
+                display: block;
+            }
+
+            .img-box, img {
+                .size(38px);
+            }
+
+            .txt-box {
+                .size(208px, 38px);
+                padding-left: 15px;
+
+                .title {
+                    display: block;
+                    font-size: 14px;
+                    margin-bottom: 4px;
+                    white-space: nowrap;
+                    .size(208px, 20px);
+                    overflow: hidden;
+                }
+
+                em {
+                    color: #e88971;
+                }
+
+                .date {
+                    color: #bbb;
+                }
+            }
+        }
+    }
+
+    .arrow-flag {
+        position: absolute;
+        z-index: 10;
+        right: 18px;
+        top: -(33px + 11px);
+    }
+
+    .ctrl-close {
+        position: absolute;
+        bottom: -65px;
+        left: 380px;
+        cursor: pointer;
+    }
+}

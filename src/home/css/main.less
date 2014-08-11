@@ -1,10 +1,27 @@
 @import '../../../dep/est/src/all.less';
+@import '../../common/css/mixin';
 
 body {
     background: url(img/home-bg.jpg) top center no-repeat fixed;
     background-color: #fafafa;
 }
 
+
+// 选中色的修改
+::selection {
+    color: #fff;
+    background-color: #71b1fc;
+}
+
+::-moz-selection {
+    color: #fff;
+    background-color: #71b1fc;
+}
+
+::-webkit-selection {
+    color: #fff;
+    background-color: #71b1fc;
+}
 
 .nav-nobg {
     margin-top: 50px;
@@ -15,7 +32,7 @@ body {
     h1 a {
         .size(150px, 33px);
         margin-top: 9px;
-        background: url(./img/logo.png) center no-repeat;
+        background: url(./img/home-sprites.png) no-repeat;
     }
 
     .nav-lst li a:hover {
@@ -27,5 +44,170 @@ body {
         border-color: #2163ae;
     }
 
-    
+    .login-panel {
+        line-height: 33px;
+
+        .btn-login {
+            padding: 9px 22px;
+            background-color: #dbebf5;
+            .border-radius(3px);
+            color: #014c84;
+            *zoom: 1;
+        }
+    }
 }
+.link-box {
+    margin-top: 0;
+    border: 0;
+    background-color: #f2f5f8;
+}
+
+@main-width: 852px;
+
+// 中间区域约定宽度
+.main-wrap {
+    width: @main-width;
+    margin: 0 auto;
+}
+
+.banner {
+    margin: 70px 0 0 146px;
+    .size(570px, 90px);
+}
+
+.sub-title {
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    margin: 20px 0 30px;
+}
+
+.search-box-wrap {
+    height: 130px;
+    position: relative;
+    margin-bottom: 32px;
+
+    // for advanced browsers
+    background: rgba(0, 0, 0, 0.5);
+    .border-radius(5px);
+
+    .search-box {
+        padding: 25px 22px 20px;
+
+        .txt {
+            width: 725px;
+            padding: 15px;
+            height: 20px;
+            line-height: 20px;
+            background: #fff;
+            font-size: 16px;
+            .border-radius(5px 0 0 5px);
+        }
+
+        input {
+            border: 0;
+            float: left;
+        }
+
+        .btn {
+            // .size(53px, 50px);
+            .box-shadow(0 0 3px #333);
+            cursor: pointer;
+            text-indent: -9999px;
+        }
+    }
+
+    .hot-rec {
+        font-size: 14px;
+        color: #fff;
+        margin-left: 20px;
+
+        .label {
+            .opacity(65);
+        }
+
+        a {
+            color: #fff;
+        }
+    }
+
+    // ie 6 background opacity hacker
+    .ie6-bg {
+        position: absolute;
+        .size(@main-width, 130px);
+        .opacity(60);
+    }
+}
+
+
+@notice-bar-height: 21px;
+.notice-bar {
+    color: #fff;
+    font-size: 12px;
+    line-height: @notice-bar-height;
+    height: @notice-bar-height;
+    margin-bottom: 30px;
+
+    .label {
+        .size(64px, @notice-bar-height);
+        text-align: center;
+        background: #333;
+        .border-radius(6px);
+    }
+
+    .list-wrap {
+        .size(@main-width - 64px, @notice-bar-height);
+        overflow: hidden;
+    }
+
+    ul {
+        li {
+            margin-left: 10px;
+
+            a {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.ctrl-center {
+    height: 72px;
+    position: relative;
+    
+    .home-ico {
+        float: right;
+        cursor: pointer;
+    }
+
+    .msg-num {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        .size(21px);
+        .border-radius(10px);
+        background-color: #e75229;
+        color: #fff;
+        font-style: normal;
+        line-height: 20px;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .ico-clock-active .msg-num {
+        display: none;
+    }
+}
+
+@import 'mycenter';
+@import 'content';
+
+@import 'icon';
+@import 'suggestion';
+
+
+// suggustion
+// @import '../dep/jquery-ui/themes/base/core.css';
+// @import '../dep/jquery-ui/themes/base/menu.css';
+// @import '../dep/jquery-ui/themes/base/autocomplete.css';
+// @import '../dep/jquery-ui/themes/base/theme.css';

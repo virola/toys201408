@@ -31,7 +31,8 @@ module.exports = function (grunt) {
                     'asset/common/common.js': [
                         'src/common/jquery.scrollLoading.js',
                         'src/common/fixtop.js',
-                        'src/common/html5support.js'
+                        'src/common/html5support.js',
+                        'src/common/base.js'
                     ],
                     'asset/common/toolbar.js': [
                         'src/common/toolbar.js'

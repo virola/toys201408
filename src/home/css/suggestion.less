@@ -1,0 +1,63 @@
+@import '../../../dep/est/src/all.less';
+
+.suggest-wrap {
+    position: relative;
+    .clearfix();
+
+    .home-ico {
+        position: absolute;
+        display: none;
+        margin: 4px 0 0 21px;
+    }
+}
+
+.ui-front {
+    z-index: 10;
+}
+.ui-autocomplete {
+    margin-top: 14px;
+    position: absolute;
+    background-color: #fff;
+    padding: 10px 1px;
+    .border-radius(5px);
+
+    .ui-menu-item {
+        position: relative;
+        margin: 0;
+        line-height: 30px;
+        height: 30px;
+        padding: 0 20px;
+
+        a {
+            display: block;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .sub-text {
+            margin-left: 10px;
+            font-size: 12px;
+            color: #999;
+        }
+    }
+
+    .ui-state-focus {
+        background-color: #3082c6;
+        .linear-gradient(to bottom, #3287cf, #2e7dbe);
+
+        a, span, .sub-text, .count {
+            color: #fff;
+        }
+    }
+}
+
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
