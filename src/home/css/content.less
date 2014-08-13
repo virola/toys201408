@@ -18,7 +18,13 @@
             position: relative;
 
             a {
+                display: block;
                 color: #2d4a62;
+                text-decoration: none;
+
+                &:hover {
+                    background-color: #cbd8e1;
+                }
             }
 
             i {
@@ -32,9 +38,14 @@
         .on {
             background-color: #0664c4;
             color: #fff;
+            cursor: default;
 
             a {
                 color: #fff;
+
+                &:hover {
+                    background-color: #0664c4;
+                }
             }
 
             i {
@@ -55,7 +66,7 @@
             padding: 0 16px;
             background: #fff;
 
-            .ui-box-shadow();
+            .box-shadow(0 1px 3px 0 rgba(158, 158, 158, 0.3));
 
             a {
                 color: #555;
@@ -88,6 +99,12 @@
         .foot-ico {
             .size(210px);
             margin: 20px auto;
+
+            .transition(0.5s ease-in-out);
+
+            &:hover {
+                .transform(scale(1.1));
+            }
         }
 
         h3 {

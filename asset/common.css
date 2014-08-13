@@ -89,8 +89,6 @@ body {
   -webkit-box-shadow: 0 3px 3px #e1e1e1;
   -moz-box-shadow: 0 3px 3px #e1e1e1;
   box-shadow: 0 3px 3px #e1e1e1;
-  font-smoothing: subpixel-antialiased;
-  -webkit-font-smoothing: subpixel-antialiased;
 }
 .nav-box .nav-wrap {
   width: 1150px;
@@ -105,6 +103,7 @@ body {
 }
 .nav-box a {
   color: #FFFFFF;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 .nav-box h1 {
   float: left;
@@ -218,7 +217,7 @@ body {
 }
 .link-box {
   border-top: 1px solid #dfdfdf;
-  padding: 12px 0;
+  padding: 20px 0;
   margin-top: 50px;
   background: #fff;
 }

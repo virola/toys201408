@@ -2,7 +2,7 @@
 @import '../../common/css/mixin';
 
 body {
-    background: url(img/home-bg.jpg) top center no-repeat fixed;
+    background: url(img/home-bg.jpg) top center no-repeat;
     background-color: #fafafa;
 }
 
@@ -10,17 +10,17 @@ body {
 // 选中色的修改
 ::selection {
     color: #fff;
-    background-color: #71b1fc;
+    background-color: #ff6a00;
 }
 
 ::-moz-selection {
     color: #fff;
-    background-color: #71b1fc;
+    background-color: #ff6a00;
 }
 
 ::-webkit-selection {
     color: #fff;
-    background-color: #71b1fc;
+    background-color: #ff6a00;
 }
 
 .nav-nobg {
@@ -35,8 +35,30 @@ body {
         background: url(./img/home-sprites.png) no-repeat;
     }
 
-    .nav-lst li a:hover {
-        background: none;
+    .nav-lst {
+        float: left;
+        margin-left: 15px;
+
+        li {
+
+            a {
+                font-size: 18px;
+                padding: 0 25px;
+
+                &:hover {
+                    background: none;
+                }
+            }  
+        }
+
+        .break {
+            color: #74b9e6;
+        }
+
+        .p .ico-hot {
+            top: -8px;
+            right: -2px;
+        }
     }
 
     .city-selector {
@@ -49,10 +71,17 @@ body {
 
         .btn-login {
             padding: 9px 22px;
-            background-color: #dbebf5;
+            background-color: #dceaf4;
             .border-radius(3px);
             color: #014c84;
             *zoom: 1;
+            margin: 0 0 0 10px;
+            text-shadow: none;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #eef5f9;
+            }
         }
     }
 }
@@ -72,14 +101,16 @@ body {
 
 .banner {
     margin: 70px 0 0 146px;
-    .size(570px, 90px);
+    .size(590px, 90px);
 }
 
 .sub-title {
     text-align: center;
     font-size: 16px;
     color: #fff;
-    margin: 20px 0 30px;
+    margin: 15px 0 30px;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
 
 .search-box-wrap {
@@ -92,16 +123,21 @@ body {
     .border-radius(5px);
 
     .search-box {
-        padding: 25px 22px 20px;
+        padding: 25px 22px 16px;
 
         .txt {
             width: 725px;
             padding: 15px;
-            height: 20px;
-            line-height: 20px;
+            height: 19px;
+            line-height: 19px;
             background: #fff;
             font-size: 16px;
             .border-radius(5px 0 0 5px);
+
+            &:focus{
+                outline: none;
+                box-shadow: 0 0 15px rgba(61, 151, 212, 1);
+            }
         }
 
         input {
@@ -166,6 +202,7 @@ body {
 
             a {
                 color: #fff;
+                text-shadow: 0 1px 1px rgba(0,0,0,0.2);
             }
         }
     }
@@ -192,6 +229,7 @@ body {
         line-height: 20px;
         font-size: 12px;
         text-align: center;
+        font-weight: 700;
     }
 
     .ico-clock-active .msg-num {
@@ -203,11 +241,5 @@ body {
 @import 'content';
 
 @import 'icon';
-@import 'suggestion';
 
-
-// suggustion
-// @import '../dep/jquery-ui/themes/base/core.css';
-// @import '../dep/jquery-ui/themes/base/menu.css';
-// @import '../dep/jquery-ui/themes/base/autocomplete.css';
-// @import '../dep/jquery-ui/themes/base/theme.css';
+@import '../../common/css/suggestion';

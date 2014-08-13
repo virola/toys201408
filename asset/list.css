@@ -248,6 +248,9 @@
   zoom: 1;
   vertical-align: middle;
 }
+#filter-display-bar {
+  margin-top: -1px;
+}
 .main-box {
   margin-top: 22px;
 }
@@ -548,7 +551,6 @@
   -moz-box-shadow: 0 2px 4px 0 rgba(158, 158, 158, 0.2);
   box-shadow: 0 2px 4px 0 rgba(158, 158, 158, 0.2);
 }
-.nav-box,
 .tab-lst li a span,
 .main-box .house-lst h2 a,
 .main-box .house-lst .num {
