@@ -20,13 +20,19 @@
 require.config({
     baseUrl: '../asset/home/',
     paths: {
+        'common': '../common',
         'jquery-ui': '../../dep/jquery-ui/jquery-ui.min'
     }
 });
 
-require(['main'], function (main) {
+require(['main', 'common/suggestion'], function (main, suggestion) {
     main.init({
         suggestUrl: 'http://localhost/code/beita/project/beita-v1/data/suggest.json'
+    });
+
+    suggestion.init({
+        main: '#keyword-box',
+        appendTo: '#suggest-cont'
     });
 });
 

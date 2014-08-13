@@ -1,7 +1,7 @@
 /**
  * @file  房源列表页的交互逻辑
  */
-define(function (require) {    
+define(function (require) {
 
     function initPageEvents() {
 
@@ -17,35 +17,26 @@ define(function (require) {
         $('#filter-bar').fixtop({
             fixedWidth: '1098px'
         });
-        
-        // $('#list-side').fixtop({
-        //     marginTop: 50 + 22,
-        //     fixedWidth: '382px',
-        //     fixed: function (sideElement) {
-        //         var neighbor = $(sideElement).prev();
-        //         var left = neighbor.outerWidth() + neighbor.position().left + 23;
-        //         sideElement.css({
-        //             left: left + 'px',
-        //             marginBottom: (283 + 83 + 168) + 'px'
-        //         });
-        //         sideElement.addClass('fixed');
-        //     },
-        //     unfixed: function (sideElement) {
-        //         sideElement.css({
-        //             left: ''
-        //         })
-        //     }
-        // });
     }
 
+    var listSide = $('#list-side');
 
     function bindWindowScroll() {
 
     }
 
     return {
-        init: function () {
+        init: function (params) {
             initPageEvents();
+
+            require(['common/toolbar'], function (toolbar) {
+                toolbar.init({
+                    user: {
+                        username: params.username
+                    },
+                    url: params.tool.url
+                });
+            });
         }
     };
 

@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     grunt.extendConfig({
         'watch': {
             'common': {
-                'files': [
+                files: [
                     'src/common/*',
                     'src/common/**/*'
                 ],
@@ -13,15 +13,21 @@ module.exports = function (grunt) {
         },
         'less': {
             'common': {
-                'files': {
+                files: {
                     'asset/common.css': 'src/common/css/main.less'
+                }
+            },
+            'toolbar': {
+                files: {
+                    'asset/common/toolbar.css': 'src/common/css/toolbar.less'
                 }
             }
         },
         'cssmin': {
             'common': {
-                'files': {
-                    'asset/common.css': 'asset/common.css'
+                files: {
+                    'asset/common.css': 'asset/common.css',
+                    'asset/common/toolbar.css': 'asset/common/toolbar.css'
                 }
             }
         },
@@ -36,6 +42,9 @@ module.exports = function (grunt) {
                     ],
                     'asset/common/toolbar.js': [
                         'src/common/toolbar.js'
+                    ],
+                    'asset/common/suggestion.js': [
+                        'src/common/suggestion.js'
                     ]
                 }
             }
@@ -47,9 +56,10 @@ module.exports = function (grunt) {
                 }
             },
             'common': {
-                'files': {
+                files: {
                     'asset/common/common.js': ['asset/common/common.js'],
-                    'asset/common/toolbar.js': 'asset/common/toolbar.js'
+                    'asset/common/toolbar.js': 'asset/common/toolbar.js',
+                    'asset/common/suggestion.js': 'asset/common/suggestion.js'
                 }
             }
         },
@@ -64,12 +74,14 @@ module.exports = function (grunt) {
     // 通用模块 
     grunt.registerTask('common', [
         'less:common',
+        'less:toolbar',
         'concat:common'
     ]);
 
     // 通用模块 release
     grunt.registerTask('common-release', [
         'less:common',
+        'less:toolbar',
         'cssmin:common',
         'concat:common',
         'uglify:common'

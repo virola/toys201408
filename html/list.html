@@ -1,506 +1,168 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>house-list</title>
+    <title>房源列表_贝壳网</title>
     <link rel="stylesheet" href="../asset/common.css">
     <link rel="stylesheet" href="../asset/list.css">
 </head>
 <body>
-    <div class="nav-box">
-        <div class="nav-wrap">
-            <h1><a href="">贝壳-ke.com</a></h1>
-            <div class="city-selector">
-                <span>上海</span>
-                <i class="ico ico-arr-w-down"></i>
-            </div>
-            <ul class="nav-lst">
-                <li><a href=""><span>首页</span></a></li>
-                <li><a href=""><span>买新房</span></a></li>
-                <li><a href="" class="on"><span>买二手房</span><span class="p"><i class="ico ico-hot"></i></span></a></li>
-                <li><a href=""><span>我是业主</span></a></li>
-            </ul>
-            <div class="search-panel">
-                <form action="">
-                    <input type="text" class="txt" placeholder="输入关键词(楼盘名/小区名)" />
-                    <input type="submit" value="" class="search-btn" />
-                </form>
-            </div>
-            <div class="login-panel">
-                <a href="">注册</a>
-                或
-                <a href="">登录</a>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="wrapper">
-        <div class="crumb">
-            <i class="ico ico-place"></i>
-            <a href="">贝塔房首页</a><span class="stp">&gt;</span><a href="">上海二手房</a>
-        </div>
-
-        <div class="filter-box">
-            <div class="hd clear">
-                <ul class="tab-lst">
-                    <li class="on"><a href=""><i class="ico ico-all"></i><span>全部二手房</span></a></li>
-                    <li><a href=""><i class="ico ico-train"></i><span>地铁房</span></a></li>
-                    <li><a href=""><i class="ico ico-map"></i><span>地图找房</span><span class="p"><i class="ico ico-new"></i></span></a></li>
-                </ul>
-                <div class="info">
-                    <span class="num">5243 名贝客正在找房</span>
-                </div>
-            </div>
-
-            <div class="bd">
-                <dl class="dl-lst clear">
-                    <dt>区域：</dt>
-                    <dd>
-                        <a href="">不限</a>
-                        <a href="">朝阳</a>
-                        <a href="" class="on">海淀</a>
-                        <a href="">丰台</a>
-                        <a href="">东城</a>
-                        <a href="">西城</a>
-                        <a href="">石景山</a>
-                        <a href="">昌平</a>
-                        <a href="">通州</a>
-                        <a href="">大兴</a>
-                        <a href="">顺义</a>
-                        <a href="">亦庄开发区</a>
-                        <a href="">朝阳</a>
-                        <a href="">海淀</a>
-                        <a href="">丰台</a>
-                        <a href="">东城</a>
-                        <a href="">西城</a>
-                        <a href="">石景山</a>
-                        <a href="">昌平</a>
-                        <a href="">通州</a>
-                        <a href="">大兴</a>
-                        <a href="">顺义</a>
-                        <a href="">亦庄开发区</a>
-                        <a href="">朝阳</a>
-                        <a href="">海淀</a>
-                        <a href="">丰台</a>
-                        <a href="">东城</a>
-                        <a href="">西城</a>
-                        <a href="">石景山</a>
-                        <a href="">昌平</a>
-                        <a href="">通州</a>
-                        <a href="">大兴</a>
-                        <a href="">顺义</a>
-                        <a href="">亦庄开发区</a>
-                    </dd>
-                </dl>
-                <dl class="dl-lst clear">
-                    <dt>售价：</dt>
-                    <dd>
-                        <a href="">不限</a>
-                        <a href="">100万以下</a>
-                        <a href="">100-150万</a>
-                        <a href="" class="on">150-200万</a>
-                        <a href="">200-250万</a>
-                        <a href="">250-300万</a>
-                        <a href="">300-500万</a>
-                        <a href="">500-1000万</a>
-                        <a href="">1000万以上</a>
-                        <div class="custom">
-                            <div class="txt-box">
-                                <input type="text" class="txt" />
-                                <label>万</label>
-                            </div>
-                            -
-                            <div class="txt-box">
-                                <input type="text" class="txt" />
-                                <label>万</label>
-                            </div>
-                            <input type="button" class="ok" value="确定" />
-                        </div>
-                    </dd>
-                </dl>
-                <dl class="dl-lst clear">
-                    <dt>面积：</dt>
-                    <dd>
-                        <a href="">不限</a>
-                        <a href="">50平米以下</a>
-                        <a href="" class="on">50-70平米</a>
-                        <a href="">70-90平米</a>
-                        <a href="">90-110平米</a>
-                        <a href="">110-130平米</a>
-                        <a href="">130-150平米</a>
-                        <a href="">150-200平米</a>
-                        <a href="">200平米以上</a>
-                    </dd>
-                </dl>
-                <dl class="dl-lst clear">
-                    <dt>房型：</dt>
-                    <dd>
-                        <a href="">不限</a>
-                        <a href="">1室</a>
-                        <a href="" class="on">2室</a>
-                        <a href="">3室</a>
-                        <a href="">4室</a>
-                        <a href="">5室</a>
-                        <a href="">5室以上</a>
-                    </dd>
-                </dl>
-            </div>
-
-            <div id="filter-bar" class="fd">
-                <div class="left">
-                    <span class="fs14">找到<em class="red">560</em>套在售房源</span>
-                    <a href=""><span>海淀</span><span class="del">&times;</span></a>
-                    <a href=""><span>150-200万</span><span class="del">&times;</span></a>
-                    <a href=""><span>50-70平</span><span class="del">&times;</span></a>
-                    <a href="" class="del-all">清空筛选</a>
-                </div>
-                <div class="right">
-                    <span>排序：</span>
-                    <a href="" class="on"><span>默认</span></a>
-                    <a href=""><span>面积</span><i class="ico ico-arr-down"></i></a>
-                    <a href=""><span>时间</span><i class="ico ico-arr-down"></i></a>
-                    <a href=""><span>单价</span><i class="ico ico-arr-down"></i></a>
-                    <a href=""><span>总价</span><i class="ico ico-arr-down"></i></a>
-                    <a href=""><span>咨询量</span><i class="ico ico-arr-down"></i></a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="main-box clear">
-            <div class="con-box">
-                <ul id="house-lst" class="house-lst">
-                    <li style="border:none">
-                        <div class="pic-panel">
-                            <a href=""><img src="../asset/temp/temp-7.png" alt="" /></a>
-                            <div class="pic-num">
-                                <i class="ico-pic"></i>
-                                <span class="num">6</span>
-                            </div>
-                        </div>
-                        <div class="info-panel">
-                            <h2><a href=""><span>1</span>远洋一方南北向三居，有钥匙随时可看房！</a></h2>
-                            <div class="summary">
-                                <div class="where">华贸国际公寓</div>
-                                <div class="type"><span class="num">3</span>室&nbsp<span class="num">2</span>厅</div>
-                                <div class="square"><span class="num">154</span>平米</div>
-                                <div class="price"><span class="num">489</span>万</div>
-                            </div>
-                            <div class="other">
-                                <div class="con">精装修 / 低楼层 / 南北 / 2013年</div>
-                                <div class="price-pre">45,224 元/平</div>
-                            </div>
-                            <div class="fd">
-                                <div class="left">
-                                    <a href=""><img src="../asset/temp/temp-5.png" alt="" /></a>
-                                </div>
-                                <div class="right">
-                                    <a href="" class="star">
-                                        <i class="ico ico-star"></i>
-                                    </a>
-                                    <a href="" class="go-detail">详情</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="hover">
-                        <div class="pic-panel">
-                            <a href=""><img src="../asset/temp/temp-8.png" alt="" /></a>
-                            <div class="pic-num">
-                                <i class="ico-pic"></i>
-                                <span class="num">6</span>
-                            </div>
-                        </div>
-                        <div class="info-panel">
-                            <h2><a href=""><span>2</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2>
-                            <div class="summary">
-                                <div class="where">松榆西里</div>
-                                <div class="type"><span class="num">1</span>室&nbsp<span class="num">1</span>厅</div>
-                                <div class="square"><span class="num">96</span>平米</div>
-                                <div class="price"><span class="num">763</span>万</div>
-                            </div>
-                            <div class="other">
-                                <div class="con">精装修 / 低楼层 / 南北 / 2013年</div>
-                                <div class="price-pre">45,224 元/平</div>
-                            </div>
-                            <div class="fd">
-                                <div class="left">
-                                    <a href=""><img src="../asset/temp/temp-6.png" alt="" /></a>
-                                </div>
-                                <div class="right">
-                                    <a href="" class="star">
-                                        <i class="ico ico-star"></i>
-                                    </a>
-                                    <a href="" class="go-detail">详情</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pic-panel">
-                            <a href=""><img src="../asset/temp/temp-3.png" alt="" /></a>
-                            <div class="pic-num">
-                                <i class="ico-pic"></i>
-                                <span class="num">6</span>
-                            </div>
-                        </div>
-                        <div class="info-panel">
-                            <h2><a href=""><span>3</span>志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房</a></h2>
-                            <div class="summary">
-                                <div class="where">幸福村社区</div>
-                                <div class="type"><span class="num">3</span>室&nbsp<span class="num">2</span>厅</div>
-                                <div class="square"><span class="num">154</span>平米</div>
-                                <div class="price"><span class="num">489</span>万</div>
-                            </div>
-                            <div class="other">
-                                <div class="con">精装修 / 低楼层 / 南北 / 2013年</div>
-                                <div class="price-pre">45,224 元/平</div>
-                            </div>
-                            <div class="fd">
-                                <div class="left">
-                                    <a href=""><img src="../asset/temp/temp-4.png" alt="" /></a>
-                                </div>
-                                <div class="right">
-                                    <a href="" class="star">
-                                        <i class="ico ico-star"></i>
-                                    </a>
-                                    <a href="" class="go-detail">详情</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pic-panel">
-                            <a href=""><img src="../asset/temp/temp-7.png" alt="" /></a>
-                            <div class="pic-num">
-                                <i class="ico-pic"></i>
-                                <span class="num">6</span>
-                            </div>
-                        </div>
-                        <div class="info-panel">
-                            <h2><a href=""><span>1</span>远洋一方南北向三居，有钥匙随时可看房！</a></h2>
-                            <div class="summary">
-                                <div class="where">华贸国际公寓</div>
-                                <div class="type"><span class="num">3</span>室&nbsp<span class="num">2</span>厅</div>
-                                <div class="square"><span class="num">154</span>平米</div>
-                                <div class="price"><span class="num">489</span>万</div>
-                            </div>
-                            <div class="other">
-                                <div class="con">精装修 / 低楼层 / 南北 / 2013年</div>
-                                <div class="price-pre">45,224 元/平</div>
-                            </div>
-                            <div class="fd">
-                                <div class="left">
-                                    <a href=""><img src="../asset/temp/temp-5.png" alt="" /></a>
-                                </div>
-                                <div class="right">
-                                    <a href="" class="star">
-                                        <i class="ico ico-star"></i>
-                                    </a>
-                                    <a href="" class="go-detail">详情</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="hover">
-                        <div class="pic-panel">
-                            <a href=""><img src="../asset/temp/temp-8.png" alt="" /></a>
-                            <div class="pic-num">
-                                <i class="ico-pic"></i>
-                                <span class="num">6</span>
-                            </div>
-                        </div>
-                        <div class="info-panel">
-                            <h2><a href=""><span>2</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2>
-                            <div class="summary">
-                                <div class="where">松榆西里</div>
-                                <div class="type"><span class="num">1</span>室&nbsp<span class="num">1</span>厅</div>
-                                <div class="square"><span class="num">96</span>平米</div>
-                                <div class="price"><span class="num">763</span>万</div>
-                            </div>
-                            <div class="other">
-                                <div class="con">精装修 / 低楼层 / 南北 / 2013年</div>
-                                <div class="price-pre">45,224 元/平</div>
-                            </div>
-                            <div class="fd">
-                                <div class="left">
-                                    <a href=""><img src="../asset/temp/temp-6.png" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pic-panel">
-                            <a href=""><img src="../asset/temp/temp-3.png" alt="" /></a>
-                            <div class="pic-num">
-                                <i class="ico-pic"></i>
-                                <span class="num">6</span>
-                            </div>
-                        </div>
-                        <div class="info-panel">
-                            <h2><a href=""><span>3</span>志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房</a></h2>
-                            <div class="summary">
-                                <div class="where">幸福村社区</div>
-                                <div class="type"><span class="num">3</span>室&nbsp<span class="num">2</span>厅</div>
-                                <div class="square"><span class="num">154</span>平米</div>
-                                <div class="price"><span class="num">489</span>万</div>
-                            </div>
-                            <div class="other">
-                                <div class="con">精装修 / 低楼层 / 南北 / 2013年</div>
-                                <div class="price-pre">45,224 元/平</div>
-                            </div>
-                            <div class="fd">
-                                <div class="left">
-                                    <a href=""><img src="../asset/temp/temp-4.png" alt="" /></a>
-                                </div>
-                                <div class="right">
-                                    <a href="" class="star">
-                                        <i class="ico ico-star"></i>
-                                    </a>
-                                    <a href="" class="go-detail">详情</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="page-box house-lst-page-box">
-                    <a href="">&lt;</a>
-                    <a href="">1</a>
-                    <span>...</span>
-                    <a href="">4</a>
-                    <a href="">5</a>
-                    <a href="">6</a>
-                    <a href="">7</a>
-                    <a href="">8</a>
-                    <span>...</span>
-                    <a href="">20</a>
-                    <a href="" class="blue-btn">看看下一页</a>
-                </div>
-            </div>
-            <div id="list-side" class="side-bar">
-                <div class="map-box">
-                    <img src="../asset/temp/temp-2.png" alt="" />
-                </div>
-                <div class="search-widget">
-                    <form action="">
-                        <input type="text" class="txt" placeholder="搜哪儿去哪儿！" />
-                        <input type="submit" value="" class="btn" />
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="recommend">
-            <div class="hd clear">
-                <h5>热门小区推荐</h5>
-            </div>
-            <div class="recommend-lst clear">
-                <div class="item">
-                    <div class="pic"><a href=""><img src="../asset/temp/temp-1.png" alt="" /></a></div>
-                    <div class="txt">
-                        <a href="">万寿园小区</a> / 57361元/㎡
-                    </div>
-                    21套在售  430人浏览
-                </div>
-                <div class="item">
-                    <div class="pic"><a href=""><img src="../asset/temp/temp-9.png" alt="" /></a></div>
-                    <div class="txt">
-                        <a href="">珠江丽景</a> / 57361元/㎡
-                    </div>
-                    21套在售  430人浏览
-                </div>
-                <div class="item">
-                    <div class="pic"><a href=""><img src="../asset/temp/temp-10.png" alt="" /></a></div>
-                    <div class="txt">
-                        <a href="">永定路一号 </a> / 57361元/㎡
-                    </div>
-                    21套在售  430人浏览
-                </div>
-                <div class="item">
-                    <div class="pic"><a href=""><img src="../asset/temp/temp-1.png" alt="" /></a></div>
-                    <div class="txt">
-                        <a href="">乐府江南</a> / 57361元/㎡
-                    </div>
-                    21套在售  430人浏览
-                </div>
-                <div class="item">
-                    <div class="pic"><a href=""><img src="../asset/temp/temp-1.png" alt="" /></a></div>
-                    <div class="txt">
-                        <a href="">永定路一号</a> / 57361元/㎡
-                    </div>
-                    21套在售  430人浏览
-                </div>
-            </div>
-        </div>
-
-    </div>
+<div class="nav-box"><div class="nav-wrap"><h1><a href="">贝壳-ke.com</a></h1><div class="city-selector"><span>上海</span><i class="ico ico-arr-w-down"></i></div><ul class="nav-lst"><li><a href="http://localhost/code/beita/project/display/tpl.php?tpl=home"><span>首页</span></a></li><li><a href="http://"><span>买新房</span></a></li><li><a href="http://localhost/code/beita/project/display/tpl.php?tpl=list"><span>买二手房</span></a></li><li><a href="http://"><span>我是房主</span></a></li></ul><div class="search-panel"><form action="http://searchUrl"><input type="text" class="txt" name="keyword" placeholder="输入关键词(楼盘名/小区名)" /><input type="submit" title="点此搜索" value="" class="search-btn" /></form></div><div class="login-panel"><a href="">注册</a>&nbsp;&nbsp;或&nbsp;&nbsp;<a href="http://regorlogin">登录</a></div></div></div>
+<div class="wrapper">
+    <div class="crumb"><i class="ico ico-place"></i><a href="http://beitafang.com">贝塔房首页</a><span class="stp">&gt;</span><span>上海二手房<span></div>
+<div class="filter-box"><div class="hd clear"><ul class="tab-lst"><li class="on"><a href=""><i class="ico ico-all"></i><span>全部二手房</span></a></li><li><a href=""><i class="ico ico-train"></i><span>地铁房</span></a></li><li><a href=""><i class="ico ico-map"></i><span>地图找房</span><span class="p"><i class="ico ico-new"></i></span></a></li></ul><div class="info"><span class="num">3541 名贝客正在找房</span></div></div><div class="bd"><dl class="dl-lst clear"><dt>区域：</dt><dd><a href="" class="on">不限</a><a href="">朝阳</a><a href="http://">海淀</a><a href="http://">丰台</a><a href="http://">东城</a><a href="http://">西城</a><a href="http://">石景山</a><a href="http://">昌平</a><a href="http://">通州</a><a href="http://">大兴</a><a href="http://">顺义</a><a href="">亦庄开发区</a></dd></dl><dl class="dl-lst clear"><dt>售价：</dt><dd><a href="">不限</a><a href="">10万-20万</a><a href="http://">100万以下</a><a href="http://" class="on">100-150万</a><a href="http://">150-200万</a><a href="http://">200-250万</a><a href="http://">250-300万</a><a href="http://">300-500万</a><a href="http://">500-1000万</a><a href="http://">1000万以上</a><div class="custom"><div class="txt-box"><input type="text" class="txt" name="price_min" value="50" /><label>万</label></div>&nbsp;-&nbsp;<div class="txt-box"><input type="text" class="txt" name="price_max" value="100" /><label>万</label></div><input type="button" class="ok" value="确定" /></div></dd></dl><dl class="dl-lst clear"><dt>面积：</dt><dd><a href="">不限</a><a href="http://">50平米以下</a><a href="http://" class="on">50-70平米</a><a href="http://">70-90平米</a><a href="http://">90-110平米</a><a href="http://">110-130平米</a><a href="http://">130-150平米</a><a href="http://">150-200平米</a><a href="http://">200平米以上</a></dd></dl><dl class="dl-lst clear"><dt>房型：</dt><dd><a href="">不限</a><a href="http://">1室</a><a href="http://" class="on">2室</a><a href="http://">3室</a><a href="http://">4室</a><a href="http://">5室</a><a href="http://">5室以上</a></dd></dl></div><div id="filter-bar" class="fd"><div class="left"><span class="fs14">找到<em class="red">561</em>套在售房源</span><span id="filter-display-bar"><a href=""><span>海淀</span><span class="del">&times;</span></a><a href=""><span>150-200万</span><span class="del">&times;</span></a><a href=""><span>50-70平</span><span class="del">&times;</span></a><a href="" class="del-all">清空筛选</a></span></div><div class="right" id="sort-bar"><span>排序：</span><a href="" class="on"><span>默认</span></a><a href=""><span>面积</span><i class="ico ico-arr-down"></i></a><a href=""><span>时间</span><i class="ico ico-arr-down"></i></a><a href=""><span>单价</span><i class="ico ico-arr-down"></i></a><a href=""><span>总价</span><i class="ico ico-arr-down"></i></a><a href=""><span>咨询量</span><i class="ico ico-arr-down"></i></a></div></div></div><div class="main-box clear"><div class="con-box"><ul id="house-lst" class="house-lst"><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-7.png" src="../asset/img/blank.gif" alt="杨庄北区 精装1居 正规一室一厅 户型方正 带车位" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="杨庄北区 精装1居 正规一室一厅 户型方正 带车位"><span>1</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2><div class="summary"><div class="where">松榆西里</div><div class="type"><span class="num">3</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">489</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">15,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-4.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-7.png" src="../asset/img/blank.gif" alt="杨庄北区 精装1居 正规一室一厅 户型方正 带车位" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="杨庄北区 精装1居 正规一室一厅 户型方正 带车位"><span>2</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2><div class="summary"><div class="where">松榆西里</div><div class="type"><span class="num">3</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">489</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">15,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-4.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-7.png" src="../asset/img/blank.gif" alt="杨庄北区 精装1居 正规一室一厅 户型方正 带车位" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="杨庄北区 精装1居 正规一室一厅 户型方正 带车位"><span>3</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2><div class="summary"><div class="where">松榆西里</div><div class="type"><span class="num">3</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">489</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">15,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-4.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-7.png" src="../asset/img/blank.gif" alt="杨庄北区 精装1居 正规一室一厅 户型方正 带车位" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="杨庄北区 精装1居 正规一室一厅 户型方正 带车位"><span>4</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2><div class="summary"><div class="where">松榆西里</div><div class="type"><span class="num">3</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">489</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">15,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-4.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-7.png" src="../asset/img/blank.gif" alt="杨庄北区 精装1居 正规一室一厅 户型方正 带车位" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="杨庄北区 精装1居 正规一室一厅 户型方正 带车位"><span>5</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2><div class="summary"><div class="where">松榆西里</div><div class="type"><span class="num">3</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">489</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">15,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-4.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-8.png" src="../asset/img/blank.gif" alt="杨庄北区 精装1居 正规一室一厅 户型方正 带车位" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="杨庄北区 精装1居 正规一室一厅 户型方正 带车位"><span>6</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2><div class="summary"><div class="where">松榆西里</div><div class="type"><span class="num">3</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">489</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">15,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-6.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-3.png" src="../asset/img/blank.gif" alt="志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房"><span>7</span>志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房</a></h2><div class="summary"><div class="where">幸福村社区</div><div class="type"><span class="num">4</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">589</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">45,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-4.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-7.png" src="../asset/img/blank.gif" alt="杨庄北区 精装1居 正规一室一厅 户型方正 带车位" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="杨庄北区 精装1居 正规一室一厅 户型方正 带车位"><span>8</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2><div class="summary"><div class="where">松榆西里</div><div class="type"><span class="num">3</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">489</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">15,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-4.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-8.png" src="../asset/img/blank.gif" alt="杨庄北区 精装1居 正规一室一厅 户型方正 带车位" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="杨庄北区 精装1居 正规一室一厅 户型方正 带车位"><span>9</span>杨庄北区 精装1居 正规一室一厅 户型方正 带车位</a></h2><div class="summary"><div class="where">松榆西里</div><div class="type"><span class="num">3</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">489</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">15,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-6.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li><li data-geo="39.915,116.404"><div class="pic-panel"><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail"><img class="lazyload" data-url="../asset/temp/temp-3.png" src="../asset/img/blank.gif" alt="志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房" /></a><div class="pic-num"><i class="ico-pic"></i><span class="num">6</span></div></div><div class="info-panel"><h2><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" title="志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房"><span>10</span>志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房志新村小区 精装大两居 石油附小学区房</a></h2><div class="summary"><div class="where">幸福村社区</div><div class="type"><span class="num">4</span>室<span class="num">2</span>厅</div><div class="square"><span class="num">154</span>平米</div><div class="price"><span class="num">589</span>万</div></div><div class="other"><div class="con">精装修 / 低楼层 / 南北 / 2013年</div><div class="price-pre">45,224 元/平</div></div><div class="fd"><div class="left"><a href="http://" title="链家地产"><img src="../asset/temp/temp-4.png" alt="链家地产" /></a></div><div class="right"><a href="#" class="star"><i class="ico ico-star"></i></a><a href="http://localhost/code/beita/project/display/tpl.php?tpl=detail" class="go-detail">详情</a></div></div></div></li></ul><div class="page-box house-lst-page-box"><a href="#" data-page="1"class="on">1</a><a href="#" data-page="2">2</a><a href="#" data-page="3">3</a><span>...</span><a href="#" data-page="29">29</a><a href="" class="blue-btn">看看下一页</a></div></div><div id="list-side" class="side-bar"><div class="map-box"><img src="../asset/temp/temp-2.png" alt="" /></div><div class="search-widget"><form action=""><input type="text" class="txt" placeholder="搜哪儿去哪儿！" /><input type="submit" value="" class="btn" /></form></div></div></div><div class="recommend"><div class="hd clear"><h5>热门小区推荐</h5></div><div class="recommend-lst clear"><div class="item"><div class="pic"><a href="http://xxx"><img class="lazyload" data-url="../asset/temp/temp-1.png" src="../asset/img/blank.gif" alt="万寿园小区" /></a></div><div class="txt"><a href="http://xxx">万寿园小区</a> / 23465元元/㎡</div>21套在售  431人浏览</div><div class="item"><div class="pic"><a href="http://xxx"><img class="lazyload" data-url="../asset/temp/temp-9.png" src="../asset/img/blank.gif" alt="珠江丽景" /></a></div><div class="txt"><a href="http://xxx">珠江丽景</a> / 57361元/㎡</div>2套在售  430人浏览</div><div class="item"><div class="pic"><a href="http://xxx"><img class="lazyload" data-url="../asset/temp/temp-10.png" src="../asset/img/blank.gif" alt="永定路一号" /></a></div><div class="txt"><a href="http://xxx">永定路一号</a> / 57361元/㎡</div>27套在售  430人浏览</div><div class="item"><div class="pic"><a href="http://xxx"><img class="lazyload" data-url="../asset/temp/temp-1.png" src="../asset/img/blank.gif" alt="乐府江南" /></a></div><div class="txt"><a href="http://xxx">乐府江南</a> / 57361元/㎡</div>25套在售  430人浏览</div><div class="item"><div class="pic"><a href="http://xxx"><img class="lazyload" data-url="../asset/temp/temp-9.png" src="../asset/img/blank.gif" alt="永定路一号" /></a></div><div class="txt"><a href="http://xxx">永定路一号</a> / 57361元/㎡</div>20套在售  430人浏览</div></div></div>
+</div>
     
+<div class="link-box"><div class="wrapper"><dl class="dl-lst clear"><dt>北京二手房</dt><dd><a target="_blank" href="http://xxx">朝阳二手房</a><a target="_blank" href="http://xxx">海淀二手房</a><a target="_blank" href="http://xxx">海淀二手房</a><a target="_blank" href="http://xxx">石景山二手房</a><a target="_blank" href="http://xxx">海淀二手房</a><a target="_blank" href="http://xxx">海淀二手房</a><a target="_blank" href="http://xxx">海淀二手房</a><a target="_blank" href="http://xxx">海淀二手房</a><a target="_blank" href="http://xxx">海淀二手房</a></dd></dl><dl class="dl-lst clear"><dt>友情链接</dt><dd><a target="_blank" href="http://xxx">途牛旅游网</a><a target="_blank" href="http://xxx">途牛旅游网</a><a target="_blank" href="http://xxx">途牛旅游网</a><a target="_blank" href="http://xxx">途牛旅游网</a><a target="_blank" href="http://xxx">途牛旅游网</a></dd></dl></div></div>
 
-    <div class="link-box">
-        <div class="wrapper">
-            <dl class="dl-lst clear">
-                <dt>北京热门二手房</dt>
-                <dd>
-                    <a href="">朝阳二手房</a>
-                    <a href="">海淀二手房</a>
-                    <a href="">丰台二手房</a>
-                    <a href="">东城二手房</a>
-                    <a href="">西城二手房</a>
-                    <a href="">石景山二手房</a>
-                    <a href="">昌平二手房</a>
-                    <a href="">通州二手房</a>
-                    <a href="">大兴二手房</a>
-                    <a href="">顺义二手房</a>
-                </dd>
-            </dl>
-            <dl class="dl-lst clear">
-                <dt>友情链接</dt>
-                <dd>
-                    <a href="">相约久久旅游网</a>
-                    <a href="">途牛旅游网</a>
-                    <a href="">日租房</a>
-                    <a href="">遨游网</a>
-                    <a href="">携程旅游网</a>
-                </dd>
-            </dl>
-        </div>
-    </div>
+<div class="footer"><div class="wrapper"><div class="link"><a target="_blank" href="http://">关于链家</a><span class="stp">|</span><a target="_blank" href="http://">联系我们</a><span class="stp">|</span><a target="_blank" href="http://">加入我们</a><span class="stp">|</span><a target="_blank" href="http://">网站地图</a><span class="stp">|</span><a target="_blank" href="http://">友情链接</a><span class="stp">|</span><a target="_blank" href="http://">帮助中心</a></div><div>2004-2014 &copy; 贝塔房网™ BETAFANG.com</div><div>All rights reserved. Version v1.0  京ICP备12003524号  京公网安备11010502023470</div></div></div>
 
-    <div class="footer">
-        <div class="wrapper">
-            <div class="link">
-                <a href="">关于链家</a>
-                <span class="stp">|</span>
-                <a href="">联系我们</a>
-                <span class="stp">|</span>
-                <a href="">加入我们</a>
-                <span class="stp">|</span>
-                <a href="">网站地图</a>
-                <span class="stp">|</span>
-                <a href="">友情链接</a>
-                <span class="stp">|</span>
-                <a href="">帮助中心</a>
-            </div>
-            <div>2004-2014 &copy; 贝塔房网™ BETAFANG.com</div> 
-            <div>All rights reserved. Version v1.0  京ICP备12003524号  京公网安备11010502023470</div>
-        </div>
-    </div>
+<script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.min.js"></script>
+<script src="../dep/jquery/dist/jquery.min.js"></script>
+<script src="../asset/common/common.js"></script>
+<script type="text/javascript">
+require.config({
+    baseUrl: '../asset/list/',
+    paths: {
+        'common': '../../common'
+    }
+});
 
-    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.min.js"></script>
-    <script src="../dep/jquery/dist/jquery.min.js"></script>
-    <script src="../asset/common/common.js"></script>
-    <script type="text/javascript">
-    require.config({
-        baseUrl: '../asset/list/',
-        paths: {
-            'common': '../../common'
+require(['main'], function (main) {
+    main.init({
+        username: '小明',
+        tool: {
+            url: ['http://','http://','http://','http://']
+        }
+    });
+});
+
+</script>
+
+<script>
+
+$('<link>').attr('rel', 'stylesheet').attr('href', '../asset/common/toolbar.css')
+    .appendTo($(document.head));
+// require(['common/toolbar'], function (Toolbar) {
+//     Toolbar.init({
+//         feRoot: '../beita-v1/fe',
+//         username: ''
+//     });
+// });
+</script>
+<div class="m-tool" style="height:888px"><div class="m-tool-mask" style="height:888px"></div><div class="m-tool-bar" style="height:888px"><div class="m-tool-close m-tool-bar-close"></div><div class="m-tool-task"><div class="m-tool-tab-user"><img src="../asset/temp/tool/user.png"></div><div class="m-tool-tab" data-command="open" data-box="0"><div class="m-tool-tab-logo m-tool-tab-logo-msg"></div><div class="m-tool-tab-tip">我的消息<div class="m-tool-bar-arr m-tool-tab-tip-arr">◆</div></div></div><div class="m-tool-tab" data-command="open" data-box="1"><div class="m-tool-tab-logo m-tool-tab-logo-favor"></div><div class="m-tool-tab-tip">我的收藏<div class="m-tool-bar-arr m-tool-tab-tip-arr">◆</div></div></div><div class="m-tool-tab" data-command="open" data-box="2"><div class="m-tool-tab-logo m-tool-tab-logo-clock"></div><div class="m-tool-tab-tip">浏览历史<div class="m-tool-bar-arr m-tool-tab-tip-arr">◆</div></div></div><div class="m-tool-tab" data-command="open" data-box="3"><div class="m-tool-tab-logo m-tool-tab-logo-find"></div><div class="m-tool-tab-tip">快速找房<div class="m-tool-bar-arr m-tool-tab-tip-arr">◆</div></div></div><div class="m-tool-tab" data-command="top"><div class="m-tool-tab-logo m-tool-tab-logo-top"></div><div class="m-tool-tab-tip">返回顶部<div class="m-tool-bar-arr m-tool-tab-tip-arr">◆</div></div></div></div></div><div class="m-tool-main"><div class="m-tool-main-wrap"><div class="m-tool-main-box m-tool-main-box-msg"><h3 class="m-tool-main-box-title">动态提醒</h3><div class="m-tool-main-box-ctrl clear"><div class="left">共有16套房源</div><div class="right"><a href="#">全部清除</a>&nbsp;&nbsp;<a href="#">刷新</a></div></div><div class="m-tool-main-box-list"><ul><li data-id="abcdefg" data-link="http://"><div class="title clear"><h4 class="left">价格上调2万</h4><span class="date right">2014-8-10</span></div><div class="content clear"><div class="m-tool-bar-arr m-tool-main-box-arr">◆</div><div class="content-img left"><a href="#"><img src="../asset/temp/temp-7.png"></a></div><div class="content-info right"><h5><a href="#">【链家100%真房源】潘家园双里干净便宜超值1居采光好通风</a></h5><p>富力桃园</p><p>2室 104㎡</p></div></div><div class="close"><div class="m-tool-close"></div></div></li><li data-id="abcdefg" data-link="http://" class="remove"><div class="title clear"><h4 class="left">房源下架了，已从关注列表移除</h4><span class="date right">2014-8-9</span></div><div class="content clear"><div class="m-tool-bar-arr m-tool-main-box-arr">◆</div><div class="content-img left"><img src="../asset/temp/temp-8.png"></div><div class="content-info right"><h5>三里屯,世茂工三,酒店式管理的高端开间出租</h5><p>富力桃园</p><p>2室 104㎡</p></div></div><div class="close"><div class="m-tool-close"></div></div></li><li data-id="abcdefg" data-link="http://"><div class="title clear"><h4 class="left">相似推荐</h4><span class="date right">2014-8-10</span></div><div class="content clear"><div class="m-tool-bar-arr m-tool-main-box-arr">◆</div><div class="content-img left"><a href="#"><img src="../asset/temp/temp-3.png"></a></div><div class="content-info right"><h5><a href="#">富力桃园精装婚房 稀缺眼镜房 临湖观景全天采光</a></h5><p>富力桃园</p><p>2室 94㎡</p></div></div><div class="extra-info">与你关注的房源 <em>新城国际 2室 103㎡ 480万</em> 相似</div><div class="close"><div class="m-tool-close"></div></div></li></ul></div></div><div class="m-tool-main-box m-tool-main-box-favor"><h3 class="m-tool-main-box-title">我的关注</h3><div class="m-tool-main-box-tab clear"><a href="#" class="on">关注的房源</a><a href="#">关注的小区</a></div><div class="m-tool-main-box-ctrl clear"><div class="left">共有16套房源</div><div class="right"><a href="#">刷新</a></div></div><div class="m-tool-main-box-list"><ul><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-9.png"></a></div><div class="content-info right"><h5><a href="#">【链家100%真房源】潘家园双里干净便宜超值1居采光好通风</a></h5><p>富力桃园 - 2室 104㎡</p><div class="favor-text clear"><div class="favor-time left">刚刚</div><div class="price right"><em class="ft-num">505</em> 万</div></div></div><div class="close"><div class="m-tool-close"></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-7.png"></a></div><div class="content-info right"><h5><a href="#">三里屯,世茂工三,酒店式管理的高端开间出租</a></h5><p>富力桃园 - 2室 104㎡</p><div class="favor-text clear"><div class="favor-time left">2014-8-12</div><div class="price right"><em class="ft-num">90</em> 万</div></div></div><div class="close"><div class="m-tool-close"></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-10.png"></a></div><div class="content-info right"><h5><a href="#">富力桃园精装婚房 稀缺眼镜房 临湖观景全天采光</a></h5><p>富力桃园 - 2室 94㎡</p><div class="favor-text clear"><div class="favor-time left">2014-8-10</div><div class="price right"><em class="ft-num">505</em> 万</div></div></div><div class="close"><div class="m-tool-close"></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-1.png"></a></div><div class="content-info right"><h5><a href="#">【链家100%真房源】潘家园双里干净便宜超值1居采光好通风</a></h5><p>富力桃园 - 2室 104㎡</p><div class="favor-text clear"><div class="favor-time left">刚刚</div><div class="price right"><em class="ft-num">505</em> 万</div></div></div><div class="close"><div class="m-tool-close"></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-9.png"></a></div><div class="content-info right"><h5><a href="#">三里屯,世茂工三,酒店式管理的高端开间出租</a></h5><p>富力桃园 - 2室 104㎡</p><div class="favor-text clear"><div class="favor-time left">2014-8-12</div><div class="price right"><em class="ft-num">90</em> 万</div></div></div><div class="close"><div class="m-tool-close"></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-10.png"></a></div><div class="content-info right"><h5><a href="#">富力桃园精装婚房 稀缺眼镜房 临湖观景全天采光</a></h5><p>富力桃园 - 2室 94㎡</p><div class="favor-text clear"><div class="favor-time left">2014-8-10</div><div class="price right"><em class="ft-num">505</em> 万</div></div></div><div class="close"><div class="m-tool-close"></div></div></li></ul></div></div><div class="m-tool-main-box m-tool-main-box-favor"><h3 class="m-tool-main-box-title">最近浏览历史</h3><div class="m-tool-main-box-list"><ul><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-9.png"></a></div><div class="content-info right"><h5><a href="#">【链家100%真房源】潘家园双里干净便宜超值1居采光好通风</a></h5><p>富力桃园 - 2室 104㎡</p><div class="favor-text clear"><div class="favor-time left">刚刚</div><div class="price right"><em class="ft-num">505</em> 万</div></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-7.png"></a></div><div class="content-info right"><h5><a href="#">三里屯,世茂工三,酒店式管理的高端开间出租</a></h5><p>富力桃园 - 2室 104㎡</p><div class="favor-text clear"><div class="favor-time left">2014-8-12</div><div class="price right"><em class="ft-num">90</em> 万</div></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-10.png"></a></div><div class="content-info right"><h5><a href="#">富力桃园精装婚房 稀缺眼镜房 临湖观景全天采光</a></h5><p>富力桃园 - 2室 94㎡</p><div class="favor-text clear"><div class="favor-time left">2014-8-10</div><div class="price right"><em class="ft-num">505</em> 万</div></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-1.png"></a></div><div class="content-info right"><h5><a href="#">【链家100%真房源】潘家园双里干净便宜超值1居采光好通风</a></h5><p>富力桃园 - 2室 104㎡</p><div class="favor-text clear"><div class="favor-time left">刚刚</div><div class="price right"><em class="ft-num">505</em> 万</div></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-9.png"></a></div><div class="content-info right"><h5><a href="#">三里屯,世茂工三,酒店式管理的高端开间出租</a></h5><p>富力桃园 - 2室 104㎡</p><div class="favor-text clear"><div class="favor-time left">2014-8-12</div><div class="price right"><em class="ft-num">90</em> 万</div></div></div></li><li class="content clear" data-id="abcdefg" data-link="http://"><div class="content-img left"><a href="#"><img src="../asset/temp/temp-10.png"></a></div><div class="content-info right"><h5><a href="#">富力桃园精装婚房 稀缺眼镜房 临湖观景全天采光</a></h5><p>富力桃园 - 2室 94㎡</p><div class="favor-text clear"><div class="favor-time left">2014-8-10</div><div class="price right"><em class="ft-num">505</em> 万</div></div></div></li></ul></div></div><div class="m-tool-main-box m-tool-main-box-search"><h3 class="m-tool-main-box-title">找房条件</h3><div class="m-tool-main-box-list"><!-- search form --><a class="search-add-btn" href="#">+ 添加找房条件</a><div class="content"><div class="m-tool-bar-arr m-tool-main-box-arr">◆</div><form onsubmit="return false"><div class="form-line clear"><div class="left">城区/商圈</div><div class="right"><div class="select"><div class="select-display"><span class="placeholder">请选择</span></div></div></div></div><div class="form-line clear"><div class="left">户型</div><div class="right"><div class="select"><div class="select-display"><span class="placeholder">请选择</span></div></div></div></div><div class="form-line clear"><div class="left">面积</div><div class="right"><div class="txt-wrap"><input class="txt"><span>㎡</span></div>&nbsp;-&nbsp;<div class="txt-wrap"><input class="txt"><span>㎡</span></div></div></div><div class="form-line clear"><div class="left">价格</div><div class="right"><div class="txt-wrap"><input class="txt"><span>万</span></div>&nbsp;-&nbsp;<div class="txt-wrap"><input class="txt"><span>万</span></div></div></div><div class="form-line form-btn clear"><div class="right"><button class="save-btn">保存</button><button class="cancel-btn">取消</button></div></div></form></div></div><!-- search list --><ul class="search-list"><li><span class="m-tool-circle">●</span><a href="#">陆家嘴,1室,188-190㎡,300万-320万</a><a class="search-delete" href="#">删除</a><p>22套房源在售</p></li><li><span class="m-tool-circle">●</span><a href="#">陆家嘴,1室,188-190㎡,300万-320万</a><a class="search-delete" href="#">删除</a><p>22套房源在售</p></li><li class="last"><span class="m-tool-circle">●</span><a href="#">陆家嘴,1室,188-190㎡,300万-320万</a><a class="search-delete" href="#">删除</a><p>22套房源在售</p></li></ul></div><!-- main-wrap --></div></div></div>
+<script>
+
+var mainBox = $('.m-tool');
+
+var timer;
+
+
+$(function () {
+
+    initialEvents();
+
+    resetHeight();
+
+    $(window).on('resize', function () {
+        resetHeight();
+    });
+
+
+});
+
+function resetHeight() {
+    // height set
+    var windowHeight = $(window).height();
+    mainBox.height(windowHeight).children().height(windowHeight);
+}
+
+function initialEvents() {
+
+    var boxes = mainBox.find('.m-tool-main-box');
+
+    // event initial
+    $('.m-tool-tab').hover(function () {
+        $(this).addClass('m-tool-tab-hover');
+
+        var tip = $(this).find('.m-tool-tab-tip');
+
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        timer = setTimeout(function () {
+            tip.show().animate({
+                right: 50,
+                opacity: 1
+            }, 500);
+            clearTimeout(timer);
+        }, 200);
+        
+    }, function () {
+        $(this).removeClass('m-tool-tab-hover');
+
+        var tip = $(this).find('.m-tool-tab-tip');
+        tip.animate({
+            right: 80,
+            opacity: 0
+        }, 500, function () {
+            tip.hide();
+        });
+    }).on('click', function () {
+        var command = $(this).attr('data-command');
+        var boxIndex = $(this).attr('data-box');
+
+        if (command == 'open') {
+            mainBox.addClass('m-tool-open');
+        }
+
+        if (command == 'top') {
+            $(document.body).animate({
+                scrollTop: 0
+            });
+        }
+
+        if (boxIndex) {
+            boxes.hide();
+            boxes.filter(':eq(' + boxIndex + ')').show();
         }
     });
 
-    require(['main'], function (main) {
-        main.init();
+    $('.m-tool-bar-close').on('click', function () {
+        mainBox.removeClass('m-tool-open');
     });
-    </script>
+
+    $('.m-tool-main-box-list').on('mouseover', 'li', function () {
+        $(this).addClass('hover');
+    })
+    .on('mouseout', 'li', function () {
+        $(this).removeClass('hover');
+    })
+    .on('click', '.close', function () {
+        $(this).parent('li').remove();
+    });
+
+    // 找房条件里的
+    var searchBox = $('.m-tool-main-box-search');
+    searchBox.find('input.txt')
+    .on('focusin', function () {
+        $(this).parent().addClass('txt-wrap-focus');
+    })
+    .on('focusout', function () {
+        $(this).parent().removeClass('txt-wrap-focus');
+    });
+
+    searchBox.find('.search-list').on('mouseover', 'li', function () {
+        $(this).addClass('hover');
+    })
+    .on('mouseout', 'li', function () {
+        $(this).removeClass('hover');
+    });
+}
+
+</script>
+
 </body>
 </html>
