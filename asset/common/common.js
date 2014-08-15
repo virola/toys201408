@@ -157,6 +157,16 @@ $(function () {
     
 });
 
+
+$.encodeHTML = function (source) {
+    return String(source)
+                .replace(/&/g,'&amp;')
+                .replace(/</g,'&lt;')
+                .replace(/>/g,'&gt;')
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+};
+
 $.stringFormat = function (source, opts) {
     source = String(source);
     var data = Array.prototype.slice.call(arguments, 1);
@@ -164,11 +174,13 @@ $.stringFormat = function (source, opts) {
 
     if ( data.length ) {
         data = data.length == 1 ? 
+
             /* ie 下 Object.prototype.toString.call(null) == '[object Object]' */
             (opts !== null && (/\[object Array\]|\[object Object\]/.test(toString.call(opts))) ? opts : data) 
             : data;
         return source.replace(/#\{(.+?)\}/g, function (match, key){
             var replacer = data[key];
+
             // chrome 下 typeof /a/ == 'function'
             if('[object Function]' == toString.call(replacer)){
                 replacer = replacer(key);
@@ -178,3 +190,38 @@ $.stringFormat = function (source, opts) {
     }
     return source;
 };
+/**
+ * @file  通用ajax模块
+ */
+
+var ajax = (function () {
+
+    var exports = {};
+    
+    /**
+     * GET方法
+     * 
+     * @param {string} url 
+     * @param {Function} callback 
+     */
+    exports.get = function (url, param, success, failure) {
+        $.getJSON(url, param, function (response) {
+            if (response.status == 0) {
+                success(response.data);
+            }
+            else {
+                failure(response);
+            }
+        }, function (response) {
+            var resp = {
+                status: 500,
+                statusInfo: '服务请求失败'
+            };
+            failure(resp);
+        });
+    };
+
+    return exports;
+
+})();
+

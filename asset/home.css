@@ -36,6 +36,12 @@ body {
   font-size: 18px;
   padding: 0 25px;
 }
+.nav-nobg .nav-lst li a.on {
+  background: none;
+}
+.nav-nobg .nav-lst li a.on:hover {
+  background: none;
+}
 .nav-nobg .nav-lst li a:hover {
   background: none;
 }

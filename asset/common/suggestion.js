@@ -26,62 +26,9 @@ define(function (require) {
          * @param {Function} callback 回调函数
          */
         suggestion.request = function (url, params, callback) {
-            // test data
-            callback([
-                {
-                    "title": "乐城 二手房",
-                    "keyword": "乐城 二手房",
-                    "region": "马连道 西城",
-                    "count": "35",
-                    "recently": false,
-                    "url": "http://xxx"
-                },
-                {
-                    "title": "与“乐城”相关的房源",
-                    "keyword": "乐城",
-                    "region": "",
-                    "count": "455",
-                    "recently": false,
-                    "url": "http://xxx"
-                },
-                {
-                    "title": "乐城 二室 200万-300万",
-                    "keyword": "乐城 二室 200万-300万",
-                    "region": "",
-                    "count": "672",
-                    "recently": true,
-                    "url": "http://xxx"
-                },
-                {
-                    "title": "乐城 二手房",
-                    "keyword": "乐城 二手房",
-                    "region": "马连道 西城",
-                    "count": "35",
-                    "recently": false,
-                    "url": "http://xxx"
-                },
-                {
-                    "title": "与“乐城”相关的房源",
-                    "keyword": "乐城",
-                    "region": "",
-                    "count": "455",
-                    "recently": false,
-                    "url": "http://xxx"
-                },
-                {
-                    "title": "乐城 二室 200万-300万",
-                    "keyword": "乐城 二室 200万-300万",
-                    "region": "",
-                    "count": "672",
-                    "recently": true,
-                    "url": "http://xxx"
-                }
-            ]);
-
-            return;
-
+            
             url = url + (url.indexOf('?') > -1 ? '&' : '?') + $.param(params);
-            $.getJson(url, function (response) {
+            $.getJSON(url, function (response) {
                 if (response.status == 0 && (response.data.result instanceof Array)) {
                     callback(response.data.result);
                 }
