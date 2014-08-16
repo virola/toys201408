@@ -29,14 +29,15 @@ define(function (require) {
         init: function (params) {
             initPageEvents();
 
-            require(['common/toolbar'], function (toolbar) {
-                toolbar.init({
-                    user: {
-                        username: params.username
-                    },
-                    url: params.tool.url
-                });
+            require('./recommend').start({
+                url: params.recommendUrl
             });
+
+            require('./filter').init();
+
+            require('./list').init({
+                favorUrl: params.favorUrl
+            })
         }
     };
 

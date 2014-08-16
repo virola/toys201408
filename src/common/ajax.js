@@ -29,6 +29,30 @@ var ajax = (function () {
         });
     };
 
+    exports.post = function (url, param, success, failure) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: param,
+            success: function (response) {
+                if (response.status == 0) {
+                    success(response.data);
+                }
+                else {
+                    failure(response);
+                }
+            },
+            failure: function (response) {
+                var resp = {
+                    status: 500,
+                    statusInfo: '服务请求失败'
+                };
+                failure(resp);
+            },
+            dataType: 'json'
+        });
+    };
+
     return exports;
 
 })();

@@ -43,7 +43,7 @@ define(function (require) {
          */
         suggestion.renderItem = function( ul, item ) {
             var region = $('<span>').addClass('left sub-text').append(item.region);
-            var count = $('<span>').addClass('count right').append(item.count + ' 套在售');
+            var count = $('<span>').addClass('count right').append(item.count + ' <b>套在售</b>');
 
             var title = $('<span>').addClass('left').append(item.title);
             var link = $('<a>').addClass('clear').attr('href', item.url)
@@ -54,7 +54,6 @@ define(function (require) {
             }
 
             link.append(count);
-            // console.log(link);
 
             return $('<li>')
                 .append(link)
@@ -101,10 +100,19 @@ define(function (require) {
                     },
                     appendTo: suggestWrap,
                     position: {
-                        my: 'left top+14'
+                        my: 'left+1 top'
                     },
                     open: function (ev, ui) {
-                        suggestWrap.find('i').show();
+                        var icon = suggestWrap.find('i');
+                        if (icon.size() > 0) {
+                            icon.show();
+                        }
+                        else {
+                            suggestWrap.children('ul').css({
+                                top: 0
+                            });
+                        }
+                        
                     },
                     close: function () {
                         suggestWrap.find('i').hide();
