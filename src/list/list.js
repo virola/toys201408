@@ -4,6 +4,7 @@ define(function (require) {
     var listModule = $({});
 
     var listBox = $('#house-lst');
+    var itemList = listBox.children('li').not('.list-no-data');
 
     function bindFavor(url) {
 
@@ -26,7 +27,7 @@ define(function (require) {
     function bindListHover() {
 
         // list event
-        listBox.children('li').hover(function () {
+        itemList.hover(function () {
             $(this).addClass('hover');
 
             listModule.trigger('mouseover', {
@@ -47,6 +48,20 @@ define(function (require) {
     listModule.init = function (params) {
         bindListHover();
         bindFavor(params.favorUrl);
+    };
+
+    listModule.getPoints = function () {
+        return $.map(itemList, function (item, index) {
+            var jItem = $(item);
+
+            return {
+                id: jItem.attr('data-id'),
+                index: index,
+                rank: index + 1,
+                name: jItem.find('.where').text(),
+                point: jItem.attr('data-geo').split(',')
+            };
+        });
     };
 
     listModule.highlight = function (index) {

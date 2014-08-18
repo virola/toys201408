@@ -38,6 +38,17 @@ define(function (require) {
             );
         }
 
+        // add keyword
+        // var keyword = $.trim($('#keyword-box').val());
+        // if (keyword) {
+        //     var url = cacheOptions.baseUrl.replace('\/s(\s+)', '');
+        //     var text = '关键词: ' + keyword;
+
+        //     filters.push(
+        //         $.stringFormat(_tplFilter, text, url)
+        //     );
+        // }
+
 
         // gen filter doms
         $(filters.join('')).insertBefore(filterClearBtn);
@@ -48,8 +59,50 @@ define(function (require) {
         }
     }
 
-    exports.init = function () {
+
+    function initCustomBtn() {
+        var customBox = filterOptions.find('.custom');
+        var inputs = customBox.find(':text');
+
+        customBox.find('.ok').on('click', function () {
+            var pass = 1;
+
+            inputs.each(function (i, item) {
+                var _me = $(item);
+                var value = $.trim(_me.val());
+
+                if (!value) {
+                    _me.parent().addClass('txt-box-err');
+                    pass = 0;
+                }
+                else {
+                    _me.parent().removeClass('txt-box-err');
+                }
+            });
+
+            if (!pass) {
+                return false;
+            }
+
+            var prices = $.map(inputs, function (item) {
+                return $.trim($(item).val());
+            });
+
+
+            var url = cacheOptions.baseUrl.replace('#placeHolder#', '')
+                .replace(/x\d+y\d+/, 'x' + prices[0] + 'y' + prices[1]);
+
+            window.location.href = url;
+        });
+    }
+
+    var cacheOptions;
+
+    exports.init = function (params) {
+        cacheOptions = $.extend({}, params);
         render();
+
+        initCustomBtn();
     };
 
     return exports;

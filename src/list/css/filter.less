@@ -36,30 +36,38 @@
         padding-bottom: 7px;
     }
 
-    .bd .txt-box {
-        width: 60px;
-        height: 22px;
-        border: 1px solid #b8c6d8;
-        position: relative;
-    }
 
-    .bd .txt-box label {
-        position: absolute;
-        right: 4px;
-        top: 0;
-        display: block;
-        height: 22px;
-        line-height: 22px;
-        color: #999;
-        font-size: 12px;
-    }
+    // input 
+    .bd {
+        .txt-box {
+            width: 60px;
+            height: 22px;
+            border: 1px solid #b8c6d8;
+            position: relative;
 
-    .bd .txt-box .txt {
-        display: block;
-        border: 0 none;
-        padding-left: 5px;
-        width: 35px;
-        height: 21px;
+            label {
+                position: absolute;
+                right: 4px;
+                top: 0;
+                display: block;
+                height: 22px;
+                line-height: 22px;
+                color: #999;
+                font-size: 12px;
+            }
+
+            .txt {
+                display: block;
+                border: 0 none;
+                padding-left: 5px;
+                width: 35px;
+                height: 21px;
+            }
+        }
+
+        .txt-box-err {
+            border-color: #fd6b6b;
+        }
     }
 
     .bd .ok {
@@ -139,6 +147,8 @@
 
     .fd .sort-bar {
         font-size: 14px;
+        width: 440px;
+        overflow: hidden;
 
         a {
             color: #555;

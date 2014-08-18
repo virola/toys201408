@@ -3,6 +3,7 @@
 .main-box {
     margin-top: 22px;
     position: relative;
+    min-height: 500px;
 }
 
 .con-box {
@@ -55,6 +56,7 @@
 .house-lst .pic-panel .pic-num .num {
     font-size: 12px;
     font-family: Arial;
+    margin-left: 3px;
 }
 
 .house-lst .info-panel {
@@ -194,5 +196,30 @@
         background-color: #ff6b42;
         background-position: 0 -30px;
         text-decoration: none;
+    }
+}
+
+.house-lst li.list-no-data {
+    padding: 80px 120px 80px 144px;
+    height: 56px;
+    line-height: 28px;
+
+    &:hover, &.hover {
+        background: #fff;
+    }
+
+    img {
+        float: left;
+    }
+
+    p {
+        float: left;
+        margin-left: 18px;
+        font-size: 16px;
+        color: #888;
+
+        em {
+            color: #333;
+        }
     }
 }

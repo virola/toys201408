@@ -151,6 +151,9 @@
   width: 35px;
   height: 21px;
 }
+.filter-box .bd .txt-box-err {
+  border-color: #fd6b6b;
+}
 .filter-box .bd .ok {
   width: 43px;
   height: 24px;
@@ -218,6 +221,8 @@
 }
 .filter-box .fd .sort-bar {
   font-size: 14px;
+  width: 440px;
+  overflow: hidden;
 }
 .filter-box .fd .sort-bar a {
   color: #555;
@@ -266,6 +271,7 @@
 .main-box {
   margin-top: 22px;
   position: relative;
+  min-height: 500px;
 }
 .con-box {
   float: left;
@@ -314,6 +320,7 @@
 .house-lst .pic-panel .pic-num .num {
   font-size: 12px;
   font-family: Arial;
+  margin-left: 3px;
 }
 .house-lst .info-panel {
   color: #565a5c;
@@ -440,6 +447,27 @@
   background-color: #ff6b42;
   background-position: 0 -30px;
   text-decoration: none;
+}
+.house-lst li.list-no-data {
+  padding: 80px 120px 80px 144px;
+  height: 56px;
+  line-height: 28px;
+}
+.house-lst li.list-no-data:hover,
+.house-lst li.list-no-data.hover {
+  background: #fff;
+}
+.house-lst li.list-no-data img {
+  float: left;
+}
+.house-lst li.list-no-data p {
+  float: left;
+  margin-left: 18px;
+  font-size: 16px;
+  color: #888;
+}
+.house-lst li.list-no-data p em {
+  color: #333;
 }
 .main-box .side-bar {
   width: 382px;

@@ -65,12 +65,12 @@ define(function (require) {
                 url: params.recommendUrl
             });
 
-            require('./filter').init();
-
+            require('./filter').init({
+                baseUrl: params.baseUrl
+            });
 
 
             // 列表和地图的关系绑定
-
             list.init({
                 favorUrl: params.favorUrl
             });
@@ -83,20 +83,9 @@ define(function (require) {
                 feRoot: params.feRoot
             });
 
-            var pointDataList = $.map($('#house-lst li'), function (item, index) {
-                var jItem = $(item);
-
-                return {
-                    id: jItem.attr('data-id'),
-                    index: index,
-                    rank: index + 1,
-                    name: jItem.find('.where').text(),
-                    point: jItem.attr('data-geo').split(',')
-                };
-            });
+            var pointDataList = list.getPoints();
 
             map.on('ready', function () {
-                console.log('ready');
 
                 map.render(pointDataList);
 

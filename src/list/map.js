@@ -25,15 +25,15 @@ define(function (require) {
 
         pointList.push(bdPoint);
         markerList.push(marker);
-
-        // generate a info window
-        // var bdInfoWindow = new BMap.InfoWindow('<h3 class="map-title"><em>' + data.rank + '</em>' + data.title + '</h3>');
-        // marker.addEventListener('click', function () {
-        //     this.openInfoWindow(bdInfoWindow);
-        // });
     };
 
     mapModule.render = function (data) {
+
+        if (!data.length) {
+            bdMap.centerAndZoom(cacheOptions.cityName);
+            bdMap.zoomIn();
+            return;
+        }
 
         // foreach add marker
         $.each(data, function (i, item) {
@@ -54,25 +54,22 @@ define(function (require) {
         bdMap.setCurrentCity(cacheOptions.cityName);  
         bdMap.centerAndZoom();
 
-        // auto resize
-        // bdMap.enableAutoResize();
-
         // control bar
         bdMap.addControl(new BMap.NavigationControl({
             anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL
         }));
 
         function showInfo(e){
-            console.log(e.point.lng + ", " + e.point.lat);
+            // console.log(e.point.lng + ", " + e.point.lat);
         }
-        bdMap.addEventListener("click", showInfo);
+        bdMap.addEventListener('click', showInfo);
 
 
         // 复杂的自定义覆盖物
         mapModule.MapOverlay = function(point, data) {
             this._point = point;
             this._data = data;
-        }
+        };
 
         mapModule.MapOverlay.prototype = new BMap.Overlay();
 
