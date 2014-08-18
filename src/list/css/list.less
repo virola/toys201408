@@ -35,11 +35,16 @@
 .house-lst .pic-panel {
     font-size: 0;
     position: relative;
-}
+    .size(163px, 122px);
+    background-color: gray;
 
-.house-lst .pic-panel img {
-    width: 163px;
-    height: 122px;
+    a {
+        display: block;
+    }
+
+    img {
+        .size(163px, 122px);
+    }
 }
 
 .house-lst .pic-panel .pic-num {
@@ -64,6 +69,19 @@
     padding-left: 13px;
     font-size: 0;
     width: 510px;
+
+    .fd .left {
+        background-color: gray;
+
+        a {
+            .size(70px, 30px);
+            display: block;
+        }
+
+        img {
+            .size(70px, 30px);
+        }
+    }
 }
 
 .house-lst h2 {

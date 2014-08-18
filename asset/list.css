@@ -302,6 +302,12 @@
 .house-lst .pic-panel {
   font-size: 0;
   position: relative;
+  width: 163px;
+  height: 122px;
+  background-color: gray;
+}
+.house-lst .pic-panel a {
+  display: block;
 }
 .house-lst .pic-panel img {
   width: 163px;
@@ -327,6 +333,18 @@
   padding-left: 13px;
   font-size: 0;
   width: 510px;
+}
+.house-lst .info-panel .fd .left {
+  background-color: gray;
+}
+.house-lst .info-panel .fd .left a {
+  width: 70px;
+  height: 30px;
+  display: block;
+}
+.house-lst .info-panel .fd .left img {
+  width: 70px;
+  height: 30px;
 }
 .house-lst h2 {
   overflow: hidden;
