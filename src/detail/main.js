@@ -25,6 +25,11 @@ define(function (require) {
             bdMap = new BMap.Map(cacheOptions.domId);   
             bdMap.centerAndZoom(bdPoint, 17);
 
+            // control bar
+            bdMap.addControl(new BMap.NavigationControl({
+                anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL
+            }));
+
             // add Marker
             var marker = new BMap.Marker(bdPoint);  // 创建标注
             bdMap.addOverlay(marker);
@@ -40,10 +45,7 @@ define(function (require) {
                 renderOptions: { map: bdMap, autoViewport: true}
             });
 
-            // control bar
-            bdMap.addControl(new BMap.NavigationControl({
-                anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL
-            }));
+            
         };
 
         window.mapInitialize = function () {

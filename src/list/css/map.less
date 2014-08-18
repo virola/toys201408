@@ -1,0 +1,49 @@
+@import '../../../dep/est/src/all.less';
+
+.map-box {
+    .size(380px, 450px);
+}
+
+.map-item {
+    font-size: 16px;
+    height: 34px;
+    line-height: 34px;
+    white-space: nowrap;
+    -moz-user-select: none;
+
+    &-rank {
+        position: absolute;
+        z-index: 10;
+        .size(34px);
+        .border-radius(34px);
+        text-align: center;
+        color: #fff;
+        border: 1px solid #0a57bc;
+        background-color: #0664c4;
+
+        &-hover {
+            background-color: #ee552a;
+            border-color: #b73b18;
+        }
+
+    }
+
+    &-name {
+        position: absolute;
+        z-index: 5;
+        left: 17px;
+        padding-left: 23px;
+        padding-right: 15px;
+        color: #0664c4;
+        border: 1px solid #cacaca;
+        background-color: #fff;
+        font-size: 13px;
+
+        &-hover {
+            background-color: #fff6f3;
+            color: #ee552a;
+            border-color: #deb0a3
+        }
+        
+    }
+}

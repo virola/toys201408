@@ -100,7 +100,7 @@ define(function (require) {
                     },
                     appendTo: suggestWrap,
                     position: {
-                        my: 'left+1 top'
+                        my: 'left+1 top+14'
                     },
                     open: function (ev, ui) {
                         var icon = suggestWrap.find('i');

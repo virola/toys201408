@@ -265,6 +265,7 @@
 }
 .main-box {
   margin-top: 22px;
+  position: relative;
 }
 .con-box {
   float: left;
@@ -444,6 +445,10 @@
   width: 382px;
   float: right;
 }
+.main-box .fixed {
+  position: absolute;
+  right: 0;
+}
 .main-box .side-bar .map-box {
   border: 1px solid #cfd4dd;
   margin-bottom: 10px;
@@ -596,4 +601,48 @@
 .main-box .house-lst .num {
   font-smoothing: subpixel-antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
+}
+.map-box {
+  width: 380px;
+  height: 450px;
+}
+.map-item {
+  font-size: 16px;
+  height: 34px;
+  line-height: 34px;
+  white-space: nowrap;
+  -moz-user-select: none;
+}
+.map-item-rank {
+  position: absolute;
+  z-index: 10;
+  width: 34px;
+  height: 34px;
+  -webkit-border-radius: 34px;
+  -moz-border-radius: 34px;
+  border-radius: 34px;
+  text-align: center;
+  color: #fff;
+  border: 1px solid #0a57bc;
+  background-color: #0664c4;
+}
+.map-item-rank-hover {
+  background-color: #ee552a;
+  border-color: #b73b18;
+}
+.map-item-name {
+  position: absolute;
+  z-index: 5;
+  left: 17px;
+  padding-left: 23px;
+  padding-right: 15px;
+  color: #0664c4;
+  border: 1px solid #cacaca;
+  background-color: #fff;
+  font-size: 13px;
+}
+.map-item-name-hover {
+  background-color: #fff6f3;
+  color: #ee552a;
+  border-color: #deb0a3;
 }

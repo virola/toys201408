@@ -62,6 +62,9 @@ button {
   resize: none;
   font-family: "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial;
 }
+input[type="search"] {
+  box-sizing: content-box;
+}
 button {
   border: 0;
 }
