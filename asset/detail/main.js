@@ -3,96 +3,77 @@
  */
 define(function (require) {
 
-    /**
-     * 地图交互模块
-     * 
-     * @type {[type]}
-     */
-    var Map = (function () {
-        var exports = $({});
+    var map = require('./map');
 
-        var bdLocation;
-        var bdMap;
-        var bdPoint;
+    var tabNav = $('#panel-tab');
+    var tabContent = tabNav.next('.tab-content');
+    var contentList = tabContent.children('div');
 
-        var renderData = function (data) {
+    function initPageEvents() {
+        tabNav.fixtop({
+            fixedWidth: '947px'
+        });
 
-        };
+        tabNav.on('click', 'a', function () {
+            tabNav.find('a').removeClass('on');
+            $(this).addClass('on');
+        });
 
-        exports.render = function (point, data) {
-            bdPoint = new BMap.Point(point[1], point[0]);
+        var timer;
 
-            bdMap = new BMap.Map(cacheOptions.domId);   
-            bdMap.centerAndZoom(bdPoint, 17);
+        $(window).on('scroll', function () {
 
-            // add Marker
-            var marker = new BMap.Marker(bdPoint);  // 创建标注
-            bdMap.addOverlay(marker);
+            if (timer) {
+                clearTimeout(timer);
+            }
 
-            // generate a info window
-            var bdInfoWindow = new BMap.InfoWindow('marker');
-            marker.addEventListener('click', function () {
-                this.openInfoWindow(bdInfoWindow);
-            });
+            timer = setTimeout(function () {
 
-            // cache location object
-            bdLocation = new BMap.LocalSearch(bdMap, {
-                renderOptions: { map: bdMap, autoViewport: true}
-            });
+                var scrollTop = $(document.body).scrollTop();
 
-            // control bar
-            bdMap.addControl(new BMap.NavigationControl({
-                anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL
-            }));
-        };
+                var current;
 
-        window.mapInitialize = function () {
+                contentList.each(function (i, dom) {
+                    if ($(this).position().top < scrollTop + 44) {
+                        current = $(this);
+                    }
+                });
 
-            exports.render(cacheOptions.point);
+                if (!current) {
+                    current = contentList.filter(':first');
+                }
 
-            // render完成后触发ready事件
-            exports.trigger('ready', exports);
-        }; 
+                var currentNav = tabNav.find('a.on');
+                if (currentNav.attr('href') == '#' + current.attr('id')) {
+                    return;
+                }
 
-        function loadMap(ak) {
-            var script = document.createElement('script');  
-            script.src = 'http://api.map.baidu.com/api?v=1.5&ak=' + ak + '&callback=mapInitialize';  
-            document.body.appendChild(script);
-        }
+                currentNav.removeClass('on');
+                tabNav.find('a[href=#' + current.attr('id') + ']').addClass('on');
 
-        // cache data option
-        var cacheOptions;
+            }, 100);
 
-        exports.init = function (options) {
-
-            cacheOptions = $.extend({}, options);
-
-            // 异步加载map
-            loadMap(options.ak);
-        };
-
-        exports.searchNear = function (keyword) {
-            bdLocation && bdLocation.searchNearby(keyword);
-        };
-
-        return exports
-    })();
+        });
+    }
 
     return {
         init: function (params) {
 
+            initPageEvents();
+
             // charts
             var data = params.priceData;
+
             require('./chart').init(params.chartDomId, data);
 
             // map
-            Map.init({
+            map.init({
                 ak: params.ak,
                 domId: params.mapDomId,
                 point: params.coordinates
             });
 
-            Map.on('ready', function () {
+            map.on('ready', function () {
                 console.log('render finish~');
             });
         }

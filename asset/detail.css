@@ -390,11 +390,6 @@ i {
   background-image: linear-gradient(to bottom, #ffffff, #eeeeee);
   background-repeat: repeat;
   *background: #eee;
-  -webkit-transition: background-color 2s linear;
-  -moz-transition: background-color 2s linear;
-  -ms-transition: background-color 2s linear;
-  -o-transition: background-color 2s linear;
-  transition: background-color 2s linear;
 }
 .panel-tab li a.on {
   background: #fff;

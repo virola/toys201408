@@ -13,10 +13,14 @@ define(function (require) {
     var bdMap;
 
     var pointList = [];
-    var markerList = [];
+    var markerMap = {};
 
     mapModule.add = function (item) {
         var point = item.point;
+        if (!point || point.length != 2 || !point[1] || !point[0]) {
+            return false;
+        }
+
         var bdPoint = new BMap.Point(point[1], point[0]);
 
         // add Marker
@@ -24,7 +28,8 @@ define(function (require) {
         bdMap.addOverlay(marker);
 
         pointList.push(bdPoint);
-        markerList.push(marker);
+
+        markerMap[item.id] = marker;
     };
 
     mapModule.render = function (data) {
@@ -161,13 +166,19 @@ define(function (require) {
         loadMap(options.ak);
     };
 
-    mapModule.highlight = function (index) {
-        markerList[index].onmouseover();
+    mapModule.highlight = function (id) {
+        if (!markerMap[id]) {
+            return;
+        }
+        markerMap[id].onmouseover();
     };
 
-    mapModule.unhighlight = function (index) {
-        markerList[index].onmouseout();
+    mapModule.unhighlight = function (id) {
+        if (!markerMap[id]) {
+            return;
+        }
+        markerMap[id].onmouseout();
     };
 
-    return mapModule
+    return mapModule;
 });

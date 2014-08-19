@@ -32,7 +32,8 @@ define(function (require) {
 
             listModule.trigger('mouseover', {
                 main: this,
-                index: $(this).attr('data-index')
+                index: $(this).attr('data-index'),
+                id: $(this).attr('data-id')
             });
 
         }, function () {
@@ -40,7 +41,8 @@ define(function (require) {
 
             listModule.trigger('mouseout', {
                 main: this,
-                index: $(this).attr('data-index')
+                index: $(this).attr('data-index'),
+                id: $(this).attr('data-id')
             });
         });
     }
@@ -50,12 +52,17 @@ define(function (require) {
         bindFavor(params.favorUrl);
     };
 
+    var listMap = {};
+
     listModule.getPoints = function () {
         return $.map(itemList, function (item, index) {
             var jItem = $(item);
+            var id = jItem.attr('data-id');
+
+            listMap[id] = $(item);
 
             return {
-                id: jItem.attr('data-id'),
+                id: id,
                 index: index,
                 rank: index + 1,
                 name: jItem.find('.where').text(),
@@ -64,12 +71,18 @@ define(function (require) {
         });
     };
 
-    listModule.highlight = function (index) {
-        listBox.children('li:eq(' + index + ')').addClass('hover');
+    listModule.highlight = function (id) {
+        if (!listMap[id]) {
+            return;
+        } 
+        listMap[id].addClass('hover');
     };
 
-    listModule.unhighlight = function (index) {
-        listBox.children('li:eq(' + index + ')').removeClass('hover');
+    listModule.unhighlight = function (id) {
+        if (!listMap[id]) {
+            return;
+        }
+        listMap[id].removeClass('hover');
     };
 
     return listModule;

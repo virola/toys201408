@@ -90,15 +90,15 @@ define(function (require) {
                 map.render(pointDataList);
 
                 list.on('mouseover', function (ev, args) {
-                    map.highlight(args.index);
+                    map.highlight(args.id);
                 }).on('mouseout', function (ev, args) {
-                    map.unhighlight(args.index);
+                    map.unhighlight(args.id);
                 });
 
                 map.on('mouseover', function (ev, args) {
-                    list.highlight(args.index);
+                    list.highlight(args.id);
                 }).on('mouseout', function (ev, args) {
-                    list.unhighlight(args.index);
+                    list.unhighlight(args.id);
                 });
             });
         }
