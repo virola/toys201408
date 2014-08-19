@@ -38,17 +38,6 @@ define(function (require) {
             );
         }
 
-        // add keyword
-        // var keyword = $.trim($('#keyword-box').val());
-        // if (keyword) {
-        //     var url = cacheOptions.baseUrl.replace('\/s(\s+)', '');
-        //     var text = '关键词: ' + keyword;
-
-        //     filters.push(
-        //         $.stringFormat(_tplFilter, text, url)
-        //     );
-        // }
-
 
         // gen filter doms
         $(filters.join('')).insertBefore(filterClearBtn);
@@ -63,6 +52,8 @@ define(function (require) {
     function initCustomBtn() {
         var customBox = filterOptions.find('.custom');
         var inputs = customBox.find(':text');
+
+        var regex = /x\d+y\d+/;
 
         customBox.find('.ok').on('click', function () {
             var pass = 1;
@@ -89,9 +80,16 @@ define(function (require) {
             });
 
 
-            var url = cacheOptions.baseUrl.replace('#placeHolder#', '')
-                .replace(/x\d+y\d+/, 'x' + prices[0] + 'y' + prices[1]);
+            var url = cacheOptions.baseUrl.replace(/p\d+/, '');
 
+            if (regex.test(url)) {
+                url = url.replace(/x\d+y\d+/, 'x' + prices[0] + 'y' + prices[1])
+                    .replace('n#placeHolder#', '');
+            }
+            else {
+                url = url.replace('n#placeHolder#', 'x' + prices[0] + 'y' + prices[1])
+            }
+            
             window.location.href = url;
         });
     }

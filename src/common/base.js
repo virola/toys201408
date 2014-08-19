@@ -1,17 +1,4 @@
-
-$(function () {
-
-    if (/msie (\d+\.\d+)/i.test(navigator.userAgent)) {
-        $(document.body).addClass('ie', 'ie' + (document.documentMode || + RegExp['\x241']));
-    }
-
-    $('.lazyload').scrollLoading({
-        callback: function () {
-            $(this).addClass('loaded');
-        }
-    });
-    
-});
+var betafang = window.betafang || {};
 
 
 $.encodeHTML = function (source) {
@@ -46,3 +33,51 @@ $.stringFormat = function (source, opts) {
     }
     return source;
 };
+
+$.showIframeImg = function (parent, url) {
+    var stylesTpl = '' 
+        + '<style>' 
+        + 'body{margin:0;padding:0}img{width:#{0}px;height:#{1}px;}'
+        + '</style>';
+    
+    var item = $(parent);
+    var height = item.height();
+    var width = item.width();
+    var styles = $.stringFormat(stylesTpl, width, height);
+
+    var frameid = 'frameimg' + Math.round(Math.random() * 1000000000); 
+    window.betafang[frameid] = ''
+        + '<head>' + styles + '</head>'
+        + '<body><img id="img-' + frameid + '" src=\'' + url + '?' + Math.random() + '\' />' 
+        + '</body>'; 
+    parent.append(''
+        + '<iframe style="display:none" id="' + frameid + '" src="javascript:parent.betafang[\'' + frameid + '\'];"' 
+        + ' frameBorder="0" scrolling="no" width="' + width + '" height="' + height + '"></iframe>'
+    );
+    
+};
+
+$(function () {
+
+    if (/msie (\d+\.\d+)/i.test(navigator.userAgent)) {
+        $(document.body).addClass('ie', 'ie' + (document.documentMode || + RegExp['\x241']));
+    }
+
+    $('.lazyload').scrollLoading({
+        callback: function () {
+            $(this).addClass('loaded');
+        }
+    });
+
+    
+    $('.iframe-img').each(function () {
+        var img = $(this);
+        var parent = img.parent();
+        var url = img.attr('data-url') || img.attr('src');
+        $.showIframeImg(parent, url);
+
+        img.remove();
+        parent.children('iframe').show();
+    });
+    
+});

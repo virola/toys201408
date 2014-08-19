@@ -34,7 +34,7 @@ define(function (require) {
             var selfTop = listSide.position().top;
             var top = gapHeight + scrollTop - mainTop;
 
-            if (mainTop < scrollTop - gapHeight) {
+            if (mainTop + gapHeight < scrollTop) {
                 listSide.addClass('fixed');
 
                 if (scrollTop + selfHeight + gapHeight > mainTop + mainHeight) {

@@ -106,6 +106,15 @@
     .agent {
         padding-bottom: 0;
 
+        .agent-avator {
+            .size(50px, 60px);
+
+            a, img {
+                display: block;
+                .size(50px, 60px);
+            }
+        }
+
         .agent-info {
             margin-left: 18px;
             line-height: 22px;
@@ -225,6 +234,7 @@
     li {
         float: left;
         margin: 0 25px 25px 0;
+        .size(430px, 322px);
 
         &.row-last {
             margin-right: 0;
@@ -245,4 +255,8 @@
 .panel-box-info,
 .panel-box-content {
     .ui-box-shadow();
+}
+
+#btn-expand-album {
+    font-size: 14px;
 }

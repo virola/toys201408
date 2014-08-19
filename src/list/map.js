@@ -34,23 +34,21 @@ define(function (require) {
 
     mapModule.render = function (data) {
 
-        if (!data.length) {
-            bdMap.centerAndZoom(cacheOptions.cityName);
-            bdMap.zoomIn();
-            return;
-        }
-
         // foreach add marker
         $.each(data, function (i, item) {
             mapModule.add(item);
         });
 
+        if (!data.length || !pointList.length) {
+            bdMap.centerAndZoom(cacheOptions.cityName);
+            bdMap.zoomIn();
+            return;
+        }
+
         // auto adjust viewport
         bdMap.setViewport(pointList, {
             delay: 500
         });
-
-        bdMap.zoomIn();
     };
 
     window.mapInitialize = function () {

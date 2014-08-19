@@ -9,7 +9,17 @@ define(function (require) {
     var tabContent = tabNav.next('.tab-content');
     var contentList = tabContent.children('div');
 
+    var albumMoreBox = $('.album-more');
+
     function initPageEvents() {
+
+        // more album
+        $('#btn-expand-album').on('click', function () {
+            albumMoreBox.show();
+            $(this).parent().hide();
+            return false;
+        });
+
         tabNav.fixtop({
             fixedWidth: '947px'
         });
@@ -61,10 +71,15 @@ define(function (require) {
 
             initPageEvents();
 
+            require('./album').init();
+
             // charts
             var data = params.priceData;
 
-            require('./chart').init(params.chartDomId, data);
+            require('./chart').init(params.chartDomId, {
+                url: params.url.priceTrend,
+                zoneId: params.zoneId
+            });
 
             // map
             map.init({
@@ -74,7 +89,13 @@ define(function (require) {
             });
 
             map.on('ready', function () {
-                console.log('render finish~');
+                // console.log('render finish~');
+            });
+
+            // recommend
+            require('./recommend').init({
+                url: params.url,
+                reqData: params.reqData
             });
         }
     };
