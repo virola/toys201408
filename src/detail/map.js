@@ -16,19 +16,40 @@ define(function (require) {
     var bdMap;
     var bdPoint;
 
-    mapModule.render = function (point, data) {
+    var SEARCH_RADIUS = 3000;
+
+
+    // 将谷歌坐标转换成百度坐标，并回调
+    function pointTranslate(ggPoint, callback) {
+        callback = callback || new Function();
+
+        BMap.Convertor.translate(ggPoint, 2, callback); 
+    }
+
+    mapModule.render = function (point, callback) {
+        callback = callback || new Function();
+
         bdPoint = new BMap.Point(point[1], point[0]);
 
-        bdMap = new BMap.Map(cacheOptions.domId);   
-        bdMap.centerAndZoom(bdPoint, 15);
+        // 如果不需要转换谷歌坐标，那么把这个wrapper函数和新赋值注释掉就可以了
+        pointTranslate(bdPoint, function (newPoint) {
 
-        // control bar
-        bdMap.addControl(new BMap.NavigationControl({
-            anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL
-        }));
+            bdPoint = newPoint;
 
-        // add Marker
-        bdMap.addOverlay(new BMap.Marker(bdPoint));
+            bdMap = new BMap.Map(cacheOptions.domId);   
+            bdMap.centerAndZoom(bdPoint, 15);
+
+            // control bar
+            bdMap.addControl(new BMap.NavigationControl({
+                anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL
+            }));
+
+            // add Marker
+            bdMap.addOverlay(new BMap.Marker(bdPoint));
+
+            callback();
+        });
+
     };
 
     function localSearch(keyword) {
@@ -41,7 +62,7 @@ define(function (require) {
         bdMap.clearOverlays();
         bdMap.addOverlay(new BMap.Marker(bdPoint));
 
-        bdLocation.searchNearby(keyword, bdPoint, 1000);
+        bdLocation.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
     }
 
     function localSearchApi(keyword, callback) {
@@ -72,7 +93,7 @@ define(function (require) {
 
         var local = new BMap.LocalSearch(bdMap, options);
 
-        local.searchNearby(keyword, bdPoint, 1000);
+        local.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
     }
 
 
@@ -81,24 +102,27 @@ define(function (require) {
      */
     window.mapInitialize = function () {
 
-        mapModule.render(cacheOptions.point);
+        mapModule.render(cacheOptions.point, function () {
 
-        // render完成后触发ready事件
-        mapModule.trigger('ready', mapModule);
+             // render完成后触发ready事件
+            mapModule.trigger('ready', mapModule);
 
-        getEnvResults();
+            getEnvResults();
 
-        bindIndicator();
+            bindIndicator();
+        });
+
+       
     }; 
 
     // 绑定左侧点击事件
     function bindIndicator() {
         mapIndicator.find('a').on('click', function () {
             var _me = $(this);
-            var keyword = _me.children('h5').text();
+            var title = _me.children('h5');
+            var keyword = title.attr('data-key') || title.text();
 
             localSearch(keyword);
-
             return false;
         });
     }

@@ -13,9 +13,18 @@ define(function (require) {
     var bdMap;
 
     var pointList = [];
+    var pointMap = {};
     var markerMap = {};
 
-    mapModule.add = function (item) {
+    // 将谷歌坐标Array转换成百度坐标Array，并回调
+    function pointTranslate(ggPoints, callback) {
+        callback = callback || new Function();
+
+        // 参数2，表示是从GCJ-02坐标到百度坐标。参数0，表示是从GPS到百度坐标
+        BMap.Convertor.translateMore(ggPoints, 2, callback); 
+    }
+
+    mapModule.addPoint = function (item) {
         var point = item.point;
         if (!point || point.length != 2 || !point[1] || !point[0]) {
             return false;
@@ -23,32 +32,57 @@ define(function (require) {
 
         var bdPoint = new BMap.Point(point[1], point[0]);
 
-        // add Marker
-        var marker = new mapModule.MapOverlay(bdPoint, item);  // 创建标注
-        bdMap.addOverlay(marker);
-
         pointList.push(bdPoint);
-
-        markerMap[item.id] = marker;
+        pointMap[item.id] = {
+            point: bdPoint,
+            item: item
+        };
     };
 
     mapModule.render = function (data) {
 
         // foreach add marker
         $.each(data, function (i, item) {
-            mapModule.add(item);
+            mapModule.addPoint(item);
         });
 
-        if (!data.length || !pointList.length) {
+        var length = pointList.length;
+
+        if (!data.length || !length) {
             bdMap.centerAndZoom(cacheOptions.cityName);
             bdMap.zoomIn();
             return;
         }
 
-        // auto adjust viewport
-        bdMap.setViewport(pointList, {
-            delay: 500
+        // translate ggpoints to bdpoints
+        pointTranslate(pointList, function (results) {
+
+            if (results.length == length) {
+
+                pointList = results;
+
+                $.each(pointMap, function (id, data) {
+
+                    // add Marker
+                    var marker = new mapModule.MapOverlay(data.point, data.item);  // 创建标注
+                    bdMap.addOverlay(marker);
+                    markerMap[id] = marker;
+                });
+
+                // auto adjust viewport
+                bdMap.setViewport(pointList, {
+                    delay: 500
+                });
+            }
+            else {
+                pointList = [];
+                bdMap.centerAndZoom(cacheOptions.cityName);
+                bdMap.zoomIn();
+            }
+
         });
+
+
     };
 
     window.mapInitialize = function () {
@@ -149,7 +183,7 @@ define(function (require) {
 
     function loadMap(ak) {
         var script = document.createElement('script');  
-        script.src = 'http://api.map.baidu.com/api?v=1.5&ak=' + ak + '&callback=mapInitialize';  
+        script.src = 'http://api.map.baidu.com/api?v=2.0&ak=' + ak + '&callback=mapInitialize';  
         document.body.appendChild(script);
     }
 

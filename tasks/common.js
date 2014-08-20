@@ -39,7 +39,8 @@ module.exports = function (grunt) {
                         'src/common/fixtop.js',
                         'src/common/html5support.js',
                         'src/common/base.js',
-                        'src/common/ajax.js'
+                        'src/common/ajax.js',
+                        'src/common/mapTranslate.js'
                     ],
                     'asset/common/toolbar.js': [
                         'src/common/toolbar.js'
