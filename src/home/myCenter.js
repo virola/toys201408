@@ -16,6 +16,8 @@ define(function (require) {
 
     var colBoxes = myCenterDom.find('.col-box>ul');
 
+    var msgNumBox = openCenterBtn.find('i').hide();
+
     // TPL
     var _tplSearch = {
         item: ''
@@ -130,7 +132,7 @@ define(function (require) {
                             scrollTop: openCenterBtn.offset().top
                         });
 
-                        openCenterBtn.find('.msg-num').hide();
+                        msgNumBox.hide();
                     }
                 }
             });
@@ -183,7 +185,7 @@ define(function (require) {
                     openCenterBtn.show();
 
                     if (index == 1) {
-                        openCenterBtn.find('i').text(data.length);
+                        msgNumBox.text(data.length).show();
                     }
                 }
 
