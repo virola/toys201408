@@ -63,3 +63,39 @@
     position: absolute;
     width: 1px;
 }
+
+.search-panel-common {
+    
+    .suggest-wrap {
+        top: 31px;
+
+        .ui-autocomplete {
+            margin-top: 0;
+            padding: 1px;
+            .border-radius(0 0 3px 3px);
+
+            .ui-menu-item {
+                line-height: 25px;
+                height: 25px;
+                padding: 0 10px;
+
+                a {
+                    font-size: 12px;
+
+                    .sub-text {
+                        display: none;
+                    }
+
+                    .count {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .count {
+            width: 60px;
+            overflow: hidden;
+        }
+    }
+}

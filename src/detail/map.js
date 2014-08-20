@@ -10,13 +10,16 @@ define(function (require) {
      */
     var mapModule = $({});
 
+    // cache data option
+    var cacheOptions;
+
     var mapIndicator = $('#map-indicator');
 
     var bdLocation;
     var bdMap;
     var bdPoint;
 
-    var SEARCH_RADIUS = 3000;
+    var SEARCH_RADIUS = 2000;
 
 
     // 将谷歌坐标转换成百度坐标，并回调
@@ -49,51 +52,29 @@ define(function (require) {
 
             callback();
         });
-
     };
 
-    function localSearch(keyword) {
-        console.log(keyword);
 
-        bdLocation = new BMap.LocalSearch(bdMap, {
-            renderOptions: { map: bdMap, autoViewport: false}
-        });
+    // var PLACE_API = 'http://api.map.baidu.com/place/v2/search'; 
 
-        bdMap.clearOverlays();
-        bdMap.addOverlay(new BMap.Marker(bdPoint));
+    // var placeParams = {
+    //     ak : '',
+    //     filter: 'distance',
+    //     output: 'json',
+    //     query: '',
+    //     'page_size': 10,
+    //     'page_num': 0,
+    //     scope: 1,
+    //     location: '',
+    //     radius: SEARCH_RADIUS
+    // };
 
-        bdLocation.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
-    }
+    function bdSearch(keyword, searchObj, needClear) {
+        if (needClear && searchObj) {
+            searchObj.clearResults();
+        }
 
-    function localSearchApi(keyword, callback) {
-
-        callback = callback || new Function();
-
-        var options = {
-            onSearchComplete: function(results){
-                // 判断状态是否正确
-                if (local.getStatus() == BMAP_STATUS_SUCCESS) {
-                    var s = [];
-                    for (var i = 0; i < results.getCurrentNumPois(); i ++) {
-                        s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
-                    }
-
-                    callback(s);
-
-                    mapModule.trigger('serviceReady', {
-                        key: keyword,
-                        result: s
-                    });
-                }
-                else {
-                    callback([]);
-                }
-            }
-        };
-
-        var local = new BMap.LocalSearch(bdMap, options);
-
-        local.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
+        searchObj && searchObj.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
     }
 
 
@@ -115,22 +96,61 @@ define(function (require) {
        
     }; 
 
+    // 本地搜索服务对象
+    var objLocalSearch;
+
     // 绑定左侧点击事件
     function bindIndicator() {
+        objLocalSearch = new BMap.LocalSearch(bdMap, {
+            renderOptions: { map: bdMap, autoViewport: false}
+        });
+
         mapIndicator.find('a').on('click', function () {
             var _me = $(this);
             var title = _me.children('h5');
             var keyword = title.attr('data-key') || title.text();
 
-            localSearch(keyword);
+            bdSearch(keyword, objLocalSearch);
             return false;
         });
     }
 
+    // api search
+    function localSearchApi(keyword, callback) {
+        callback = callback || new Function();
+
+        var options = {
+            onSearchComplete: function(results) {
+                // 判断状态是否正确
+                if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+                    var s = [];
+                    for (var i = 0; i < results.getCurrentNumPois(); i ++) {
+                        s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+                    }
+
+                    callback(s);
+
+                    mapModule.trigger('serviceReady', {
+                        key: keyword,
+                        result: s
+                    });
+                }
+                else {
+                    callback([]);
+                }
+            }
+        };
+
+        var local = new BMap.LocalSearch(bdMap, options);
+        local.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
+    }
+
     // 获取周边信息
     function getEnvResults() {
+
         mapIndicator.find('h5').each(function (i, item) {
             var keyword = $(this).attr('data-key') || $(this).text();
+
             localSearchApi(keyword, function (result) {
                 updateCount(i, result.length);
             });
@@ -148,9 +168,6 @@ define(function (require) {
         script.src = 'http://api.map.baidu.com/api?v=1.5&ak=' + ak + '&callback=mapInitialize';  
         document.body.appendChild(script);
     }
-
-    // cache data option
-    var cacheOptions;
 
     mapModule.init = function (options) {
 

@@ -4,7 +4,6 @@
 @main-size: 350px;
 
 .m-tool {
-    // visibility: hidden;
     position: fixed;
     _position: absolute;
     width: @main-size + @mini-size;
@@ -54,7 +53,7 @@
 
     &-task {
         position: absolute;
-        top: 30%;   // temporary
+        bottom: 30px;
     }
 
     &-tab-user {
@@ -148,6 +147,7 @@
             &-title {
                 padding: 0 0 15px;
                 text-align: center;
+                font-weight: bold;
             }
 
             &-tab {
@@ -217,7 +217,7 @@
 
                 .remove {
                     .content .right {
-                        a, p {
+                        h5, a, p {
                             color: #999999;
                         }
                     }
@@ -249,7 +249,7 @@
                         width: 188px;
 
                         h5 {
-                            height: 40px;
+                            max-height: 40px;
                             overflow: hidden;
                             margin-top: -3px;
                         }
@@ -335,6 +335,7 @@
     }
 }
 
+// 搜索条件
 .m-tool-main-box-search {
     .search-add-btn {
         display: block;
@@ -476,3 +477,37 @@
 
     }
 }
+
+// empty
+.m-tool {
+
+    .ico-tick {
+        display: inline-block;
+        *display: inline;
+        .size(13px);
+        background-size: 100%;
+        background-image: data-uri('../../../asset/img/tool/tick.png');
+    }
+
+    .msg-empty {
+        position: absolute;
+        bottom: 50px;
+        text-align: center;
+
+        h4 {
+            padding: 15px 0;
+            margin-bottom: 25px;
+            font-size: 20px;
+            border-bottom: 1px solid #5b5b5b;
+        }
+
+        p {
+            color: #999;
+        }
+    }
+
+    .empty-entry {
+        color: #dddddd;
+    }
+}
+
