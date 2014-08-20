@@ -35,7 +35,7 @@ $.stringFormat = function (source, opts) {
 };
 
 
-$.strHtml = function (source, opts) {
+$.strHTML = function (source, opts) {
     source = String(source);
     var data = Array.prototype.slice.call(arguments, 1);
     var toString = Object.prototype.toString;
@@ -88,11 +88,11 @@ $(function () {
         $(document.body).addClass('ie', 'ie' + (document.documentMode || + RegExp['\x241']));
     }
 
-    $('.lazyload').scrollLoading({
-        callback: function () {
-            $(this).addClass('loaded');
-        }
-    });
+    // $('.lazyload').scrollLoading({
+    //     callback: function () {
+    //         $(this).addClass('loaded');
+    //     }
+    // });
 
     
     $('.iframe-img').each(function () {

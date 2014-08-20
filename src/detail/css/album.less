@@ -45,13 +45,22 @@
         position: absolute;
         
         li {
+            .size(107px, 80px);
             padding-bottom: 8px;
+            position: relative;
 
             a {
+                position: absolute;
                 display: block;
                 border: 3px solid #fff;
                 .size(101px, 74px);
                 overflow: hidden;
+                z-index: 10;
+            }
+
+            iframe {
+                position: absolute;
+                z-index: -1;
             }
         }
 

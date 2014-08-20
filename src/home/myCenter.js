@@ -49,8 +49,6 @@ define(function (require) {
             return $.stringFormat(_tplSearch.item, item);
         });
 
-        console.log(html);
-
         return html.join('');
     }
 
@@ -99,8 +97,6 @@ define(function (require) {
             
             return $.stringFormat(_tplHouse.item, item);
         });
-
-        console.log(html);
 
         return html.join('');
     }
