@@ -1,0 +1,53 @@
+// 引入style toolkit
+@import '../../../dep/est/src/all.less';
+
+@import '../../common/css/mixin';
+
+// @import 'filter';
+@import '../../list/css/list';
+
+@import '../../list/css/recommend';
+
+@import 'zone';
+@import 'filter';
+@import 'side';
+
+.main-box .house-lst .pic-panel,
+.main-box .house-lst .pic-panel .pic-num .num,
+.main-box .house-lst .info-panel,
+.main-box .house-lst h2 span,
+.main-box .house-lst .where,
+.main-box .house-lst .type,
+.main-box .house-lst .square,
+.main-box .house-lst .price,
+.main-box .house-lst .con,
+.main-box .house-lst .price-pre,
+.main-box .house-lst .fd .right .star,
+.main-box .side-bar .search-widget .txt,
+.main-box .side-bar .search-widget .btn,
+.go-detail {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: middle;
+}
+
+/*Advanced UI Enhancement*/
+.main-box .house-lst li:hover {
+    .transition(all 0.2s ease);
+}
+
+.main-box .con-box,
+.filter-box .bd,
+.filter-box .fd,
+.main-box .side-bar .map-box,
+.main-box .side-bar .search-widget {
+    .ui-box-shadow();
+}
+
+.tab-lst li a span,
+.main-box .house-lst h2 a,
+.main-box .house-lst .num {
+    .font-smooth();
+}
+

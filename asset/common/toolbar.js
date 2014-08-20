@@ -403,12 +403,12 @@ define(function (require) {
                 html = getFavorHouseHtml(datasource.list);
             }
 
+            listMain.html(html);
+
             if (count > 0 && html) {
-                listMain.html(html);
                 ctrlBox.show();
             }
             else {
-                // listMain.parent().html(_tplItemEmpty.favor);
                 ctrlBox.hide();
             }
 

@@ -1,0 +1,64 @@
+.filter-box {
+
+    .filter-select {
+        float: left;
+        position: relative;
+
+        .filter-select-text {
+            float: left;
+            padding: 0 14px;
+        }
+
+        .filter-list {
+            display: none;
+            position: absolute;
+
+            a {
+                display: block;
+            }
+        }
+    }
+
+    dt {
+        display: none;
+    }
+
+    .sort-bar {
+        font-size: 14px;
+        width: 440px;
+        overflow: hidden;
+
+        a {
+            color: #555;
+            border-color: #f7f7f7;
+            background: none;
+            margin-left: 6px;
+
+            &.on {
+                color: #333;
+                background-color: #f2f7fc;
+                border-color: #0664c4;
+
+                &:hover {
+                    background-color: #f2f7fc;
+                    border-color: #0664c4;
+                }
+            }
+            &:hover {
+                background-color: #fafafa;
+                border-color: #ddd;
+            }
+
+            i {
+                font-size: 12px;
+                color: #aeaeae;
+
+                &.fa {
+                    margin-left: 5px;
+                    vertical-align: middle;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
