@@ -28,7 +28,7 @@ define(function (require) {
         +         '<div class="m-tool-close m-tool-bar-close"></div>'
         +         '<div class="m-tool-task">'
         +             '<div class="m-tool-tab-user" title="#{username}">'
-        +                 '<img src="#{userAvator}">'
+        +                 '<img src="#{userAvatar}">'
         +             '</div>'
         +             '<div class="m-tool-tab" data-command="open" data-box="0">'
         +                 '<div class="m-tool-tab-logo m-tool-tab-logo-msg"></div>'
@@ -494,7 +494,7 @@ define(function (require) {
     function getMainHtml(data) {
         return $.stringFormat(_tplMain, {
             username: data.nickname,
-            userAvator: data.userAvator || ''
+            userAvatar: data.userAvatar || ''
         });
     }
 
@@ -686,15 +686,13 @@ define(function (require) {
         var urls = params.url;
 
         ajax.get(urls.user, {}, function (data) {
-            if (data && data.userAvator) {
+            if (data && data.userAvatar) {
                 loadCss();
 
                 renderMain(data);
                 requestUserData();
             }
         });
-
-        // initialEvents();
     };
 
     function requestUserData() {
@@ -707,14 +705,13 @@ define(function (require) {
         ajax.get(urls.favor.house, {}, function (resp) {
             favorRender.render(resp);
         });
-        
 
         ajax.get(urls.history, {}, function (resp) {
             historyRender.render(resp.list);
         });
 
         ajax.get(urls.search, {}, function (resp) {
-            searchRender.render(resp.result);
+            searchRender.render(resp.list);
         });
     }
 

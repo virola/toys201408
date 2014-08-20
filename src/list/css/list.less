@@ -47,30 +47,33 @@
 
     iframe {
         position: absolute;
-        z-index: -1;
+        z-index: 0;
     }
 
     img {
         .size(163px, 122px);
     }
+
+    .pic-num {
+        font-size: 12px;
+        color: #FFFFFF;
+        position: absolute;
+        z-index: 5;
+        bottom: 0;
+        left: 0;
+        padding: 0 5px;
+        background: #000;
+        background: rgba(0,0,0,0.5); // ie6?
+
+        .num {
+            font-size: 12px;
+            font-family: Arial;
+            margin-left: 3px;
+        }
+    }
 }
 
-.house-lst .pic-panel .pic-num {
-    font-size: 12px;
-    color: #FFFFFF;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 0 5px;
-    background: #000;
-    background: rgba(0,0,0,0.5); // ie6?
-}
 
-.house-lst .pic-panel .pic-num .num {
-    font-size: 12px;
-    font-family: Arial;
-    margin-left: 3px;
-}
 
 .house-lst .info-panel {
     color: #565a5c;
