@@ -197,7 +197,7 @@ $.strHTML = function (source, opts) {
             if('[object Function]' == toString.call(replacer)){
                 replacer = replacer(key);
             }
-            return ('undefined' == typeof replacer ? '' : encodeHTML(replacer));
+            return ('undefined' == typeof replacer ? '' : $.encodeHTML(replacer));
         });
     }
     return source;

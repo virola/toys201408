@@ -1,0 +1,117 @@
+@import '../../../dep/est/src/all.less';
+
+@filter-height: 30px;
+
+.fa() {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ui-state-default {
+    border: 1px solid #b0b4b9;
+    background-color: #fcfcfc;
+    .border-radius(2px);
+}
+
+.ui-state-hover {
+    border-color: #999;
+}
+
+.ui-selectmenu-button {
+    outline: 0;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+
+    font-size: 12px;
+    padding: 0 14px;
+    height: @filter-height;
+    line-height: @filter-height;
+
+    .ui-selectmenu-text {
+        text-align: left;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    span.ui-icon {
+        .fa();
+
+        right: 0.5em;
+        left: auto;
+        margin-top: -8px;
+        position: absolute;
+        top: 50%;
+        font-size: 14px;
+    }
+
+    .ui-icon-triangle-1-s:before,
+    .fa-angle-down:before {
+        content: "\f107";
+    }
+
+}
+
+.ui-selectmenu-menu {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #b0b4b9;
+    padding: 1px;
+
+    .ui-menu {
+        overflow: auto;
+        /* Support: IE7; */
+        overflow-x: hidden;
+        padding-bottom: 1px;
+
+        &-item {
+            position: relative;
+            margin: 0;
+            line-height: 25px;
+            height: 25px;
+            padding: 0 10px;
+            text-decoration: none;
+            color: #555;
+            font-size: 12px;
+            cursor: pointer;
+            min-height: 0; /* support: IE7 */
+            /* support: IE10, see #8844 */
+            list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+
+        }
+
+        .ui-state-focus {
+            background-color: #ddd;
+        }
+
+        .ui-state-selected {
+            color: #ee552a;
+        }
+
+        &-divider {
+            margin: 5px 0;
+            height: 0;
+            font-size: 0;
+            line-height: 0;
+            border-width: 1px 0 0 0;
+        }
+    }
+}
+
+.ui-selectmenu-open {
+    display: block;
+}

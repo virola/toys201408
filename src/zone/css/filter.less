@@ -1,36 +1,25 @@
+@import '../../../dep/est/src/all.less';
+
 .filter-box {
     height: 56px;
+    background-color: #fff;
 
     .filter-select {
         float: left;
+        margin: 12px;
+        margin-right: 0;
         position: relative;
-
-        .filter-select-text {
-            float: left;
-            padding: 0 14px;
-        }
-
-        .filter-list {
-            display: none;
-            position: absolute;
-
-            a {
-                display: block;
-
-                &.on {
-                    color: #ee552a;
-                }
-            }
-        }
     }
 
     .fd {
         margin-right: 10px;
     }
 
+    @sort-width: 375px;
+
     .sort-bar {
         font-size: 14px;
-        width: 425px;
+        width: @sort-width;
         overflow: hidden;
         line-height: 56px;
 
@@ -41,13 +30,13 @@
         a {
             height: 28px;
             line-height: 28px;
-            border: 1px solid #ee552a;
-            padding: 0 10px;
+            border: 1px solid #fff;
+            padding: 0 6px;
             font-size: 0;
             .border-radius(2px);
 
             color: #555;
-            border-color: #f7f7f7;
+            border-color: ;
             background: none;
             margin-left: 3px;
 
@@ -86,4 +75,14 @@
     *display: inline;
     zoom: 1;
     vertical-align: middle;
+}
+
+.ui-selectmenu-menu .ui-menu-item a {
+    display: block;
+    text-decoration: none;
+    color: #555;
+
+    &.on {
+        color: #ee552a;
+    }
 }

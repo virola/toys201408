@@ -88,10 +88,6 @@ define(function (require) {
                 point: params.coordinates
             });
 
-            map.on('ready', function () {
-                // console.log('render finish~');
-            });
-
             // recommend
             require('./recommend').init({
                 url: params.url,

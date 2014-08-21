@@ -1,0 +1,69 @@
+.dt-ico {
+    background: url(./img/detail-ico.png) no-repeat;
+    _background-image: url(./img/detail-ico_ie6.png);
+}
+
+// 相册显示相关样式
+.album-panel {
+
+    img {
+        .size(110px, 88px);
+
+        &:hover {
+            .opacity(90);
+        }
+    }
+
+    a.ctrl-btn {
+        float: left;
+        display: block;
+        .size(25px, 88px);
+        text-indent: -9999px;
+    }
+
+    .ico-arr-top {
+        background-position: -130px 0;
+
+        &:hover {
+            background-position: -158px 0;
+        }
+    }
+
+    .ico-arr-bottom {
+        background-position: -186px 0;
+
+        &:hover {
+            background-position: -214px 0;
+        }
+    }
+
+    .album-view-wrap {
+        float: left;
+        .size(330px, 88px);
+        overflow: hidden;
+        position: relative;
+    }
+
+    ul {
+        position: absolute;
+        
+        li {
+            float: left;
+            .size(110px, 80px);
+            margin-right: 1px;
+            position: relative;
+
+            a {
+                position: absolute;
+                display: block;
+                overflow: hidden;
+                z-index: -1;
+            }
+
+            iframe {
+                position: absolute;
+                z-index: 0;
+            }
+        }
+    }
+}

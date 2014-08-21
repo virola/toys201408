@@ -1,5 +1,6 @@
 @import '../../../dep/est/src/all.less';
 
+@border-color: #cfd4dd;
 
 .side-bar {
     width: 382px;
@@ -7,22 +8,258 @@
 }
 
 .side-box {
+    margin-bottom: 35px;
+
     &-title {
+        margin-bottom: 15px;
+
         h3 {
             font-size: 22px;
         }
 
         .sub-text {
             color: #555555;
+            margin-top: 8px;
         }
     }
 }
 
-.trend-title {
-    padding: 15px;
-    
-    h3 {
-        color: #0664c4;
-        font-size: 18px;
+// 小区行情样式
+.trend-box {
+    border: 1px solid @border-color;
+    background-color: #fff;
+
+    .trend-title {
+        padding: 15px;
+        border-bottom: 1px solid @border-color;
+        
+        h3 {
+            color: #0664c4;
+            font-size: 18px;
+        }
+
+        .trend-ctrl {
+            .size(70px, 30px);
+
+            a {
+                display: block;
+                .size(20px, 30px);
+                margin-left: 15px;
+                float: left;
+                text-align: center;
+                font-size: 30px;
+                line-height: 30px;
+                color: #014d9b;
+                text-decoration: none;
+                .opacity(30);
+
+                &:hover {
+                    .opacity(80);
+                }
+
+                &.disabled, &.disabled:hover {
+                    cursor: default;
+                    color: #999;
+                    .opacity(30);
+                }
+            }
+        }
+    }
+
+    .state-up {
+        color: #ee552a;
+    }
+
+    .state-down {
+        color: #3eae01;
+    }
+
+    .state-normal {
+        color: #333;
+    }
+
+    .trend-data-area {
+
+        li {
+            .size(126px, 160px);
+            border: 1px solid @border-color;
+            border-top: 0;
+            border-right: 0;
+            float: left;
+
+            &.first {
+                border-left: 0;
+            }
+        }
+
+        dl {
+            height: 45px;
+            padding: 16px;
+            padding-right: 0;
+            margin-right: 16px;
+            font-size: 12px;
+
+            &.first {
+                border-bottom: 1px solid @border-color;
+            }
+
+            dt {
+                color: #999999;
+                margin-bottom: 10px;
+            }
+
+            dd {
+                color: #555;
+
+                em, span {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .trend-chart {
+        .size(100%, 280px);
+    }
+
+}
+
+
+// 小区地图模块
+.zone-map {
+
+    .map-box {
+        border: 1px solid @border-color;
+        height: 300px;
+    }
+
+    .zone-env {
+        padding: 25px 20px;
+        border: 1px solid @border-color;
+        border-top: 0;
+        background-color: #fff;
+        max-height: 400px;
+        overflow: auto;
+
+        dl {
+            dt {
+                padding-bottom: 8px;
+                border-bottom: 1px solid @border-color;
+
+                .ico-0 {
+                    color: #27baea;
+                }
+                .ico-1 {
+                    color: #04a923;
+                }
+                .ico-2 {
+                    color: #e77653;
+                } 
+                .ico-3 {
+                    color: #f5b168;
+                }
+                .ico-4 {
+                    color: #65b273;
+                }
+                .ico-5 {
+                    color: #80adc9;
+                }
+                .ico-6 {
+                    color: #e4c445;
+                }
+                .ico-7 {
+                    color: #0d7ed6;
+                }
+
+
+                .fa {
+                    width: 20px;
+                    text-align: center;
+                    font-size: 16px;
+                    float: left;
+                    margin-top: 8px;
+                }
+
+                h4 {
+                    margin-left: 25px;
+                    font-size: 16px;
+                }
+
+                h5 {
+                    margin-left: 25px;
+                    margin-top: -5px;
+                    font-size: 10px;
+                    color: #999;
+                }
+            }
+
+            dd {
+                padding-bottom: 20px;
+                font-size: 12px;
+
+                li {
+                    margin: 10px;
+                    color: #888;
+                    border-bottom: 1px dotted @border-color;
+
+                    &.last {
+                        border: 0;
+                    }
+
+                    .label {
+                        margin-right: 20px;
+                        color: #333;
+                    }
+
+                    .fa {
+                        color: #bcd1ed;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+
+        
     }
 }
+
+
+
+// 小区介绍
+.zone-intro {
+    margin-top: 12px;
+    border: 1px solid @border-color;
+    background-color: #fff;
+
+    p {
+        border-bottom: 1px solid @border-color;
+        padding: 25px 20px;
+        font-size: 12px;
+        color: #555;
+        line-height: 22px;
+    }
+
+    .zone-attr {
+        padding: 20px;
+        font-size: 12px;
+
+        @entry-width: 150px;
+
+        dl {
+            width: @entry-width;
+            margin-right: 15px;
+            margin-bottom: 10px;
+
+            dt {
+                width: 68px;
+                color: #000;
+            }
+
+            dd {
+                width: @entry-width - 68px;
+                color: #888;
+            }
+        }
+    }
+}
+
