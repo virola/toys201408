@@ -19,7 +19,7 @@ define(function (require) {
         mainBox.height(windowHeight).children().height(windowHeight);
     }
 
-    var options;
+    var cacheOptions;
 
     var _tplMain = ''
         + '<div class="m-tool">'
@@ -67,8 +67,8 @@ define(function (require) {
         +           '<div class="m-tool-main-box m-tool-main-box-msg">'
         +               '<h3 class="m-tool-main-box-title">动态提醒</h3>'
         +               '<div class="m-tool-main-box-ctrl clear">'
-        +                   '<div class="left">共有<em class="m-tool-ctrl-count"></em>套房源</div>'
-        +                   '<div class="right">'
+        +                   '<div class="left">共有<em class="m-tool-ctrl-count">0</em>条消息</div>'
+        +                   '<div class="right" data-type="msg">'
         +                       '<a href="#" data-command="clear">全部清除</a>&nbsp;&nbsp;'
         +                       '<a href="#" data-command="refresh">刷新</a>'
         +                   '</div>'
@@ -85,7 +85,7 @@ define(function (require) {
         +                   '<a href="#" data-type="1">关注的小区</a>'
         +               '</div>'
         +               '<div class="m-tool-main-box-ctrl clear">'
-        +                   '<div class="left">共有<em class="m-tool-ctrl-count"></em>套房源</div>'
+        +                   '<div class="left">共有<em class="m-tool-ctrl-count">0</em>套房源</div>'
         +                   '<div class="right">'
         +                       '<a href="#">刷新</a>'
         +                   '</div>'
@@ -165,9 +165,22 @@ define(function (require) {
         + '</div>'
     ;
 
+    var _tplClearTip = ''
+        + '<div class="clear-tip">' 
+        +     '<div class="clear-bg"></div>' 
+        +     '<div class="clear-tip-main"><h5>删除成功！</h5></div>'
+        + '</div>';
+
+    var _tplClearFavorTip = '' 
+        + '<div class="clear-tip">' 
+        +     '<div class="clear-bg"></div>' 
+        +     '<div class="clear-tip-main"><h5>取消成功啦！<a href="#" class="rollback">撤销操作</a></h5>'
+        +     '<p>注意：刷新页面后会彻底删除</p></div>'
+        + '</div>';
+
     var _tplItem = {
         msg: ''
-            + '<li data-id="#{msgId}" data-link="#{url}" #{removeClass}>'
+            + '<li data-id="#{id}" data-type="msg" data-link="#{url}"'
             +     '<div class="title clear">'
             +         '<h4 class="left">#{title}</h4>'
             +         '<span class="date right">#{date}</span>'
@@ -185,10 +198,11 @@ define(function (require) {
             +     '</div>'
             +     '#{extraHtml}'
             +     '<div class="close"><div class="m-tool-close"></div></div>'
+            + _tplClearTip
             + '</li>',
 
         msgRemove: ''
-            + '<li data-id="#{msgId}" data-link="#{url}" #{removeClass}>'
+            + '<li data-id="#{id}" data-type="msg" data-link="#{url}" #{removeClass}>'
             +     '<div class="title clear">'
             +         '<h4 class="left">#{title}</h4>'
             +         '<span class="date right">#{date}</span>'
@@ -206,10 +220,11 @@ define(function (require) {
             +     '</div>'
             +     '#{extraHtml}'
             +     '<div class="close"><div class="m-tool-close"></div></div>'
+            + _tplClearTip
             + '</li>',
 
         house: ''
-            + '<li class="content clear" data-id="#{houseId}" data-link="#{url}">'
+            + '<li class="content clear" data-type="house" data-id="#{id}" data-link="#{url}">'
             +     '<div class="content-img left">'
             +         '<a href="#{url}"><img src="#{imgSrc}"></a>'
             +     '</div>'
@@ -222,10 +237,11 @@ define(function (require) {
             +         '</div>'
             +     '</div>'
             +     '<div class="close"><div class="m-tool-close"></div></div>'
+            + _tplClearFavorTip
             + '</li>',
 
         zone: ''
-            + '<li class="content clear" data-id="#{houseId}" data-link="#{url}">'
+            + '<li class="content clear" data-type="zone" data-id="#{id}" data-link="#{url}">'
             +     '<div class="content-img left">'
             +         '<a href="#{url}"><img src="#{imgSrc}"></a>'
             +     '</div>'
@@ -238,10 +254,11 @@ define(function (require) {
             +         '</div>'
             +     '</div>'
             +     '<div class="close"><div class="m-tool-close"></div></div>'
+            + _tplClearFavorTip
             + '</li>',
 
         history: ''
-            + '<li class="content clear" data-id="#{houseId}" data-link="#{url}">'
+            + '<li class="content clear" data-type="history-house" data-id="#{id}" data-link="#{url}">'
             +     '<div class="content-img left">'
             +         '<a href="#{url}"><img src="#{imgSrc}"></a>'
             +     '</div>'
@@ -253,10 +270,11 @@ define(function (require) {
             +             '<div class="price right"><em class="ft-num">#{price}</em> #{priceUnit}</div>'
             +         '</div>'
             +     '</div>'
+            + _tplClearTip
             + '</li>',
 
         search: ''
-            + '<li>'
+            + '<li data-type="search" data-id="#{id}">'
             +     '<span class="m-tool-circle">●</span>'
             +     '<a href="#{url}">#{title}</a>'
             +     '<a class="search-delete" href="#">删除</a>'
@@ -420,7 +438,6 @@ define(function (require) {
         };
     })();
 
-
     // 历史浏览记录
     var historyRender = (function () {
 
@@ -578,29 +595,83 @@ define(function (require) {
             $(this).removeClass('hover');
         })
         .on('click', '.close', function () {
-            $(this).parent('li').remove();
+            var item = $(this).parent('li');
+            var type = item.attr('data-type');
+            var id = item.attr('data-id');
+
+            if (type && id) {
+                removeItem(type, id, item);
+            }
         });
 
         initSearch();
 
-        initFavor();
+        favorEvents.init();
 
-        initCtrlBtns();
+        initMsgCtrl();
     }
 
-    function initCtrlBtns() {
-        mainBox.find('.m-tool-main-box-ctrl').on('click', 'a', function () {
+    function initMsgCtrl() {
 
+        mainBox.find('.m-tool-main-box-msg .m-tool-main-box-ctrl').on('click', 'a', function () {
             // todo...
+            var command = $(this).attr('data-command');
+            console.log(command);
+
+            if (command == 'clear') {
+                // todo
+            }
+            if (command == 'refresh') {
+                loadMsgList();
+            }
             
             return false;
         });
     }
 
+    /**
+     * 删除工具栏中的1个项目
+     * 
+     * @param {string} type 标识key
+     * @param {string} id 项目的id值，ajax需要
+     * @param {Object} element DOM元素
+     */
+    function removeItem(type, id, element) {
+        var urls = cacheOptions.url['clear'];
+        var url = urls[type] || '';
+        var item = $(element);
+        item.find('.close').hide();
 
+        var tipLayer = item.find('.clear-tip');
+
+        ajax.post(url, {id: id}, function (data) {
+            switch (type) {
+                case 'search':
+                    item.remove();
+                    break;
+                case 'msg':
+                    tipLayer.fadeIn();
+                    setTimeout(function () {
+                        item.remove();
+                    }, 3000);
+                    break;
+                case 'house':
+                case 'zone':
+                    tipLayer.fadeIn();
+
+            }
+        }, function () {
+
+        })
+    }
+
+    function removeAll(type, ids) {
+
+    }
+
+    // 找房条件里的事件绑定
     function initSearch() {
 
-        // 找房条件里的
         var searchBox = mainBox.find('.m-tool-main-box-search');
         searchBox.find('input.txt')
         .on('focusin', function () {
@@ -615,73 +686,103 @@ define(function (require) {
         })
         .on('mouseout', 'li', function () {
             $(this).removeClass('hover');
+        })
+        // delete search
+        .on('click', '.search-delete', function () {
+            var item = $(this).parent();
+            removeItem('search', item.attr('data-id'), item);
         });
     }
 
-    var curType = 0;
+    /**
+     * 关注tab的事件绑定模块
+     * 
+     * @type {Object}
+     */
+    var favorEvents = (function () {
 
-    function initFavor() {
+        var _curFavorType = 0;
 
         var ajaxing = {
             house: 0,
             zone: 0
         };
 
-        mainBox.find('.m-tool-main-box-favor .m-tool-main-box-tab').on('click', 'a', function () {
-            var _me = $(this);
-            var type = +_me.attr('data-type');
-
-            if (type != curType) {
-                if (type == 1) {
-                    if (ajaxing.zone) {
-                        return false;
-                    }
-
-                    ajax.get(options.url.favor.zone, {}, function (resp) {
-                        ajaxing.zone = 0;
-                        if (curType == 1) {
-                            favorRender.render(resp, 1);
-                        }
-                    });
-                    ajaxing.zone = 1;
-                }
-                else {
-                    if (ajaxing.house) {
-                        return false;
-                    }
-
-                    ajax.get(options.url.favor.house, {}, function (resp) {
-                        ajaxing.house = 0;
-
-                        if (curType == 0) {
-                            favorRender.render(resp);
-                        }
-                    });
-
-                    ajaxing.house = 1;
-
+        function loadFavorList(type) {
+            if (type == 1) {
+                if (ajaxing.zone) {
+                    return false;
                 }
 
-                curType = type;
-
-                _me.siblings().removeClass('on');
-                _me.addClass('on');
+                ajax.get(cacheOptions.url.favor.zone, {}, function (resp) {
+                    ajaxing.zone = 0;
+                    if (_curFavorType == 1) {
+                        favorRender.render(resp, 1);
+                    }
+                });
+                ajaxing.zone = 1;
             }
+            else {
+                if (ajaxing.house) {
+                    return false;
+                }
 
-            return false;
-        });
+                ajax.get(cacheOptions.url.favor.house, {}, function (resp) {
+                    ajaxing.house = 0;
 
-        
-    }
+                    if (_curFavorType == 0) {
+                        favorRender.render(resp);
+                    }
+                });
+
+                ajaxing.house = 1;
+
+            }
+        }
+
+        function initFavor() {
+            var box = mainBox.find('.m-tool-main-box-favor');
+            var tab = box.find('.m-tool-main-box-tab');
+            var ctrl = box.find('.m-tool-main-box-ctrl');
+
+            tab.on('click', 'a', function () {
+                var _me = $(this);
+                var type = +_me.attr('data-type');
+
+                if (type != _curFavorType) {
+                    loadFavorList(type);
+
+                    _curFavorType = type;
+
+                    _me.siblings().removeClass('on');
+                    _me.addClass('on');
+                }
+
+                return false;
+            });
+
+            // refresh clicker
+            ctrl.on('click', 'a', function () {
+                loadFavorList(_curFavorType);
+                return false;
+            });
+        }
+
+        return {
+            init: initFavor,
+            load: loadFavorList
+        };
+    })();
+
 
     function loadCss() {
-        $('<link>').attr('rel', 'stylesheet').attr('href',  options.feRoot + '/asset/common/toolbar.css')
+        $('<link>').attr('rel', 'stylesheet').attr('href',  cacheOptions.feRoot + '/asset/common/toolbar.css')
             .appendTo($(document.head));
     }
 
 
     exports.init = function (params) {
-        options = $.extend({}, params);
+        cacheOptions = $.extend({}, params);
 
         var urls = params.url;
 
@@ -695,16 +796,21 @@ define(function (require) {
         });
     };
 
-    function requestUserData() {
-        var urls = options.url;
-
-        ajax.get(urls.msg, {}, function (resp) {
+    function loadMsgList() {
+        ajax.get(cacheOptions.url.msg, {}, function (resp) {
             msgRender.render(resp);
         });
+    }
 
-        ajax.get(urls.favor.house, {}, function (resp) {
-            favorRender.render(resp);
-        });
+    function requestUserData() {
+        var urls = cacheOptions.url;
+
+        loadMsgList();
+        favorEvents.load(0);
+
+        // ajax.get(urls.favor.house, {}, function (resp) {
+        //     favorRender.render(resp);
+        // });
 
         ajax.get(urls.history, {}, function (resp) {
             historyRender.render(resp.list);

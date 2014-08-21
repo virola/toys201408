@@ -280,6 +280,10 @@ var ajax = (function () {
      * @param {Function} callback 
      */
     exports.get = function (url, param, success, failure) {
+        if (!url) {
+            return false;
+        }
+
         $.getJSON(url, param, function (response) {
             if (response.status == 0) {
                 success(response.data);
@@ -297,6 +301,10 @@ var ajax = (function () {
     };
 
     exports.post = function (url, param, success, failure) {
+        if (!url) {
+            return false;
+        }
+        
         $.ajax({
             type: "POST",
             url: url,

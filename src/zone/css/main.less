@@ -4,6 +4,7 @@
 @import '../../common/css/mixin';
 
 // @import 'filter';
+
 @import '../../list/css/list';
 
 @import '../../list/css/recommend';
@@ -11,6 +12,33 @@
 @import 'zone';
 @import 'filter';
 @import 'side';
+
+.inline-block() {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: middle;
+}
+
+// 面包屑导航
+.crumb {
+    padding: 20px 0;
+    font-size: 0;
+
+    a, span {
+        font-size: 12px;
+        color: #888;
+        .inline-block();
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.crumb .stp {
+    margin: 0 5px;
+    font-size: 12px;
+}
 
 .main-box .house-lst .pic-panel,
 .main-box .house-lst .pic-panel .pic-num .num,
@@ -32,16 +60,17 @@
     vertical-align: middle;
 }
 
+.main-box .con-box {
+    border-top: 1px solid #cfd4dd;
+}
+
 /*Advanced UI Enhancement*/
 .main-box .house-lst li:hover {
     .transition(all 0.2s ease);
 }
 
 .main-box .con-box,
-.filter-box .bd,
-.filter-box .fd,
-.main-box .side-bar .map-box,
-.main-box .side-bar .search-widget {
+.main-box .side-bar .map-box {
     .ui-box-shadow();
 }
 
