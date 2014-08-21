@@ -180,7 +180,7 @@ define(function (require) {
 
     var _tplItem = {
         msg: ''
-            + '<li data-id="#{id}" data-type="msg" data-link="#{url}"'
+            + '<li data-id="#{id}" data-type="msg" data-link="#{url}">'
             +     '<div class="title clear">'
             +         '<h4 class="left">#{title}</h4>'
             +         '<span class="date right">#{date}</span>'
@@ -258,7 +258,7 @@ define(function (require) {
             + '</li>',
 
         history: ''
-            + '<li class="content clear" data-type="history-house" data-id="#{id}" data-link="#{url}">'
+            + '<li class="content clear" data-type="history" data-id="#{id}" data-link="#{url}">'
             +     '<div class="content-img left">'
             +         '<a href="#{url}"><img src="#{imgSrc}"></a>'
             +     '</div>'
@@ -270,6 +270,7 @@ define(function (require) {
             +             '<div class="price right"><em class="ft-num">#{price}</em> #{priceUnit}</div>'
             +         '</div>'
             +     '</div>'
+            +     '<div class="close"><div class="m-tool-close"></div></div>'
             + _tplClearTip
             + '</li>',
 
@@ -366,7 +367,7 @@ define(function (require) {
             var html = getMsgListHtml(datasource.list);
 
             if (count > 0 && html) {
-                listMain.html(html);
+                listMain.hide().html(html).fadeIn();
                 ctrlBox.show();
             }
             else {
@@ -421,7 +422,8 @@ define(function (require) {
                 html = getFavorHouseHtml(datasource.list);
             }
 
-            listMain.html(html);
+            listMain.hide();
+            listMain.html(html).fadeIn();
 
             if (count > 0 && html) {
                 ctrlBox.show();
@@ -647,13 +649,14 @@ define(function (require) {
         ajax.post(url, {id: id}, function (data) {
             switch (type) {
                 case 'search':
-                    item.remove();
+                    item.fadeOut();
                     break;
                 case 'msg':
+                case 'history':
                     tipLayer.fadeIn();
                     setTimeout(function () {
                         item.remove();
-                    }, 3000);
+                    }, 2000);
                     break;
                 case 'house':
                 case 'zone':
@@ -691,6 +694,8 @@ define(function (require) {
         .on('click', '.search-delete', function () {
             var item = $(this).parent();
             removeItem('search', item.attr('data-id'), item);
+
+            return false;
         });
     }
 
@@ -719,6 +724,8 @@ define(function (require) {
                     if (_curFavorType == 1) {
                         favorRender.render(resp, 1);
                     }
+                }, function (resp) {
+                    ajaxing.zone = 0;
                 });
                 ajaxing.zone = 1;
             }
@@ -733,6 +740,8 @@ define(function (require) {
                     if (_curFavorType == 0) {
                         favorRender.render(resp);
                     }
+                }, function (resp) {
+                    ajaxing.house = 0;
                 });
 
                 ajaxing.house = 1;
@@ -744,6 +753,7 @@ define(function (require) {
             var box = mainBox.find('.m-tool-main-box-favor');
             var tab = box.find('.m-tool-main-box-tab');
             var ctrl = box.find('.m-tool-main-box-ctrl');
+            var list = box.find('.m-tool-main-box-list>ul')
 
             tab.on('click', 'a', function () {
                 var _me = $(this);
@@ -766,6 +776,44 @@ define(function (require) {
                 loadFavorList(_curFavorType);
                 return false;
             });
+
+            list.on('click', '.rollback', function () {
+                var item = $(this).closest('li');
+                var type = item.attr('data-type');
+                var id = item.attr('data-id');
+
+                addFavor(type, id, function () {
+                    item.find('.clear-tip').fadeOut();
+                    item.find('.close').attr('style', '');
+                });
+
+                return false;
+            });
+        }
+
+        var addingAjax = 0;
+
+        function addFavor(type, id, callback) {
+            callback = callback || new Function();
+            var url = cacheOptions.url.rollback.zone;
+            if (type == 'house') {
+                url = cacheOptions.url.rollback.house;
+            }
+
+            if (!id || addingAjax) {
+                return false;
+            }
+
+            ajax.post(url, {
+                id: id
+            }, function (data) {
+                addingAjax = 0;
+                callback();
+            }, function (resp) {
+                addingAjax = 0;
+            });
+
+            addingAjax = 1;
         }
 
         return {
@@ -807,10 +855,6 @@ define(function (require) {
 
         loadMsgList();
         favorEvents.load(0);
-
-        // ajax.get(urls.favor.house, {}, function (resp) {
-        //     favorRender.render(resp);
-        // });
 
         ajax.get(urls.history, {}, function (resp) {
             historyRender.render(resp.list);

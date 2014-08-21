@@ -441,7 +441,7 @@
   z-index: 1000;
   top: 0;
   width: 320px;
-  height: 115px;
+  height: 100%;
 }
 .m-tool .clear-tip .clear-bg {
   position: absolute;
@@ -453,7 +453,8 @@
 }
 .m-tool .clear-tip-main {
   z-index: 10;
-  top: 35px;
+  top: 30%;
+  width: 100%;
   text-align: center;
   position: absolute;
 }
