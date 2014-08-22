@@ -12,7 +12,7 @@ define(function (require) {
         + '<div class="item">'
         +     '<div class="pic"><a href="#{url}"><img class="lazyload loaded" src="#{imgSrc}" alt="#{title}" /></a></div>'
         +     '<div class="txt">'
-        +         '<a href="{$item.url|escape:html}">#{title}</a> / #{averagePrice}元/㎡'
+        +         '<a href="#{url}">#{title}</a> / #{averagePrice}元/㎡'
         +     '</div>'
         +     '#{houseCount}套在售  #{viewCount}人浏览'
         + '</div>';
