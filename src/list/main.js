@@ -62,7 +62,8 @@ define(function (require) {
             initPageEvents();
 
             require('./recommend').start({
-                url: params.recommendUrl
+                url: params.recommendUrl,
+                reqData: params.reqData
             });
 
             require('./filter').init({

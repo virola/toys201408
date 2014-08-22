@@ -664,7 +664,7 @@ define(function (require) {
 
             }
         }, function () {
-
+            item.find('.close').show();
         })
     }
 

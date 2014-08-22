@@ -302,9 +302,12 @@
   color: #000;
 }
 .zone-title-wrap .zone-favor-btn {
+  width: 115px;
   display: inline-block;
   *display: inline;
-  padding: 8px 25px;
+  padding: 0;
+  height: 30px;
+  line-height: 30px;
   border: 1px solid #6d8f29;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -313,10 +316,15 @@
   color: #fff;
   font-size: 13px;
   text-decoration: none;
+  text-align: center;
 }
 .zone-title-wrap .zone-favor-on {
-  border-color: #8b9970;
-  background-color: #bcd590;
+  color: #555555;
+  border-color: #b0b0b0;
+  background-color: #f6f6f6;
+}
+.zone-title-wrap .zone-favor-hover {
+  background-color: #fdfdfd;
 }
 .zone-title {
   font-size: 26px;

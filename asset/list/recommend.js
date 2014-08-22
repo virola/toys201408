@@ -29,6 +29,7 @@ define(function (require) {
 
     exports.start = function (params) {
         var url = params.url;
+        var data = $.extend({}, params.reqData);
 
         ajax.get(url, {}, function (data) {
             if (data.result instanceof Array && data.result.length > 0) {

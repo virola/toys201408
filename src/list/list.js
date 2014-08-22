@@ -9,12 +9,14 @@ define(function (require) {
     function bindFavor(url) {
 
         listBox.on('click', 'a.add-favor', function (e) {
+            var _me = $(this);
 
             var options = {
                 ids: $(this).attr('data-id')
             };
 
             ajax.post(url, options, function () {
+                _me.hide();
                 // success
             }, function (resp) {
                 // fail
