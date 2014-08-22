@@ -1,7 +1,7 @@
 @import '../../../dep/est/src/all.less';
 
 @mini-size: 39px;
-@main-size: 350px;
+@main-size: 360px;
 
 .m-tool {
     position: fixed;
@@ -142,6 +142,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
+            overflow-x: hidden;
         }
 
         &-box {
@@ -206,6 +207,8 @@
 
             // 右侧显示列表
             &-list {
+                width: 320px;
+
                 li {
                     position: relative;
                     padding: 18px 0;

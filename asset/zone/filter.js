@@ -33,7 +33,6 @@ define(function (require) {
             selectBoxes.linkselectmenu({
                 select: function( ev, ui ) {
                     var li = $(ev.currentTarget);
-                    console.log(li);
                     var link = li.find('a');
                     var url = li.find('a').attr('href');
 

@@ -11,10 +11,19 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.registerTask('debug', [
+        'common',
+        'list',
+        'detail',
+        'home',
+        'zone'
+    ]);
+
     grunt.registerTask('release', [
         'common-release',
         'list-release',
         'detail-release',
-        'home-release'
+        'home-release',
+        'zone-release'
     ]);
 };

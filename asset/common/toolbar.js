@@ -618,7 +618,6 @@ define(function (require) {
         mainBox.find('.m-tool-main-box-msg .m-tool-main-box-ctrl').on('click', 'a', function () {
             // todo...
             var command = $(this).attr('data-command');
-            console.log(command);
 
             if (command == 'clear') {
                 // todo
@@ -664,7 +663,7 @@ define(function (require) {
 
             }
         }, function () {
-
+            item.find('.close').show();
         })
     }
 
