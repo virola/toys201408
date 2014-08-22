@@ -30,7 +30,7 @@ define(function (require) {
         require(['echarts', 'echarts/chart/bar', 'echarts/chart/line'], function (ec) {
 
             var myChart = ec.init(document.getElementById(chartDomId));
-            myChart.setOption(options);
+            myChart.setOption(options, true);
             exports.trigger('ready', myChart); 
         });
     }

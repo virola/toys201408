@@ -11,6 +11,14 @@ module.exports = function (grunt) {
                 'tasks': ['common']
             }
         },
+        'jshint': {
+            'common': {
+                files: [
+                    'src/common/*',
+                    'src/common/**/*'
+                ]
+            }
+        },
         'less': {
             'common': {
                 files: {
@@ -37,10 +45,12 @@ module.exports = function (grunt) {
                     'asset/common/common.js': [
                         'src/common/jquery.scrollLoading.js',
                         'src/common/fixtop.js',
-                        'src/common/html5support.js',
                         'src/common/base.js',
                         'src/common/ajax.js',
                         'src/common/mapTranslate.js'
+                    ],
+                    'asset/common/html5support.js': [
+                        'src/common/html5support.js'
                     ],
                     'asset/common/toolbar.js': [
                         'src/common/toolbar.js'

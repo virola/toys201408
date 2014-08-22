@@ -835,7 +835,7 @@ define(function (require) {
 
         ajax.get(urls.user, {}, function (data) {
             if (data && data.userAvatar) {
-                loadCss();
+                // loadCss();
 
                 renderMain(data);
                 requestUserData();
