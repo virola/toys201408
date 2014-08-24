@@ -82,12 +82,16 @@ $.showIframeImg = function (parent, url) {
     
 };
 
-$(function () {
+/**
+ * IE浏览器判断函数
+ */
+$.browser = $.browser || {};
+$.browser.ie = /msie (\d+\.\d+)/i.test(navigator.userAgent) 
+    ? (document.documentMode || + RegExp['\x241']) 
+    : undefined;
 
-    $.browser = $.browser || {};
-    $.browser.ie = /msie (\d+\.\d+)/i.test(navigator.userAgent) 
-        ? (document.documentMode || + RegExp['\x241']) 
-        : undefined;
+
+$(function () {
 
     if (/msie (\d+\.\d+)/i.test(navigator.userAgent)) {
         $('body').addClass('ie', 'ie' + (document.documentMode || + RegExp['\x241']));

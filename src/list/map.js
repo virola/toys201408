@@ -70,9 +70,12 @@ define(function (require) {
                 });
 
                 // auto adjust viewport
-                bdMap.setViewport(pointList, {
-                    delay: 500
-                });
+                setTimeout(function () {
+                    bdMap.setViewport(pointList, {
+                        delay: 500
+                    });
+                }, 1000);
+                
             }
             else {
                 pointList = [];
