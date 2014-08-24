@@ -10,7 +10,8 @@ define(function (require) {
 
     var _tplItem = ''
         + '<div class="item">'
-        +     '<div class="pic"><a href="#{url}"><img class="lazyload loaded" src="#{imgSrc}" alt="#{title}" /></a></div>'
+        +     '<div class="pic"><a href="#{url}">' 
+        +         '<img class="lazyload loaded" src="#{imgSrc}" alt="#{title}" /></a></div>'
         +     '<div class="txt">'
         +         '<a href="#{url}">#{title}</a> / #{averagePrice}元/㎡'
         +     '</div>'

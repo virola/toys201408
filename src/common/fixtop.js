@@ -12,11 +12,10 @@
             fixedWidth: '100%'
         }, options);
 
-        var form_top = this.offset().top - settings.marginTop;
+        var formTop = this.offset().top - settings.marginTop;
         var el = this;
         var missingHeight = el.height() + settings.marginTop;
-        var blankArea = $('<div/>')
-        blankArea.css({
+        var blankArea = $('<div/>').css({
             'display' : el.css('display'),
             'width' : el.outerWidth(true),
             'height' : el.outerHeight(true),
@@ -25,7 +24,7 @@
 
         $(window).scroll(function(e){ 
             //Set position of sub navogation
-            var y = form_top;
+            var y = formTop;
             if ($(this).scrollTop() > y && el.css('position') != 'fixed'){ 
                 el.after(blankArea);
                 el.css({

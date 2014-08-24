@@ -47,7 +47,7 @@ define(function (require) {
 
         $(newsCont).animate({
             marginTop: -marginTop + 'px'
-        })
+        });
 
     };
 

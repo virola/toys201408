@@ -10,7 +10,7 @@
     // .font-smooth();
 
     .nav-wrap {
-        width: 1150px;
+        .size(1150px, 50px);
         margin: 0 auto;
     }
 
@@ -76,38 +76,41 @@
 
     .nav-lst {
         font-size: 16px;
+        float: left;
+        .size(325px, 50px);
     }
 
     .nav-lst li {
-        float: left;
-    }
+        display: inline;
 
-    .nav-lst li a {
-        display: block;
-        padding: 0 15px;
-        height: 50px;
-        float: left;
-    }
+        a {
+            display: block;
+            padding: 0 15px;
+            height: 50px;
+            float: left;
 
-    .nav-lst li a.on {
-        background: #1a5aad;
-    }
+            &.on {
+                background: #1a5aad;
 
-    .nav-lst li a.on:hover {
-        background: #1a5aad;
-    }
+                &:hover {
+                    background: #1a5aad;
+                }
+            }
 
-    .nav-lst li a:hover {
-        background: url(./img/nav-hover.png) repeat-x;
-        text-decoration: none;
-    }
+            &:hover {
+                background: url(./img/nav-hover.png) repeat-x;
+                text-decoration: none;
+            }
 
-    .nav-lst li a span {
-        cursor: pointer;
-        text-decoration: none;
+            span {
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
     }
 
     .search-panel {
+        .size(252px, 32px);
         float: left;
         position: relative;
         margin: 10px 0 0 25px;

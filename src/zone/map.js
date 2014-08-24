@@ -22,13 +22,13 @@ define(function (require) {
 
     // 将谷歌坐标转换成百度坐标，并回调
     function pointTranslate(ggPoint, callback) {
-        callback = callback || new Function();
+        callback = callback || (function () {});
 
         BMap.Convertor.translate(ggPoint, 2, callback); 
     }
 
     mapModule.render = function (point, callback) {
-        callback = callback || new Function();
+        callback = callback || (function () {});
 
         bdPoint = new BMap.Point(point[1], point[0]);
 
@@ -74,7 +74,7 @@ define(function (require) {
 
     // api search
     function localSearchApi(keyword, callback) {
-        callback = callback || new Function();
+        callback = callback || (function () {});
 
         var options = {
             onSearchComplete: function(results) {
@@ -178,5 +178,5 @@ define(function (require) {
         loadMap(options.ak);
     };
 
-    return mapModule
+    return mapModule;
 });

@@ -23,14 +23,11 @@ define(function (require) {
         var mainHeight = listSide.parent().height();
         var selfHeight = listSide.outerHeight();
 
-        var timer;
-
-        $(window).on('scroll', function () {
-            if (timer) {
-                clearTimeout(timer);
-            }
-
-            var scrollTop = $(document.body).scrollTop();
+        /**
+         * 右侧跟随
+         */
+        var adjustSide = function () {
+            var scrollTop = $(window).scrollTop();
             var selfTop = listSide.position().top;
             var top = gapHeight + scrollTop - mainTop;
 
@@ -53,6 +50,23 @@ define(function (require) {
                 listSide.css({
                     top: 0
                 });
+            }
+        };
+
+        var timer;
+
+        $(window).on('scroll', function () {
+            if ($.browser.ie) {
+                if (timer) {
+                    clearTimeout(timer);
+                }
+
+                timer = setTimeout(function () {
+                    adjustSide();
+                }, 100);
+            }
+            else {
+                adjustSide();
             }
         });
     }

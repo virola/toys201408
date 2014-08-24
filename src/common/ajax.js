@@ -18,7 +18,7 @@ var ajax = (function () {
         }
 
         $.getJSON(url, param, function (response) {
-            if (response.status == 0) {
+            if (response.status === 0) {
                 success(response.data);
             }
             else {
@@ -39,11 +39,11 @@ var ajax = (function () {
         }
         
         $.ajax({
-            type: "POST",
+            type: 'POST',
             url: url,
             data: param,
             success: function (response) {
-                if (response.status == 0) {
+                if (response.status === 0) {
                     success(response.data);
                 }
                 else {

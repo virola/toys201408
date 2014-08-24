@@ -36,7 +36,7 @@ define(function (require) {
 
     function getSearchColHtml(data) {
 
-        if (data instanceof Array == false || data.length == 0) {
+        if (data instanceof Array === false || data.length === 0) {
             return _tplSearch.empty;
         }
 
@@ -91,7 +91,7 @@ define(function (require) {
      */
     function getHouseColHtml(data, colIndex) {
 
-        if (data instanceof Array == false || data.length == 0) {
+        if (data instanceof Array === false || data.length === 0) {
             return colIndex == 2 ? _tplHistory.empty : _tplHouse.empty;
         }
 
@@ -128,7 +128,7 @@ define(function (require) {
                 complete: function () {
                     if (myCenterDom.is(':visible')) {
 
-                        $(document.body).animate({
+                        $('html,body').animate({
                             scrollTop: openCenterBtn.offset().top
                         });
 

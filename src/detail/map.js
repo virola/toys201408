@@ -24,13 +24,13 @@ define(function (require) {
 
     // 将谷歌坐标转换成百度坐标，并回调
     function pointTranslate(ggPoint, callback) {
-        callback = callback || new Function();
+        callback = callback || (function () {});
 
         BMap.Convertor.translate(ggPoint, 2, callback); 
     }
 
     mapModule.render = function (point, callback) {
-        callback = callback || new Function();
+        callback = callback || (function () {});
 
         bdPoint = new BMap.Point(point[1], point[0]);
 
@@ -70,11 +70,14 @@ define(function (require) {
     // };
 
     function bdSearch(keyword, searchObj, needClear) {
-        if (needClear && searchObj) {
+        if (!searchObj) {
+            return false;
+        }
+        if (needClear) {
             searchObj.clearResults();
         }
 
-        searchObj && searchObj.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
+        searchObj.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
     }
 
 
@@ -117,7 +120,7 @@ define(function (require) {
 
     // api search
     function localSearchApi(keyword, callback) {
-        callback = callback || new Function();
+        callback = callback || (function () {});
 
         var options = {
             onSearchComplete: function(results) {
@@ -125,7 +128,7 @@ define(function (require) {
                 if (local.getStatus() == BMAP_STATUS_SUCCESS) {
                     var s = [];
                     for (var i = 0; i < results.getCurrentNumPois(); i ++) {
-                        s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+                        s.push(results.getPoi(i).title + ', ' + results.getPoi(i).address);
                     }
 
                     callback(s);
@@ -177,5 +180,5 @@ define(function (require) {
         loadMap(options.ak);
     };
 
-    return mapModule
+    return mapModule;
 });

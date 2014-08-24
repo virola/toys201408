@@ -78,7 +78,7 @@ define(function (require) {
     }
 
     function updateSwicherStyle() {
-        if (curMonth == null) {
+        if (curMonth === null) {
             return;
         }
         nextDom[(curMonth < cacheData.length - 1) ? 'removeClass' : 'addClass']('disabled');
@@ -224,7 +224,7 @@ define(function (require) {
             return $.stringFormat(tpl, Math.abs(percent));
         };
 
-        return $.stringFormat(_tplTrend, 
+        return $.stringFormat(_tplTrend,
                 item['new'],
                 getState(item.newContrast),
                 item.deal,

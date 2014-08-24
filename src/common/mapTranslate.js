@@ -5,16 +5,18 @@
 
     var transUrl = 'http://api.map.baidu.com/ag/coord/convert';
 
-    function load_script(xyUrl, callback) {
+    function loadScript(xyUrl, callback) {
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = xyUrl;
 
+        callback = callback || function () {};
+
         //借鉴了jQuery的script跨域方法
-        script.onload = script.onreadystatechange = function(){
+        script.onload = script.onreadystatechange = function () {
             if((!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')){
-                callback && callback();
+                callback();
                 // Handle memory leak in IE
                 script.onload = script.onreadystatechange = null;
                 if ( head && script.parentNode) {
@@ -28,15 +30,19 @@
 
     function translate(point, type, callback) {
         var callbackName = 'cbk_' + Math.round(Math.random() * 10000);    //随机函数名
-        var xyUrl = transUrl + '?from='+ type + '&to=4&x=' + point.lng + '&y=' + point.lat + '&callback=BMap.Convertor.' + callbackName;
+        var xyUrl = transUrl + '?from='+ type 
+            + '&to=4&x=' + point.lng + '&y=' + point.lat 
+            + '&callback=BMap.Convertor.' + callbackName;
+
+        callback = callback || function () {};
         
         //动态创建script标签
-        load_script(xyUrl);
+        loadScript(xyUrl);
         BMap.Convertor[callbackName] = function (xyResult) {
             delete BMap.Convertor[callbackName];    //调用完需要删除改函数
             var point = new BMap.Point(xyResult.x, xyResult.y);
-            callback && callback(point);
-        }
+            callback(point);
+        };
     }
 
     function translateMore(points, type, callback) {
@@ -45,11 +51,14 @@
         var ys = [];
         var maxCnt = 20; //每次发送的最大个数
 
+        callback = callback || function () {};
+
         var send = function () {
             var callbackName = 'cbk_' + Math.round(Math.random() * 10000);    //随机函数名
             var url = xyUrl + '&x=' + xs.join(',') + '&y=' + ys.join(',') + '&callback=BMap.Convertor.' + callbackName;
+            
             //动态创建script标签
-            load_script(url);
+            loadScript(url);
             xs = [];
             ys = [];
 
@@ -62,7 +71,7 @@
                 for (var index in xyResults) {
                     xyResult = xyResults[index];
 
-                    if (xyResult.error != 0) {
+                    if (xyResult.error !== 0) {
 
                         //出错就直接返回;
                         points[index] = null;
@@ -73,12 +82,12 @@
                     points[index] = point;
                 }
 
-                callback && callback(points);
-            }
+                callback(points);
+            };
         };
 
         for (var index in points) {
-            if(index % maxCnt == 0 && index != 0){
+            if(index % maxCnt === 0 && index !== 0){
                 send();
             }
 

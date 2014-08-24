@@ -3,7 +3,7 @@ define(function (require) {
 
     var recommend = {};
 
-    var recKey = ['similar', 'footstep', 'region', 'newhouse']
+    var recKey = ['similar', 'footstep', 'region', 'newhouse'];
 
     var cacheOptions;
 

@@ -18,7 +18,7 @@ define(function (require) {
 
     // 将谷歌坐标Array转换成百度坐标Array，并回调
     function pointTranslate(ggPoints, callback) {
-        callback = callback || new Function();
+        callback = callback || (function () {});
 
         // 参数2，表示是从GCJ-02坐标到百度坐标。参数0，表示是从GPS到百度坐标
         BMap.Convertor.translateMore(ggPoints, 2, callback); 
@@ -173,9 +173,9 @@ define(function (require) {
         mapModule.MapOverlay.prototype.draw = function(){
             var map = this._map;
             var pixel = map.pointToOverlayPixel(this._point);
-            this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + 'px';
+            this._div.style.left = pixel.x - parseInt(this._arrow.style.left, 10) + 'px';
             this._div.style.top  = pixel.y - 30 + 'px';
-        }
+        };
 
         // load完成后触发ready事件
         mapModule.trigger('ready', mapModule);

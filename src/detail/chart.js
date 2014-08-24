@@ -3,15 +3,15 @@ define(function (require) {
 
     var exports = $({});
 
-    var cacheOptions;
+    // var cacheOptions;
 
     exports.setOptions = function (options) {
-        cacheOptions = $.extend({}, params);
+        // cacheOptions = $.extend({}, options);
     };
 
     exports.init = function (domId, params) {
 
-        cacheOptions = $.extend({}, params);
+        // cacheOptions = $.extend({}, params);
 
         if (params.url) {
             ajax.get(params.url, {

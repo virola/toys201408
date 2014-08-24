@@ -501,7 +501,7 @@ define(function (require) {
     })();
 
     function renderMain(user) {
-        $(document.body).append(getMainHtml(user));
+        $('body').append(getMainHtml(user));
 
         mainBox = $('.m-tool');
         boxes = mainBox.find('.m-tool-main-box');
@@ -573,7 +573,7 @@ define(function (require) {
             }
 
             if (command == 'top') {
-                $(document.body).animate({
+                $('html,body').animate({
                     scrollTop: 0
                 });
             }
@@ -664,11 +664,7 @@ define(function (require) {
             }
         }, function () {
             item.find('.close').show();
-        })
-    }
-
-    function removeAll(type, ids) {
-
+        });
     }
 
     // 找房条件里的事件绑定
@@ -736,7 +732,7 @@ define(function (require) {
                 ajax.get(cacheOptions.url.favor.house, {}, function (resp) {
                     ajaxing.house = 0;
 
-                    if (_curFavorType == 0) {
+                    if (_curFavorType === 0) {
                         favorRender.render(resp);
                     }
                 }, function (resp) {
@@ -752,7 +748,7 @@ define(function (require) {
             var box = mainBox.find('.m-tool-main-box-favor');
             var tab = box.find('.m-tool-main-box-tab');
             var ctrl = box.find('.m-tool-main-box-ctrl');
-            var list = box.find('.m-tool-main-box-list>ul')
+            var list = box.find('.m-tool-main-box-list>ul');
 
             tab.on('click', 'a', function () {
                 var _me = $(this);
@@ -793,7 +789,7 @@ define(function (require) {
         var addingAjax = 0;
 
         function addFavor(type, id, callback) {
-            callback = callback || new Function();
+            callback = callback || (function () {});
             var url = cacheOptions.url.rollback.zone;
             if (type == 'house') {
                 url = cacheOptions.url.rollback.house;
@@ -832,6 +828,11 @@ define(function (require) {
         cacheOptions = $.extend({}, params);
 
         var urls = params.url;
+
+        // 低于IE8版本浏览器建议取消工具栏，以提升体验
+        if ($.browser.ie && $.browser.ie < 8) {
+            return false;
+        }
 
         ajax.get(urls.user, {}, function (data) {
             if (data && data.userAvatar) {

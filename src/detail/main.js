@@ -39,7 +39,7 @@ define(function (require) {
 
             timer = setTimeout(function () {
 
-                var scrollTop = $(document.body).scrollTop();
+                var scrollTop = $(window).scrollTop();
 
                 var current;
 

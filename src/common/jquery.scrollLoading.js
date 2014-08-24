@@ -33,6 +33,7 @@
         };
         //动态显示数据
         var loading = function() {
+            var contop;
             
             var contHeight = params.container.height();
             if ($(window).get(0) === window) {
@@ -42,10 +43,13 @@
             }       
             
             $.each(params.cache, function(i, data) {
-                var o = data.obj, tag = data.tag, url = data.url, post, posb;
+                var o = data.obj;
+                var tag = data.tag;
+                var url = data.url;
 
                 if (o) {
-                    post = o.offset().top - contop, post + o.height();
+                    var post = o.offset().top - contop;
+                    var posb = post + o.height();
     
                     if ((post >= 0 && post < contHeight) || (posb > 0 && posb <= contHeight)) {
                         if (url) {

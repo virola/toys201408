@@ -6,8 +6,8 @@ $.encodeHTML = function (source) {
                 .replace(/&/g,'&amp;')
                 .replace(/</g,'&lt;')
                 .replace(/>/g,'&gt;')
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#39;");
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
 };
 
 $.stringFormat = function (source, opts) {
@@ -84,8 +84,13 @@ $.showIframeImg = function (parent, url) {
 
 $(function () {
 
+    $.browser = $.browser || {};
+    $.browser.ie = /msie (\d+\.\d+)/i.test(navigator.userAgent) 
+        ? (document.documentMode || + RegExp['\x241']) 
+        : undefined;
+
     if (/msie (\d+\.\d+)/i.test(navigator.userAgent)) {
-        $(document.body).addClass('ie', 'ie' + (document.documentMode || + RegExp['\x241']));
+        $('body').addClass('ie', 'ie' + (document.documentMode || + RegExp['\x241']));
     }
 
     // $('.lazyload').scrollLoading({

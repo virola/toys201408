@@ -1,13 +1,19 @@
 
 module.exports = function (grunt) {
     grunt.extendConfig({
-        mkdir: {
-
-        },
-        copy: {
-            'release': {
-
-            }
+        jshint: {
+            options: {
+                jshintrc: 'src/.jshintrc'
+            },
+            ignore_warning: {
+                options: {
+                    '-W014': true,
+                    '-W102': true
+                }
+            },
+            'all': [
+                'src/**/*.js'
+            ]
         }
     });
 
@@ -20,6 +26,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('release', [
+        'jshint:all',
         'common-release',
         'list-release',
         'detail-release',

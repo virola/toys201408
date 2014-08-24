@@ -15,7 +15,7 @@
     &-close {
         background-size: 100%;
         .size(25px);
-        background-image: data-uri('../../../asset/img/tool/close.png');
+        background-image: data-uri('../../../asset/img/tool/25x25/close.png');
     }
 
     &-bar {
@@ -85,24 +85,19 @@
             .size(25px);
 
             &-top {
-                // top: @mini-size * 4;
-                background-image: data-uri('../../../asset/img/tool/top.png');
+                background-image: data-uri('../../../asset/img/tool/25x25/top.png');
             }
             &-msg {
-                // top: 0;
-                background-image: data-uri('../../../asset/img/tool/msg.png');
+                background-image: data-uri('../../../asset/img/tool/25x25/msg.png');
             }
             &-favor {
-                // top: @mini-size;
-                background-image: data-uri('../../../asset/img/tool/favor.png');
+                background-image: data-uri('../../../asset/img/tool/25x25/favor.png');
             }
             &-clock {
-                // top: @mini-size * 2;
-                background-image: data-uri('../../../asset/img/tool/clock.png');
+                background-image: data-uri('../../../asset/img/tool/25x25/clock.png');
             }
             &-find {
-                // top: @mini-size * 3;
-                background-image: data-uri('../../../asset/img/tool/find.png');
+                background-image: data-uri('../../../asset/img/tool/25x25/find.png');
             }
         }
 
@@ -133,6 +128,7 @@
 
     &-main {
         position: absolute;
+        display: none;
         left: @mini-size;
         height: 100%;
         width: @main-size;
@@ -337,7 +333,8 @@
 .m-tool-open {
     right: 0;
 
-    &-main {
+    .m-tool-main {
+        display: block;
         right: 0;
     }
 }
@@ -554,4 +551,35 @@
             }
         }
     }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (min-device-pixel-ratio: 2) {
+
+    .m-tool {
+        &-close {
+            background-image: data-uri('../../../asset/img/tool/close.png');
+        }
+        
+        &-tab-logo {
+            &-top {
+                background-image: data-uri('../../../asset/img/tool/top.png');
+            }
+            &-msg {
+                background-image: data-uri('../../../asset/img/tool/msg.png');
+            }
+            &-favor {
+                background-image: data-uri('../../../asset/img/tool/favor.png');
+            }
+            &-clock {
+                background-image: data-uri('../../../asset/img/tool/clock.png');
+            }
+            &-find {
+                background-image: data-uri('../../../asset/img/tool/find.png');
+            }
+        }
+    }
+            
 }

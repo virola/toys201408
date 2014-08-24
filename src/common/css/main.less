@@ -23,9 +23,14 @@ a:hover {
     font-size: 0;
     line-height: 0;
 }
-.clear {
+.clear { 
+    display: inline-table;  
     *zoom: 1;
 }
+/* Hides from IE-mac \*/
+* html .clear { height: 1%; }
+.clear { display: block; }
+/* End hide from IE-mac */
 .hide {
     display: none;
 }

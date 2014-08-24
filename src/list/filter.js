@@ -12,7 +12,6 @@ define(function (require) {
     var _tplFilter = '<a href="#{1}"><span>#{0}</span><span class="del">&times;</span></a>';
 
     function render() {
-        var urls = [];
         var checkedOptions = filterList.find('a:gt(0)').filter('.on');
 
         var urls = $.map(checkedOptions, function (item) {
@@ -87,7 +86,7 @@ define(function (require) {
                     .replace('n#placeHolder#', '');
             }
             else {
-                url = url.replace('n#placeHolder#', 'x' + prices[0] + 'y' + prices[1])
+                url = url.replace('n#placeHolder#', 'x' + prices[0] + 'y' + prices[1]);
             }
             
             window.location.href = url;
