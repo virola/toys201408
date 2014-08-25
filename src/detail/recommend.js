@@ -17,11 +17,11 @@ define(function (require) {
 
     function request(key) {
         ajax.get(cacheOptions.url[key], cacheOptions.reqData, function (data) {
-            if (data.result && data.result instanceof Array) {
-                var html = getHtml(key, data.result);
+            var result = data.result || data.list;
+            if (result && result instanceof Array) {
+                var html = getHtml(key, result);
                 render(key, html);
             }
-            
         }, function (resp) {
 
         });

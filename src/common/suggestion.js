@@ -29,8 +29,9 @@ define(function (require) {
         
         url = url + (url.indexOf('?') > -1 ? '&' : '?') + $.param(params);
         $.getJSON(url, function (response) {
-            if (response.status === 0 && (response.data.result instanceof Array)) {
-                callback(response.data.result);
+            var data = response.data.result || response.data.list || [];
+            if (response.status === 0 && (data instanceof Array)) {
+                callback(data);
             }
             else {
                 callback([]);

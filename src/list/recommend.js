@@ -33,7 +33,8 @@ define(function (require) {
         var data = $.extend({}, params.reqData);
 
         ajax.get(url, {}, function (data) {
-            if (data.result instanceof Array && data.result.length > 0) {
+            var result = data.result || data.list || [];
+            if (result instanceof Array && result.length > 0) {
                 exports.render(data.result);
             }
         }, function (resp) {

@@ -91,8 +91,8 @@ define(function (require) {
     window.mapInitialize = function () {
 
         bdMap = new BMap.Map(cacheOptions.domId); 
-        bdMap.setCurrentCity(cacheOptions.cityName);  
-        bdMap.centerAndZoom();
+        // bdMap.setCurrentCity(cacheOptions.cityName);  
+        bdMap.centerAndZoom(cacheOptions.cityName);
 
         // control bar
         bdMap.addControl(new BMap.NavigationControl({

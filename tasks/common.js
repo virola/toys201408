@@ -44,6 +44,9 @@ module.exports = function (grunt) {
                     'asset/common/toolbar.js': [
                         'src/common/toolbar.js'
                     ],
+                    'asset/common/statistic.js': [
+                        'src/common/statistic.js'
+                    ],
                     'asset/common/suggestion.js': [
                         'src/common/suggestion.js'
                     ]
@@ -60,6 +63,7 @@ module.exports = function (grunt) {
                 files: {
                     'asset/common/common.js': ['asset/common/common.js'],
                     'asset/common/toolbar.js': 'asset/common/toolbar.js',
+                    'asset/common/statistic.js': 'asset/common/statistic.js',
                     'asset/common/suggestion.js': 'asset/common/suggestion.js'
                 }
             }

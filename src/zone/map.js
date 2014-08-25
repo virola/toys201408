@@ -84,12 +84,17 @@ define(function (require) {
                     var s = [];
                     for (var i = 0; i < results.getCurrentNumPois(); i ++) {
                         var rs = results.getPoi(i);
+                        var distance = bdMap.getDistance(rs.point, bdPoint);
+
                         s.push({
                             title: rs.title,
                             address: rs.address,
-                            point: rs.point
+                            point: rs.point,
+                            distance: distance
                         });
                     }
+
+                    // console.log(s);
 
                     callback(s);
 
@@ -135,7 +140,6 @@ define(function (require) {
         else {
             list.fadeOut();
         }
-        
     }
 
     var _tplItem = '<li #{2}><i class="fa fa-caret-right"></i><span class="label">#{0}</span>#{1}</li>';
