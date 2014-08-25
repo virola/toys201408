@@ -6,7 +6,8 @@ define(function (require) {
 
     var exports = {};
 
-    var etpl;
+    var SEARCH_MAX_SIZE = 6;
+    var HOUSE_MAX_SIZE = 3;
 
     // clock按钮
     var openCenterBtn = $('#ctrl-my-center');
@@ -150,7 +151,10 @@ define(function (require) {
 
 
     function formatDataFromMsg(data) {
-        return $.map(data, function (item) {
+        return $.map(data, function (item, index) {
+            if (index >= HOUSE_MAX_SIZE) {
+                return null;
+            }
             var house = item.content.item;
 
             return {
@@ -170,7 +174,9 @@ define(function (require) {
 
     exports.init = function (params) {
         reqUrl = params.url;
-        reqData = $.extend({}, params.requestOptions);
+        reqData = $.extend({
+            limit: SEARCH_MAX_SIZE
+        }, params.requestOptions);
 
         var urls = [params.url.search, params.url.house, params.url.history];
 

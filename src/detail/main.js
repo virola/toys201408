@@ -11,6 +11,11 @@ define(function (require) {
 
     var albumMoreBox = $('.album-more');
 
+    var favorBar = $('#favor-bar');
+    var favorText = favorBar.children('em');
+
+    var cacheOptions;
+
     function initPageEvents() {
 
         // more album
@@ -18,6 +23,47 @@ define(function (require) {
             albumMoreBox.show();
             $(this).parent().hide();
             return false;
+        });
+
+        var favorClass = 'bg-favor-bar-active';
+
+        favorBar.on('click', function () {
+            var isOn = favorBar.hasClass(favorClass);
+            var url = cacheOptions.url.follow;
+
+            if (isOn) {
+                url = cacheOptions.url.unfollow;
+            }
+
+            var data = cacheOptions.reqData;
+
+            ajax.post(url, data, function () {
+                if (isOn) {
+                    favorBar.removeClass(favorClass);
+                    favorText.text('收藏此房');
+                }
+                else {
+                    favorBar.addClass(favorClass);
+                    favorText.text('已收藏');
+                }
+            });
+
+            return false;
+        }).on('mouseover', function () {
+            var isOn = favorBar.hasClass(favorClass);
+
+            if (isOn) {
+                favorText.text('取消收藏');
+            }
+        }).on('mouseout', function () {
+            var isOn = favorBar.hasClass(favorClass);
+
+            if (isOn) {
+                favorText.text('已收藏');
+            }
+            else {
+                favorText.text('收藏此房');
+            }
         });
 
         tabNav.fixtop({
@@ -68,6 +114,8 @@ define(function (require) {
 
     return {
         init: function (params) {
+
+            cacheOptions = $.extend({}, params);
 
             initPageEvents();
 

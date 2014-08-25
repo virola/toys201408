@@ -82,6 +82,7 @@ src目录中，根据不同smarty页面，代码分子目录部署。如：
 执行：
 
 	grunt [taskname] 		// eg. grunt home
+    grunt debug    // 整个项目文件的调试
 
 这时候代码仅仅做了concat，方便debug
 
@@ -90,6 +91,7 @@ src目录中，根据不同smarty页面，代码分子目录部署。如：
 执行：
 
 	grunt [taskname]-release   	// eg. grunt home-release
+    grunt release   // 编译整个项目
 	
 
 这时在asset里生成的代码就是最终可上线代码。
