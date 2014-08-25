@@ -9,6 +9,8 @@ define(function (require) {
     var filterOptions = $('#filter-options');
     var filterList = filterOptions.find('dl');
 
+    var customFilters = filterList.find('.custom');
+
     var _tplFilter = '<a href="#{1}"><span>#{0}</span><span class="del">&times;</span></a>';
 
     function render() {
@@ -24,18 +26,27 @@ define(function (require) {
         });
 
         // add customed
-        var customed = filterList.find(':text').filter(function (index) {
-            return $.trim($(this).val()) > 0;
+        $.each(customFilters, function (i, row) {
+            var key = $(row).attr('data-type');
+            var label = '万';
+            if (key == 'square') {
+                label = '㎡';
+            }
+
+            var customed = $(row).find(':text').filter(function (index) {
+                return $.trim($(this).val()) > 0;
+            });
+
+            if (customed.size()) {
+                var text = customed.get(0).value + '-' + customed.get(1).value + label;
+                var url = $(customed.get(0)).closest('dd').find('a:first').attr('href');
+
+                filters.push(
+                    $.stringFormat(_tplFilter, text, url)
+                );
+            }
         });
-
-        if (customed.size()) {
-            var text = customed.get(0).value + '-' + customed.get(1).value + '万';
-            var url = $(customed.get(0)).closest('dd').find('a:first').attr('href');
-
-            filters.push(
-                $.stringFormat(_tplFilter, text, url)
-            );
-        }
+        
 
 
         // gen filter doms
@@ -47,50 +58,88 @@ define(function (require) {
         }
     }
 
-
+    // 初始化自定义筛选的区域事件
     function initCustomBtn() {
-        var customBox = filterOptions.find('.custom');
-        var inputs = customBox.find(':text');
 
-        var regex = /x\d+y\d+/;
+        customFilters.each(function (i, item) {
+            var customBox = $(this);
+            var inputs = customBox.find(':text');
+            var okBtn = customBox.find('.ok');
 
-        customBox.find('.ok').on('click', function () {
-            var pass = 1;
+            var getValues = function () {
+                var hasValues = $.map(inputs, function (item) {
+                    return $.trim($(item).val()) > 0;
+                });
 
-            inputs.each(function (i, item) {
-                var _me = $(item);
-                var value = $.trim(_me.val());
+                return hasValues;
+            };
 
-                if (!value) {
-                    _me.parent().addClass('txt-box-err');
-                    pass = 0;
+            var setOkBtnStyle = function () {
+                var length = getValues().length;
+                if (length == 2) {
+                    okBtn.show();
                 }
                 else {
-                    _me.parent().removeClass('txt-box-err');
+                    okBtn.hide();
                 }
+            };
+
+            var regex = /x\d+y\d+/;
+            var tpl = 'x#{0}y#{1}';
+
+            if (customBox.attr('data-type') == 'square') {
+                regex = /i\d+j\d+/;
+                tpl = 'i#{0}j#{1}';
+            }
+
+            setOkBtnStyle();
+
+            // var timer;
+            inputs.on('keypress', function () {
+                setOkBtnStyle();
             });
 
-            if (!pass) {
-                return false;
-            }
 
-            var prices = $.map(inputs, function (item) {
-                return $.trim($(item).val());
+            okBtn.on('click', function () {
+                var pass = 1;
+
+                inputs.each(function (i, item) {
+                    var _me = $(item);
+                    var value = $.trim(_me.val());
+
+                    if (!value) {
+                        _me.parent().addClass('txt-box-err');
+                        pass = 0;
+                    }
+                    else {
+                        _me.parent().removeClass('txt-box-err');
+                    }
+                });
+
+                if (!pass) {
+                    return false;
+                }
+
+                var text = $.map(inputs, function (item) {
+                    return $.trim($(item).val());
+                });
+
+
+                var url = cacheOptions.baseUrl.replace(/p\d+/, '');
+                var replaceText = $.stringFormat(tpl, text[0], text[1]);
+
+                if (regex.test(url)) {
+                    url = url.replace(regex, replaceText)
+                        .replace('n#placeHolder#', '');
+                }
+                else {
+                    url = url.replace('n#placeHolder#', replaceText);
+                }
+                
+                window.location.href = url;
             });
-
-
-            var url = cacheOptions.baseUrl.replace(/p\d+/, '');
-
-            if (regex.test(url)) {
-                url = url.replace(/x\d+y\d+/, 'x' + prices[0] + 'y' + prices[1])
-                    .replace('n#placeHolder#', '');
-            }
-            else {
-                url = url.replace('n#placeHolder#', 'x' + prices[0] + 'y' + prices[1]);
-            }
-            
-            window.location.href = url;
         });
+        
     }
 
     var cacheOptions;

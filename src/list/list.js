@@ -12,7 +12,7 @@ define(function (require) {
             var _me = $(this);
 
             var options = {
-                ids: $(this).attr('data-id')
+                id: $(this).attr('data-id')
             };
 
             ajax.post(url, options, function () {

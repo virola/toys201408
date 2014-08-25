@@ -78,7 +78,8 @@ define(function (require) {
 
         newhouse: ''
             + '<li class="item">'
-            +     '<div class="pic"><a href="#{url}"><img class="lazyload" src="#{imgSrc}" alt="#{title}" /></a></div>'
+            +     '<div class="pic">' 
+            +         '<a href="#{url}"><img class="lazyload loaded" src="#{imgSrc}" alt="#{title}" /></a></div>'
             +     '<div class="txt price-txt clear">'
             +         '<div class="left">'
             +             '<span class="price">#{price}</span>&nbsp;#{priceUnit}'
@@ -99,8 +100,9 @@ define(function (require) {
             }
 
             if (key == 'region') {
-                item.districtUrl = item.district.url;
-                item.districtTitle = item.district.title;
+                item.district = item.district || {};
+                item.districtUrl = item.district.url || '#';
+                item.districtTitle = item.district.title || '';
             }
 
             if (key == 'newhouse') {
