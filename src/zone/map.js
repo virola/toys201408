@@ -63,123 +63,159 @@ define(function (require) {
              // render完成后触发ready事件
             mapModule.trigger('ready', mapModule);
 
-            getEnvResults();
+            mapList.getEnvResults();
         });
 
        
     }; 
 
-    // 本地搜索服务对象
-    var objLocalSearch;
+    /**
+     * 地图下方信息模块
+     * 
+     * @type {Object}
+     */
+    var mapList = (function () {
 
-    // api search
-    function localSearchApi(keyword, callback) {
-        callback = callback || (function () {});
+        // api search
+        function localSearchApi(keyword, callback) {
+            callback = callback || (function () {});
 
-        var options = {
-            onSearchComplete: function(results) {
-                // 判断状态是否正确
-                if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+            var options = {
+                onSearchComplete: function(results) {
+                    // 判断状态是否正确
+                    if (local.getStatus() == BMAP_STATUS_SUCCESS) {
 
-                    var s = [];
-                    for (var i = 0; i < results.getCurrentNumPois(); i ++) {
-                        var rs = results.getPoi(i);
-                        var distance = bdMap.getDistance(rs.point, bdPoint);
+                        var s = [];
+                        for (var i = 0; i < results.getCurrentNumPois(); i ++) {
+                            var rs = results.getPoi(i);
+                            var distance = bdMap.getDistance(rs.point, bdPoint);
 
-                        s.push({
-                            title: rs.title,
-                            address: rs.address,
-                            point: rs.point,
-                            distance: distance
+                            s.push({
+                                title: rs.title,
+                                address: rs.address,
+                                point: rs.point,
+                                distance: distance
+                            });
+                        }
+
+                        // console.log(s);
+
+                        callback(s);
+
+                        mapModule.trigger('serviceReady', {
+                            key: keyword,
+                            result: s
                         });
                     }
-
-                    // console.log(s);
-
-                    callback(s);
-
-                    mapModule.trigger('serviceReady', {
-                        key: keyword,
-                        result: s
-                    });
+                    else {
+                        callback([]);
+                    }
                 }
-                else {
-                    callback([]);
-                }
+            };
+
+            var local = new BMap.LocalSearch(bdMap, options);
+            local.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
+        }
+
+        var envListBox = $('#zone-env-list');
+
+        // 获取周边信息
+        function getEnvResults() {
+
+            envListBox.find('.map-key').each(function (i, item) {
+                var keyword = $(this).attr('data-key') || $(this).text();
+
+                localSearchApi(keyword, function (result) {
+                    mapBox.addMarker(i, result);
+                    updateEnvList(i, result);
+                });
+            });
+        }
+
+        // 显示数据信息
+        function updateEnvList(index, data) {
+            var list = envListBox.find('dl:eq(' + index + ')');
+
+            var html = getListHtml(data);
+
+            if (html) {
+                list.find('ul').html(html).fadeIn();
             }
+            else {
+                list.fadeOut();
+            }
+        }
+
+        var _tplItem = '<li #{2}><i class="fa fa-caret-right"></i><span class="label">#{0}</span>#{1}</li>';
+        
+        // 每个类别最多显示3条
+        var MAX_ITEM = 3;
+
+        /**
+         * 地图信息列表
+         * 
+         * @param {Array} data 
+         * @return {string} HTML
+         */
+        function getListHtml(data) {
+            var html = [];
+            var length = data.length;
+
+            $.each(data, function (i, item) {
+                
+                if (i > MAX_ITEM - 1) {
+                    return false;
+                }
+                var last = '';
+                if (i == MAX_ITEM - 1 || i == length - 1) {
+                    last = 'class="last"';
+                }
+
+                html[i] = $.stringFormat(_tplItem, item.title, Math.round(item.distance) + '米', last);
+            });
+
+            return html.join('');
+        }
+
+        return {
+            getEnvResults: getEnvResults
         };
 
-        var local = new BMap.LocalSearch(bdMap, options);
-        local.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
-    }
+    })();
 
-    var envListBox = $('#zone-env-list');
+    var mapBox = (function () {
 
-    // 获取周边信息
-    function getEnvResults() {
+        var _tplInfoWindow = '' 
+            + '<b class="iw-poi-title" title="#{0}">#{0}</b>' 
+            + '<div class="iw-poi-content"><p>地址：#{1}</p></div>';
 
-        envListBox.find('.map-key').each(function (i, item) {
-            var keyword = $(this).attr('data-key') || $(this).text();
+        //创建InfoWindow
+        function createInfoWindow(item) {
+            var iw = new BMap.InfoWindow($.stringFormat(_tplInfoWindow, item.title, item.address));
+            return iw;
+        }
 
-            localSearchApi(keyword, function (result) {
-                addMarker(i, result);
-                updateEnvList(i, result);
+        // 在地图上打点点
+        function addMarker(index, data) {
+            var url = cacheOptions.feRoot + '/asset/img/map-ico/20x20/' + index + '.png';
+            var size = new BMap.Size(20, 20);
+            var markerIcon = new BMap.Icon(url, size, {});
+
+            $.each(data, function (i, item) {
+                var marker = new BMap.Marker(item.point, {icon: markerIcon});
+                
+                marker.addEventListener('click', function () {
+                    this.openInfoWindow(createInfoWindow(item));
+                });
+                bdMap.addOverlay(marker);
             });
-        });
-    }
-
-
-    // 在地图上打点点
-    function addMarker(index, data) {
-        var url = cacheOptions.feRoot + '/asset/img/map-ico/20x20/' + index + '.png';
-        var size = new BMap.Size(20, 20);
-        var markerIcon = new BMap.Icon(url, size, {});
-
-        $.each(data, function (i, item) {
-            var marker = new BMap.Marker(item.point, {icon: markerIcon});
-            bdMap.addOverlay(marker);
-        });
-    }
-
-    // 显示数据信息
-    function updateEnvList(index, data) {
-        var list = envListBox.find('dl:eq(' + index + ')');
-
-        var html = getListHtml(data);
-
-        if (html) {
-            list.find('ul').html(html).fadeIn();
         }
-        else {
-            list.fadeOut();
-        }
-    }
 
-    var _tplItem = '<li #{2}><i class="fa fa-caret-right"></i><span class="label">#{0}</span>#{1}</li>';
-    var MAX_ITEM = 3;
+        return {
+            addMarker: addMarker
+        };
 
-    function getListHtml(data) {
-        var html = [];
-        var length = data.length;
-
-        $.each(data, function (i, item) {
-            
-            if (i > MAX_ITEM - 1) {
-                return false;
-            }
-            var last = '';
-            if (i == MAX_ITEM - 1 || i == length - 1) {
-                last = 'class="last"';
-            }
-
-            html[i] = $.stringFormat(_tplItem, item.title, Math.round(item.distance) + '米', last);
-        });
-
-        return html.join('');
-    }
-
-
-    mapModule.getLocalService = getEnvResults;
+    })();
 
     function loadMap(ak) {
         var script = document.createElement('script');  
