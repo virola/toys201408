@@ -75,12 +75,13 @@ define(function (require) {
             +         '<span class="price-text left"><em>#{price}</em>#{priceUnit}</span>'
             +         '<span class="desc-text right">#{bedroom}室&nbsp;#{square}㎡&nbsp;#{orientation}</span>'
             +     '</div>'
-            +     '<h4 class="sub-text"><a href="#{districtUrl}">#{districtTitle}</a>&nbsp;-&nbsp;#{title}</h4>'
+            +     '<h4 class="sub-text"><a href="#{districtUrl}">#{districtTitle}</a>&nbsp;-&nbsp;#{communityName}</h4>'
             + '</li>'
             ,
 
         newhouse: ''
             + '<li class="item">'
+            +     '<a class="link-mask" target="_blank" href="#{url}"></a>'
             +     '<div class="pic">' 
             +         '<a target="_blank" href="#{url}">' 
             +           '<img class="lazyload loaded" src="#{imgSrc}" alt="#{title}" /></a>' 
@@ -115,7 +116,7 @@ define(function (require) {
 
             if (key == 'newhouse') {
                 var region = [];
-                $.each(item.region, function (i, rg) {
+                $.each(item.location, function (i, rg) {
                     region[i] = $.stringFormat(_tplItem.newhouseRegion, rg);
                 });
 
@@ -129,7 +130,6 @@ define(function (require) {
     }
 
     function render(key, html) {
-        // console.log(html);
         
         var box = $('#rec-' + key);
 

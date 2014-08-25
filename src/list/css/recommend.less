@@ -21,8 +21,16 @@
     margin-right: -40px;
 
     .item {
+        position: relative;
         float: left;
         margin-right: 40px;
+
+        .link-mask {
+            position: absolute;
+            z-index: 10;
+            width: 197px;
+            height: 148px + 27px + 15px;
+        }
     }
 
     img {
