@@ -277,7 +277,7 @@ define(function (require) {
         search: ''
             + '<li data-type="search" data-id="#{id}">'
             +     '<span class="m-tool-circle">●</span>'
-            +     '<a href="#{url}">#{title}</a>'
+            +     '<div class="title"><a href="#{url}">#{title}</a></div>'
             +     '<a class="search-delete" href="#">删除</a>'
             +     '<p>#{count}套房源在售</p>'
             + '</li>',
