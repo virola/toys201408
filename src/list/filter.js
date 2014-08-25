@@ -68,7 +68,8 @@ define(function (require) {
 
             var getValues = function () {
                 var hasValues = $.map(inputs, function (item) {
-                    return $.trim($(item).val()) > 0;
+                    var val = $.trim($(item).val());
+                    return (val > 0) ? true : null;
                 });
 
                 return hasValues;
@@ -95,7 +96,7 @@ define(function (require) {
             setOkBtnStyle();
 
             // var timer;
-            inputs.on('keypress', function () {
+            inputs.on('keyup', function () {
                 setOkBtnStyle();
             });
 

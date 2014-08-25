@@ -31,7 +31,8 @@ define(function (require) {
 
         similar: ''
             + '<li #{itemStyle}>'
-            +     '<a class="side-img" href="#{url}">'
+            +     '<a class="link-mask" target="_blank" href="#{url}"></a>'
+            +     '<a class="side-img" target="_blank" href="#{url}">'
             +         '<img src="#{imgSrc}">'
             +         '<b class="bg"></b>'
             +         '<span class="album-count fn-num"><i class="ico-pic"></i>#{imgCount}</span>'
@@ -47,6 +48,7 @@ define(function (require) {
 
         footstep: ''
             + '<li #{itemStyle}>'
+            +     '<a class="link-mask" target="_blank" href="#{url}"></a>'
             +     '<a class="side-img" href="#{url}">'
             +         '<img src="#{imgSrc}">'
             +         '<b class="bg"></b>'
@@ -63,6 +65,7 @@ define(function (require) {
 
         region: ''
             + '<li>'
+            +     '<a class="link-mask" target="_blank" href="#{url}"></a>'
             +     '<a class="side-img" href="#{url}">'
             +         '<img src="#{imgSrc}">'
             +         '<b class="bg"></b>'
@@ -79,7 +82,9 @@ define(function (require) {
         newhouse: ''
             + '<li class="item">'
             +     '<div class="pic">' 
-            +         '<a href="#{url}"><img class="lazyload loaded" src="#{imgSrc}" alt="#{title}" /></a></div>'
+            +         '<a target="_blank" href="#{url}">' 
+            +           '<img class="lazyload loaded" src="#{imgSrc}" alt="#{title}" /></a>' 
+            +     '</div>'
             +     '<div class="txt price-txt clear">'
             +         '<div class="left">'
             +             '<span class="price">#{price}</span>&nbsp;#{priceUnit}'
@@ -90,7 +95,7 @@ define(function (require) {
             + '</li>'
             ,
 
-        newhouseRegion: '<a href="#{url}">#{title}</a>'
+        newhouseRegion: '<a target="_blank" href="#{url}">#{title}</a>'
     };
 
     function getHtml(key, data) {
@@ -100,9 +105,12 @@ define(function (require) {
             }
 
             if (key == 'region') {
-                item.district = item.district || {};
-                item.districtUrl = item.district.url || '#';
-                item.districtTitle = item.district.title || '';
+                var district = item.region;
+                if (district instanceof Array && district[0]) {
+                    var dist = district[0];
+                    item.districtUrl = dist.url || '#';
+                    item.districtTitle = dist.title || '';
+                }
             }
 
             if (key == 'newhouse') {

@@ -17,13 +17,18 @@
 
         li {
             margin-bottom: 25px;
+            position: relative;
+
+            a.link-mask {
+                position: absolute;
+                display: none;
+            }
 
             &.last {
                 margin-bottom: 0;
             }
 
             h4 {
-                // margin: 5px 0 0 0;
                 a {
                     color: #888;
                 }
@@ -67,14 +72,14 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            .size(24px, 23px);
+            height: 23px;
             color: #fff;
             line-height: 23px;
             padding: 0 5px;
-            font-size: 12px;
+            font-size: 11px;
 
             i {
-                margin-right: 3px;
+                margin-right: 1px;
             }
         }
         .bg {
@@ -82,7 +87,7 @@
             bottom: 0;
             left: 0;
             background: #000;
-            .size(34px, 23px);
+            .size(44px, 23px);
             .opacity(60);
         }
     }
