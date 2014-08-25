@@ -10,12 +10,12 @@ define(function (require) {
 
     var _tplItem = ''
         + '<div class="item">'
-        +     '<div class="pic"><a href="#{url}">' 
+        +     '<div class="pic"><a target="_blank" href="#{url}">' 
         +         '<img class="lazyload loaded" src="#{imgSrc}" alt="#{title}" /></a></div>'
         +     '<div class="txt">'
-        +         '<a href="#{url}">#{title}</a> / #{averagePrice}元/㎡'
+        +         '<a target="_blank" href="#{url}">#{title}</a> / #{avePrice}元/㎡'
         +     '</div>'
-        +     '#{houseCount}套在售  #{viewCount}人浏览'
+        +     '#{houseCnt}套在售  #{browseCnt}人浏览'
         + '</div>';
 
     exports.render = function (data) {
@@ -35,7 +35,7 @@ define(function (require) {
         ajax.get(url, {}, function (data) {
             var result = data.result || data.list || [];
             if (result instanceof Array && result.length > 0) {
-                exports.render(data.result);
+                exports.render(result);
             }
         }, function (resp) {
             // ...

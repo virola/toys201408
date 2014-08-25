@@ -122,13 +122,26 @@ define(function (require) {
             var keyword = $(this).attr('data-key') || $(this).text();
 
             localSearchApi(keyword, function (result) {
-                // todo
-                // console.log(result);
+                addMarker(i, result);
                 updateEnvList(i, result);
             });
         });
     }
 
+
+    // 在地图上打点点
+    function addMarker(index, data) {
+        var url = cacheOptions.feRoot + '/asset/img/map-ico/20x20/' + index + '.png';
+        var size = new BMap.Size(20, 20);
+        var markerIcon = new BMap.Icon(url, size, {});
+
+        $.each(data, function (i, item) {
+            var marker = new BMap.Marker(item.point, {icon: markerIcon});
+            bdMap.addOverlay(marker);
+        });
+    }
+
+    // 显示数据信息
     function updateEnvList(index, data) {
         var list = envListBox.find('dl:eq(' + index + ')');
 
@@ -159,7 +172,7 @@ define(function (require) {
                 last = 'class="last"';
             }
 
-            html[i] = $.stringFormat(_tplItem, item.title, item.address, last);
+            html[i] = $.stringFormat(_tplItem, item.title, Math.round(item.distance) + '米', last);
         });
 
         return html.join('');

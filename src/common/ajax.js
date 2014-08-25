@@ -5,6 +5,8 @@
 var ajax = (function () {
 
     var exports = {};
+
+    var _blankFn = function () {};
     
     /**
      * GET方法
@@ -13,6 +15,9 @@ var ajax = (function () {
      * @param {Function} callback 
      */
     exports.get = function (url, param, success, failure) {
+        success = success || _blankFn;
+        failure = failure || _blankFn;
+
         if (!url) {
             return false;
         }
@@ -34,6 +39,9 @@ var ajax = (function () {
     };
 
     exports.post = function (url, param, success, failure) {
+        success = success || _blankFn;
+        failure = failure || _blankFn;
+        
         if (!url) {
             return false;
         }

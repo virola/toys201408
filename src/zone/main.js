@@ -77,6 +77,7 @@ define(function (require) {
             });
 
             require('./map').init({
+                feRoot: params.feRoot,
                 ak: params.mapak,
                 domId: params.mapDomId,
                 point: params.coordinates
