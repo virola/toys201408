@@ -4,22 +4,25 @@
     .size(380px, 450px);
 }
 
+@item-height: 32px;
+
 .map-item {
     font-size: 16px;
-    height: 34px;
-    line-height: 34px;
+    height: @item-height;
+    line-height: @item-height;
     white-space: nowrap;
     -moz-user-select: none;
 
     &-rank {
         position: absolute;
         z-index: 10;
-        .size(34px);
-        .border-radius(34px);
+        .size(@item-height);
+        .border-radius(@item-height);
         text-align: center;
         color: #fff;
         border: 1px solid #0a57bc;
         background-color: #0664c4;
+        line-height: 34px;
 
         &-hover {
             background-color: #ee552a;
@@ -38,6 +41,7 @@
         border: 1px solid #cacaca;
         background-color: #fff;
         font-size: 13px;
+        .border-radius(0 @item-height @item-height 0);
 
         &-hover {
             background-color: #fff6f3;

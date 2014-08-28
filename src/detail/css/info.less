@@ -15,6 +15,14 @@
     font-weight: 700;
 }
 
+.ico-map {
+    background: url(./img/ico-map.png) no-repeat;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    .size(17px, 15px);
+}
+
 // 主信息区域
 .panel-box-info {
     padding: @padding-width;
@@ -22,12 +30,12 @@
     background: #fff;
 
     .album-box {
-        width: 706px;
+        width: 690px;
     }
 
     .info-box {
         margin-left: @padding-width;
-        width: 1148px - (@padding-width * 2) - 706px;
+        width: 1148px - (@padding-width * 2) - 690px;
     }
 }
 
@@ -47,18 +55,59 @@
     h4 {
         padding-right: @padding-width;
         font-size: 12px;
+
+        .break {
+            color: #b0afaf;
+        }
     }
 
-    h5 {
-        font-size: 22px;
-    }
+    .desc-text {
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        margin-top: 15px;
+        font-size: 12px;
 
-    h4, h5, .breif-text {
-        margin-bottom: 14px;
-    }
+        dl {
+            float: left;
+            margin-bottom: 10px;
 
-    .breif-text {
-        font-size: 14px;
+            dt {
+                color: #999999;
+                float: left;
+                width: 56px;
+            }
+
+            dd {
+                color: #555;
+                float: left;
+                width: 102px;
+
+                a {
+                    color: #ee552a;
+                }
+            }
+        }
+        .clear {
+            float: none;
+            clear: both;
+
+            dd {
+                width: 320px;
+            }
+        }
+
+        .map {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            vertical-align: middle;
+        }
+
+        .region {
+            a {
+                color: #555;
+            }
+        }
     }
 
     .seperate {
@@ -67,27 +116,13 @@
         padding-left: 0;
     }
 
-    .location {
-        a {
-            color: #333
-        }
-
-        .zone a {
-            color: @color-main;
-        }
-
-        .map a {
-            color: @color-link;
-        }
-    }
-
     .contact-panel {
         // 联系电话的按钮
         a {
+            .size(375px, 48px);
             display: block;
-            margin-top: 30px;
+            margin-top: 10px;
             margin-bottom: 15px;
-            height: 48px;
             line-height: 48px;
             background: @color-main;
             text-align: center;
@@ -105,6 +140,7 @@
 
     .agent {
         padding-bottom: 0;
+        font-size: 12px;
 
         .agent-avator {
             .size(50px, 60px);
@@ -119,15 +155,16 @@
             margin-left: 18px;
             line-height: 22px;
 
+            .agency-house {
+                margin-left: 30px;
+            }
+
             p {
-                color: #555;
+                color: #333;
             }
             .name {
                 color: #333;
-            }
-
-            a {
-                color: @color-link;
+                margin: 6px 0 3px;
             }
         }
     } 
@@ -207,18 +244,20 @@
 
 .detail-title {
     .clearfix();
-    position: relative;
+    // position: relative;
     font-size: 22px;
+    border-bottom: 1px solid @panel-border-color;
 
     h3 {
         float: left;
-        position: relative;
+        // position: relative;
         z-index: 2;
         background: #fff;
-        padding-right: 10px;
+        padding-bottom: 10px;
     }
 
     .line {
+        display: none;
         position: absolute;
         top: 15px;
         left: 0;

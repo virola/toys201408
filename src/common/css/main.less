@@ -1,5 +1,6 @@
 @import '../../../dep/est/src/all.less';
 
+@import 'mixin';
 @import 'base';
 @import 'nav';
 @import 'footer';
@@ -76,7 +77,9 @@ a:hover {
     *display: inline;
     zoom: 1;
 }
-
+.box-shadow {
+    .ui-box-shadow();
+}
 
 @media screen {
 

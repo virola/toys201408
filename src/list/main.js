@@ -11,7 +11,7 @@ define(function (require) {
 
         // elements fixtop
         $('#sort-panel').fixtop({
-            fixedWidth: '691px'
+            fixedWidth: '696px'
         });
     }
 

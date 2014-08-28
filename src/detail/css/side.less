@@ -77,20 +77,33 @@
             color: #fff;
             line-height: 23px;
             padding: 0 5px;
-            font-size: 11px;
+            font-size: 12px;
+
+            span {
+                position: relative;
+                z-index: 10;
+
+                em {
+                    font-size: 12px;
+                    font-family: Arial;
+                }
+            }
 
             i {
-                margin-right: 1px;
+                margin-right: 3px;
+            }
+
+            .bg {
+                position: absolute;
+                z-index: 1;
+                bottom: 0;
+                left: 0;
+                background: #000;
+                .size(100%);
+                .opacity(70);
             }
         }
-        .bg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            background: #000;
-            .size(44px, 23px);
-            .opacity(60);
-        }
+        
     }
 
     .view-per {
