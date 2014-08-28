@@ -52,7 +52,6 @@ define(function (require) {
             }
         });
 
-
     }
 
     return {
@@ -84,6 +83,8 @@ define(function (require) {
             });
 
             require('./filter').init();
+
+            require('./album').init();
         }
     };
 });

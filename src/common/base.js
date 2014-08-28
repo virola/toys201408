@@ -73,7 +73,7 @@ $.showIframeImg = function (parent, url) {
     var frameid = 'frameimg' + Math.round(Math.random() * 1000000000); 
     window.betafang[frameid] = ''
         + '<head>' + styles + '</head>'
-        + '<body><img id="img-' + frameid + '" src=\'' + url + '?' + Math.random() + '\' />' 
+        + '<body><img id="img-' + frameid + '" src=\'' + url + '\' />' 
         + '</body>'; 
     parent.append(''
         + '<iframe style="display:none" id="' + frameid + '" src="javascript:parent.betafang[\'' + frameid + '\'];"' 

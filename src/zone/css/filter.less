@@ -3,6 +3,7 @@
 .filter-box {
     height: 56px;
     background-color: #fff;
+    border-bottom: 1px solid #cfd4dd;
 
     .filter-select {
         float: left;
@@ -15,55 +16,62 @@
         margin-right: 10px;
     }
 
-    @sort-width: 375px;
-
     .sort-bar {
-        font-size: 14px;
-        width: @sort-width;
-        overflow: hidden;
         line-height: 56px;
+    }
+}
 
-        span {
-            font-size: 12px;
-        }
 
-        a {
-            height: 28px;
-            line-height: 28px;
-            border: 1px solid #fff;
-            padding: 0 6px;
-            font-size: 0;
-            .border-radius(2px);
+.sort-bar {
+    font-size: 14px;
+    overflow: hidden;
 
-            color: #555;
-            border-color: ;
-            background: none;
-            margin-left: 3px;
+    a, span {
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        vertical-align: middle;
+    }
 
-            &.on {
-                color: #333;
-                background-color: #f2f7fc;
-                border-color: #0664c4;
+    span {
+        font-size: 12px;
+    }
 
-                &:hover {
-                    background-color: #f2f7fc;
-                    border-color: #0664c4;
-                }
-            }
+    a {
+        height: 28px;
+        line-height: 28px;
+        color: #555;
+        background: #fff9f7;
+        padding: 0 6px;
+        font-size: 0;
+        background: none;
+        margin-left: 6px;
+
+        &.on {
+            color: #fff;
+            background-color: #838990;
+
             &:hover {
-                background-color: #fafafa;
-                border-color: #ddd;
+                background-color: #838990;
             }
 
             i {
-                font-size: 12px;
-                color: #aeaeae;
+                color: #eee;
+            }
+        }
 
-                &.fa {
-                    margin-left: 5px;
-                    vertical-align: middle;
-                    font-weight: bold;
-                }
+        &:hover {
+            background-color: #eee;
+        }
+
+        i {
+            font-size: 12px;
+            color: #aeaeae;
+
+            &.fa {
+                margin-left: 4px;
+                vertical-align: middle;
+                font-weight: bold;
             }
         }
     }

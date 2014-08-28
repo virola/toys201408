@@ -186,7 +186,7 @@ define(function (require) {
     var mapBox = (function () {
 
         var _tplInfoWindow = '' 
-            + '<b class="iw-poi-title" title="#{0}">#{0}</b>' 
+            + '<h3 class="iw-poi-title" title="#{0}">#{0}</h3>' 
             + '<div class="iw-poi-content"><p>地址：#{1}</p></div>';
 
         //创建InfoWindow

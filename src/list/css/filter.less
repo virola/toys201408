@@ -19,10 +19,11 @@
 
     .hd .info .num {
         line-height: 50px;
-        color: #888;
+        color: #555;
         font-size: 12px;
     }
 
+    // filter box
     .bd {
         border-width: 0 1px;
         border-style: none solid;
@@ -34,10 +35,17 @@
 
     .bd dl {
         padding-bottom: 7px;
+
+        .sub-option-list {
+            margin: 10px 0;
+            border: 1px solid #eeeeee;
+            padding: 14px;
+            background-color: #fcfcfc;
+        }
     }
 
 
-    // input 
+    // customed input 
     .bd {
         .txt-box {
             width: 60px;
@@ -87,41 +95,57 @@
         padding-bottom: 1px;
     }
 
-    // filter bar
-    .fd {
-        width: 1150px - 26 * 2;
-        background-color: #f7f7f7;
-        height: 48px;
-        line-height: 48px;
-        border: 1px solid #cfd4dd;
-        border-bottom: none;
-        padding: 0 25px;
-        font-size: 0;
+}
+
+
+// filter bar
+.filter-bar {
+    width: 1150px - 26 * 2;
+    background-color: #fff;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #cfd4dd;
+    border-bottom: none;
+    padding: 0 25px;
+    font-size: 0;
+
+    a, span {
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        vertical-align: middle;
     }
 
-    .fd .left .del {
+    h3 {
+        float: left;
+        font-size: 12px;
+        font-weight: 700;
+        color: #000;
+    }
+
+    .del {
         font-size: 16px;
         margin-left: 5px;
     }
 
-    .fd .left .red {
+    .red {
         color: #ee552a;
         margin: 0 5px;
     }
 
-    .fd .left a.del-all {
+    a.del-all {
         background: none;
         border: 0 none;
-        color: #999;
+        color: #0664c4;
         font-size: 12px;
+
+        &:hover {
+            background: none;
+            text-decoration: underline;
+        }
     }
 
-    .fd .left a.del-all:hover {
-        background: none;
-        text-decoration: underline;
-    }
-
-    .fd a {
+    a {
         height: 28px;
         line-height: 28px;
         color: #ee552a;
@@ -131,57 +155,89 @@
         margin-left: 10px;
         font-size: 0;
         .border-radius(2px);
-    }
 
-    .fd a:hover {
-        background: #fff2ee;
-        text-decoration: none;
+        &:hover {
+            background: #fff2ee;
+            text-decoration: none;
+        }
     }
-
-    .fd span {
+    span {
         font-size: 12px;
     }
 
-    .fd span.fs14 {
+    
+}
+
+.sort-panel {
+    background-color: #fcfcfc;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #cfd4dd;
+    padding: 0 25px;
+    font-size: 0;
+
+    .fs14 {
         font-size: 14px;
         margin: 0 10px 0 0;
     }
 
-    .fd .sort-bar {
-        font-size: 14px;
-        width: 395px;
-        overflow: hidden;
+    .red {
+        color: #ee552a;
+        margin: 0 5px;
+    }
 
-        a {
-            color: #555;
-            border-color: #f7f7f7;
-            background: none;
-            margin-left: 6px;
+}
 
-            &.on {
-                color: #333;
-                background-color: #f2f7fc;
-                border-color: #0664c4;
+.sort-bar {
+    font-size: 14px;
+    overflow: hidden;
 
-                &:hover {
-                    background-color: #f2f7fc;
-                    border-color: #0664c4;
-                }
-            }
+    a, span {
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        vertical-align: middle;
+    }
+
+    span {
+        font-size: 12px;
+    }
+
+    a {
+        height: 28px;
+        line-height: 28px;
+        color: #555;
+        background: #fff9f7;
+        padding: 0 6px;
+        font-size: 0;
+        background: none;
+        margin-left: 6px;
+
+        &.on {
+            color: #fff;
+            background-color: #838990;
+
             &:hover {
-                background-color: #fafafa;
-                border-color: #ddd;
+                background-color: #838990;
             }
 
             i {
-                font-size: 12px;
-                color: #aeaeae;
+                color: #eee;
+            }
+        }
 
-                &.fa {
-                    margin-left: 5px;
-                    vertical-align: middle;
-                    font-weight: bold;
-                }
+        &:hover {
+            background-color: #eee;
+        }
+
+        i {
+            font-size: 12px;
+            color: #aeaeae;
+
+            &.fa {
+                margin-left: 4px;
+                vertical-align: middle;
+                font-weight: bold;
             }
         }
     }
@@ -196,9 +252,7 @@
 
 .filter-box .bd .txt-box,
 .filter-box .bd .ok,
-.filter-box .bd .custom,
-.filter-box .fd a,
-.filter-box .fd span {
+.filter-box .bd .custom {
     display: inline-block;
     *display: inline;
     zoom: 1;

@@ -10,14 +10,20 @@
 .con-box {
     float: left;
     width: 743px;
-    border: 1px solid #cfd4dd;
-    border-top: 0 none;
+
+    .list-wrap {
+        border: 1px solid #cfd4dd;
+        border-top: 0 none;
+    }
+    
     .box-shadow(0 2px 4px 0 rgba(158,158,158,0.2));
 }
 
+
+
 .house-lst li {
-    padding: 25px;
-    border-top: 1px solid #e9e9e9;
+    padding: 23px 25px;
+    border-bottom: 1px solid #e9e9e9;
     background: #fff;
 
     &:hover, &.hover {
@@ -36,12 +42,12 @@
 .house-lst .pic-panel {
     font-size: 0;
     position: relative;
-    .size(163px, 122px);
+    .size(142px, 108px);
     background-color: gray;
 
     a {
         display: block;
-        .size(163px, 122px);
+        .size(142px, 108px);
         position: absolute;
         z-index: 10;
     }
@@ -52,7 +58,7 @@
     }
 
     img {
-        .size(163px, 122px);
+        .size(142px, 108px);
     }
 
     .pic-num {
@@ -63,13 +69,34 @@
         bottom: 0;
         left: 0;
         padding: 0 5px;
-        background: #000;
-        background: rgba(0,0,0,0.5); // ie6?
+        line-height: 23px;
+        height: 23px;
+        
+        .pic-num-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            .size(100%);
+            z-index: 1;
+            background: #0664c4;
+            .opacity(70);
+        }
+        
+        // background: rgba(0,0,0,0.7); // ie6?
 
-        .num {
-            font-size: 12px;
-            font-family: Arial;
-            margin-left: 3px;
+        span {
+            position: relative;
+            z-index: 10;
+            
+            i {
+                margin-right: 3px;
+            }
+
+            em {
+                font-size: 12px;
+                font-family: Arial;
+                line-height: 24px;
+            }
         }
     }
 }
@@ -78,21 +105,57 @@
 
 .house-lst .info-panel {
     color: #565a5c;
-    padding-left: 13px;
+    padding-left: 18px;
     font-size: 0;
-    width: 510px;
+    width: 530px;
 
-    .fd .left {
-        background-color: gray;
+    a {
+        color: #0664c4;
+    }
 
-        a {
-            .size(70px, 30px);
-            display: block;
+    .col-1, .col-2, .col-3 {
+        float: left;
+    }
+    .col-1 {
+        width: 345px;
+    }
+
+    .col-2 {
+        width: 100px;
+    }
+
+    .col-3 {
+        width: 85px;
+        text-align: right;
+    }
+
+    .other {
+        margin: 11px 0 1px;
+    }
+
+    .square {
+        margin-top: 10px;
+
+        .num {
+            font-size: 16px;
         }
+    }
 
-        img {
-            .size(70px, 30px);
-        }
+    .price {
+        color: #ee552a;
+        margin-top: 6px;
+    }
+
+    .price-pre {
+        font-size: 12px;
+        color: #999;
+    }
+
+    .num {
+        font-size: 19px;
+        font-weight: 700;
+        margin-right: 3px;
+        font-family: Microsoft YaHei;
     }
 }
 
@@ -100,17 +163,13 @@
     .ellipsis();
     font-size: 16px;
     white-space: nowrap;
-    width: 510px;
-    margin-bottom: 8px;
+    width: 100%;
+    margin-bottom: 10px;
 
-    a {
-        color: #0664c4;
-    }
     span {
         color: #FFFFFF;
         font-size: 12px;
-        width: 18px;
-        height: 18px;
+        .size(18px);
         line-height: 18px;
         background-color: #0664c4;
         text-align: center;
@@ -118,13 +177,9 @@
         margin-top: -2px;
         font-family: Arial, sans-serif;
         font-weight: 700;
-        border-radius: 3px;
     }
 }
 
-.house-lst .other {
-    margin: 5px 0 12px;
-}
 
 .house-lst .where,
 .house-lst .type,
@@ -135,37 +190,9 @@
     font-size: 12px;
 }
 
-.house-lst .num {
-    font-size: 19px;
-    margin-right: 3px;
-    font-family: Arial,sans-serif;
-}
-
 .house-lst .where {
-    width: 250px;
     white-space: nowrap;
     .ellipsis();
-}
-
-.house-lst .type {
-    width: 110px;
-}
-
-.house-lst .square {
-    width: 80px;
-}
-
-.house-lst .price {
-    width: 70px;
-    text-align: right;
-    color: #ee552a;
-}
-
-.house-lst .price-pre {
-    font-size: 12px;
-    color: #888;
-    width: 100px;
-    text-align: right;
 }
 
 .house-lst .con {
@@ -177,26 +204,10 @@
 }
 
 .house-lst .fd {
-    height: 32px;
 
-    .right {
-        display: none;
-
-        a {
-            .border-radius(3px);
-        }
-
-        .star {
-            border: 1px solid #b0b4b9;
-            width: 30px;
-            height: 30px;
-            background-color: #FFFFFF;
-            cursor: pointer;
-
-            .ico-star {
-                margin: 5px;
-            }
-        }
+    .agency {
+        font-size: 12px;
+        margin-top: 10px;
     }
 }
 
@@ -253,4 +264,8 @@
             color: #333;
         }
     }
+}
+
+.img-default {
+    border: 1px solid #ddd;
 }

@@ -67,7 +67,7 @@ define(function (require) {
                 id: id,
                 index: index,
                 rank: index + 1,
-                name: jItem.find('.where').text(),
+                name: jItem.find('.zone').text(),
                 point: jItem.attr('data-geo').split(',')
             };
         });

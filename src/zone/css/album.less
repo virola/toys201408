@@ -19,21 +19,44 @@
         display: block;
         .size(25px, 88px);
         text-indent: -9999px;
-    }
 
-    .ico-arr-top {
-        background-position: -130px 0;
-
-        &:hover {
-            background-position: -158px 0;
+        i {
+            display: block;
+            .size(25px, 88px);
         }
-    }
 
-    .ico-arr-bottom {
-        background-position: -186px 0;
+        .ico-arr-top {
+            background-position: -130px 0;
+        }
+
+        .ico-arr-bottom {
+            background-position: -186px 0;
+        }
 
         &:hover {
-            background-position: -214px 0;
+            .ico-arr-top {
+                background-position: -158px 0;
+            }  
+
+            .ico-arr-bottom {
+                background-position: -214px 0;
+            }
+        }
+
+    }
+
+    a.disabled {
+        .opacity(40);
+        cursor: default;
+
+        &:hover {
+            .ico-arr-top {
+                background-position: -130px 0;
+            }  
+
+            .ico-arr-bottom {
+                background-position: -186px 0;
+            }
         }
     }
 
@@ -44,12 +67,13 @@
         position: relative;
     }
 
-    ul {
+    .album-list {
         position: absolute;
+        width: 9999px;
         
         li {
             float: left;
-            .size(110px, 80px);
+            .size(110px, 88px);
             margin-right: 1px;
             position: relative;
 

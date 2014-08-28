@@ -3,22 +3,23 @@ define(function (require) {
 
     var exports = {};
 
+    var filterPanel = $('#filter-bar');
+
     var filterBar = $('#filter-display-bar');
     var filterClearBtn = $('#filter-empty');
 
-    var filterOptions = $('#filter-options');
-    var filterList = filterOptions.find('dl');
+    var filterWrap = $('#filter-options').find('dl');
+    var optionsList = filterWrap.find('.option-list');
 
-    var customFilters = filterList.find('.custom');
+    var customFilters = filterWrap.find('.custom');
 
     var _tplFilter = '<a href="#{1}"><span>#{0}</span><span class="del">&times;</span></a>';
 
     function render() {
-        var checkedOptions = filterList.find('a:gt(0)').filter('.on');
+        var checkedOptions = optionsList.find('a:gt(0)').filter('.on');
 
         var urls = $.map(checkedOptions, function (item) {
-            var index = $(item).attr('data-index');
-            return $(filterList.get(index)).find('dd a:first').attr('href');
+            return $(item).parent('.option-list').find('a:first').attr('href');
         });
 
         var filters = $.map(checkedOptions, function (dom, index) {
@@ -46,15 +47,27 @@ define(function (require) {
                 );
             }
         });
+
+        // add keyword
+        var keyword = $.trim($('#keyword-box').val());
+        if (keyword) {
+            var url = cacheOptions.baseUrl.replace('n#placeHolder#', '').replace(/\/s([\s\S]*)/, '');
+            var text = '关键词: ' + keyword;
+
+            filters.push(
+                $.stringFormat(_tplFilter, text, url)
+            );
+        }
         
-
-
         // gen filter doms
         $(filters.join('')).insertBefore(filterClearBtn);
 
         // NO FILTER LINK SHOW
-        if (checkedOptions.size()) {
+        if (filters.length) {
             filterClearBtn.show();
+        }
+        else {
+            filterPanel.hide();
         }
     }
 

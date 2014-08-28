@@ -1,3 +1,4 @@
+@import '../../../dep/est/src/all.less';
 @import 'mixin';
 
 .nav-box {
@@ -7,7 +8,6 @@
     border-bottom: 1px solid #143a68;
     color: #FFFFFF;
     .box-shadow(0 3px 3px #e1e1e1);
-    // .font-smooth();
 
     .nav-wrap {
         .size(1150px, 50px);
@@ -29,15 +29,15 @@
 
     h1 {
         float: left;
-    }
+        margin-top: 12px;
 
-    h1 a {
-        display: block;
-        width: 135px;
-        height: 50px;
-        background: url(./img/logo-small.png) no-repeat;
-        line-height: 20em;
-        overflow: hidden;
+        a {
+            display: block;
+            .size(165px, 31px);
+            background: url(./img/logo.png) no-repeat;
+            line-height: 20em;
+            overflow: hidden;
+        }
     }
 
     .city-selector {
@@ -45,21 +45,21 @@
         height: 31px;
         line-height: 31px;
         border: 1px solid #1d599f;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        -o-border-radius: 3px;
-        border-radius: 3px;
+        .border-radius(3px);
         padding: 0 10px;
         margin: 9px 5px 0 20px;
-        display: inline;
-        cursor: pointer;
+        // cursor: pointer;
         background-color: #0e79ea;
-    }
 
-    .city-selector span {
-        vertical-align: baseline;
-        _vertical-align: middle;
-        cursor: pointer;
+        i.ico-arr-w-down {
+            display: none;
+        }
+
+        span {
+            vertical-align: baseline;
+            _vertical-align: middle;
+            // cursor: pointer;
+        }
     }
 
     .p {
@@ -84,6 +84,7 @@
         display: inline;
 
         a {
+            position: relative;
             display: block;
             padding: 0 15px;
             height: 50px;
@@ -100,11 +101,45 @@
             &:hover {
                 background: url(./img/nav-hover.png) repeat-x;
                 text-decoration: none;
+
+                .nav-tip {
+                    .opacity(100);
+                    .transition(opacity .3s ease);
+                }
             }
 
             span {
                 cursor: pointer;
                 text-decoration: none;
+            }
+
+            .nav-tip {
+                // display: none;
+                position: absolute;
+                top: 45px;
+                left: 25px;
+                .opacity(0);
+                .border-radius(3px);
+                .size(76px, 28px);
+                line-height: 28px;
+                text-align: center;
+                color: #fff;
+                font-size: 12px;
+                background-color: #494949;
+
+                &-arr {
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    line-height: 16px;
+                    text-align: center;
+                    font-size: 16px;
+                    font-family: '\5b8b\4f53';
+
+                    left: 30px;
+                    top: -8px;
+                    color: #494949;
+                }
             }
         }
     }

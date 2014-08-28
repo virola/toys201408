@@ -41,8 +41,8 @@ define(function (require) {
             +         '<span class="price-text left"><em>#{price}</em>#{priceUnit}</span>'
             +         '<span class="desc-text right desc-status-#{recStatus}">#{recText}</span>'
             +     '</div>'
-            +     '<h4 class="sub-text">#{title}</h4>'
-            +     '<p class="room-text">#{bedroom}室&nbsp;#{square}㎡&nbsp;#{orientation}</p>'
+            +     '<h4 class="sub-text"><a target="_blank" href="#{communityUrl}">#{communityName}</a></h4>'
+            +     '<p class="room-text">#{bedroom}室&nbsp;#{square}㎡#{orientation}</p>'
             + '</li>'
             ,
 
@@ -56,10 +56,10 @@ define(function (require) {
             +     '</a>'
             +     '<div class="price-box clear">'
             +         '<span class="price-text left"><em>#{price}</em>#{priceUnit}</span>'
-            +         '<span class="desc-text right">#{bedroom}室&nbsp;#{square}㎡&nbsp;#{orientation}</span>'
+            +         '<span class="desc-text right">#{bedroom}室&nbsp;#{square}㎡#{orientation}</span>'
             +     '</div>'
             +     '<p class="view-per"><em class="em-text">#{viewPercent}%</em>还看了：</p>'
-            +     '<h4 class="sub-text">#{title}</h4>'
+            +     '<h4 class="sub-text"><a target="_blank" href="#{communityUrl}">#{title}</a></h4>'
             + '</li>'
             ,
 
@@ -73,9 +73,11 @@ define(function (require) {
             +     '</a>'
             +     '<div class="price-box clear">'
             +         '<span class="price-text left"><em>#{price}</em>#{priceUnit}</span>'
-            +         '<span class="desc-text right">#{bedroom}室&nbsp;#{square}㎡&nbsp;#{orientation}</span>'
+            +         '<span class="desc-text right">#{bedroom}室&nbsp;#{square}㎡#{orientation}</span>'
             +     '</div>'
-            +     '<h4 class="sub-text"><a href="#{districtUrl}">#{districtTitle}</a>&nbsp;-&nbsp;#{communityName}</h4>'
+            +     '<h4 class="sub-text"><a href="#{districtUrl}">#{districtTitle}</a>&nbsp;' 
+            +         '-&nbsp;<a target="_blank" href="#{communityUrl}">#{communityName}</a>' 
+            +     '</h4>'
             + '</li>'
             ,
 
@@ -90,7 +92,7 @@ define(function (require) {
             +         '<div class="left">'
             +             '<span class="price">#{price}</span>&nbsp;#{priceUnit}'
             +         '</div>'
-            +         '<div class="right">#{bedroom}室&nbsp;#{square}㎡&nbsp;#{orientation}</div>'
+            +         '<div class="right">#{bedroom}室&nbsp;#{square}㎡#{orientation}</div>'
             +     '</div>'
             +     '<div class="loc">#{regionHtml}</div>'
             + '</li>'
@@ -103,6 +105,14 @@ define(function (require) {
         var html = $.map(data, function (item, index) {
             if (index == data.length - 1) {
                 item.itemStyle = 'class="last"';
+            }
+
+            // 朝向可能为空
+            if (item.orientation) {
+                item.orientation = '&nbsp;' + item.orientation;
+            }
+            else {
+                item.orientation = '';
             }
 
             if (key == 'region') {

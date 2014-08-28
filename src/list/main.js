@@ -10,15 +10,15 @@ define(function (require) {
         bindWindowScroll();
 
         // elements fixtop
-        $('#filter-bar').fixtop({
-            fixedWidth: '1098px'
+        $('#sort-panel').fixtop({
+            fixedWidth: '691px'
         });
     }
 
     var listSide = $('#list-side');
 
     function bindWindowScroll() {
-        var gapHeight = 50;
+        var gapHeight = 0;
         var mainTop = listSide.parent().position().top;
         var mainHeight = listSide.parent().height();
         var selfHeight = listSide.outerHeight();

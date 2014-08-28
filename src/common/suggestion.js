@@ -117,9 +117,19 @@ define(function (require) {
                 },
                 close: function () {
                     suggestWrap.find('i').hide();
+                },
+                select: function (ev, ui) {
+                    var keyCode = $.ui.keyCode;
+                    var item = ui.item;
+
+                    // 回车直接跳转
+                    if (ev.keyCode == keyCode.ENTER) {
+                        if (item.url) {
+                            window.location.href = item.url;
+                        }
+                    }
                 }
             });
-
         });
     };
 
