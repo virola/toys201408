@@ -6,6 +6,12 @@ define(function (require) {
     var listBox = $('#house-lst');
     var itemList = listBox.children('li').not('.list-no-data');
 
+    // list dom map; `id` is the key
+    var listMap = {};
+
+    // all point list
+    var pointList;
+
     function bindFavor(url) {
 
         listBox.on('click', 'a.add-favor', function (e) {
@@ -51,10 +57,11 @@ define(function (require) {
 
     listModule.init = function (params) {
         bindListHover();
-        bindFavor(params.favorUrl);
+        // bindFavor(params.favorUrl);
+        
+        pointList = listModule.getPoints();
     };
 
-    var listMap = {};
 
     listModule.getPoints = function () {
         return $.map(itemList, function (item, index) {
@@ -68,10 +75,39 @@ define(function (require) {
                 index: index,
                 rank: index + 1,
                 name: jItem.find('.zone').text(),
-                point: jItem.attr('data-geo').split(',')
+                point: jItem.attr('data-geo').split(','),
+                url: jItem.find('.info-panel>h2>a').attr('href')
             };
         });
     };
+
+    listModule.getVisiblePoints = function () {
+        var scrollTop = $(window).scrollTop();
+        var viewHeight = $(window).height();
+
+        var points = $.map(itemList, function (item, index) {
+            var jItem = $(item);
+            var id = jItem.attr('data-id');
+
+            if (jItem.offset().top >= scrollTop 
+                && (jItem.offset().top + 30) <= scrollTop + viewHeight
+            ) {
+                return {
+                    id: id,
+                    index: index,
+                    rank: index + 1,
+                    name: jItem.find('.zone').text(),
+                    point: jItem.attr('data-geo').split(','),
+                    url: jItem.find('.info-panel>h2>a').attr('href')
+                };
+            }
+
+            return null;
+        });
+
+        return points;
+    };
+
 
     listModule.highlight = function (id) {
         if (!listMap[id]) {

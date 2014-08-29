@@ -15,7 +15,11 @@
     a.ctrl-btn {
         display: block;
         .size(107px, 24px);
-        text-indent: -9999px;
+
+        .dt-ico {
+            display: block;
+            .size(107px, 24px);
+        }
     }
 
     .ico-arr-top {
@@ -33,6 +37,29 @@
             background-position: -244px -78px;
         }
     }
+
+    a.disabled {
+        cursor: default;
+
+        .ico-arr-top {
+            background-position: -244px -104px;
+        }
+
+        .ico-arr-bottom {
+            background-position: -244px -130px;
+        }
+
+        &:hover {
+            .ico-arr-top {
+                background-position: -244px -104px;
+            }
+
+            .ico-arr-bottom {
+                background-position: -244px -130px;
+            }
+        }
+    }
+
 
     .album-view-wrap {
         padding-top: 14px;
@@ -71,11 +98,79 @@
         }
     }
 }
+
+@img-large-height: 440px;
+@img-large-width: 570px;
+
+// large picture
 .pic-panel {
     float: right;
-    .size(570px, 440px);
+    position: relative;
+    .size(@img-large-width, @img-large-height);
+
+    &-main {
+        .size(@img-large-width, @img-large-height);
+        position: relative;
+        z-index: 1;
+    }
+
+    &-hover {
+        .pic-panel-ctrl {
+            display: block;
+        }
+    }
+
+    &-ctrl {
+        display: none;
+        position: absolute;
+        z-index: 10;
+        width: 130px;
+        height: @img-large-height;
+        cursor: pointer;
+
+        i {
+            margin-top: 185px;
+            display: block;
+            background: url(./img/detail-album-ctrl.png) no-repeat;
+            .size(50px, 82px);
+            .opacity(30);
+        }
+
+        &-prev {
+            left: 0;
+
+            i {
+                float: left;
+                margin-left: 25px;
+            }
+
+        }
+
+        &-next {
+            right: 0;
+
+            i {
+                float: right;
+                margin-right: 25px;
+                background-position: -50px 0;
+            }
+        }
+
+        &:hover {
+            i {
+                .opacity(90);
+            }
+        }
+
+    }
+
+    .disabled {
+        i {
+            display: none;
+        }
+    }
 
     img {
-        .size(570px, 440px);
+        .size(@img-large-width, @img-large-height);
     }
 }

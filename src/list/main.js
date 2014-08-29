@@ -69,6 +69,71 @@ define(function (require) {
                 adjustSide();
             }
         });
+
+        adjustSide();
+    }
+
+    function initMapAndList(params) {
+        map.init({
+            ak: params.mapak,
+            domId: params.mapDomId,
+            cityName: params.cityName,
+            feRoot: params.feRoot
+        });
+
+        map.on('ready', function () {
+
+            map.setDatasource(list.getPoints(), function () {
+                repaintMap();
+                bindListScroll();
+            });
+
+            list.on('mouseover', function (ev, args) {
+                map.highlight(args.id);
+            }).on('mouseout', function (ev, args) {
+                map.unhighlight(args.id);
+            });
+
+            map.on('mouseover', function (ev, args) {
+                list.highlight(args.id);
+            }).on('mouseout', function (ev, args) {
+                list.unhighlight(args.id);
+            });
+        });
+
+    }
+
+    function bindListScroll() {
+
+        // scroll时的地图重绘
+        var timerMap;
+
+        $(window).on('scroll', function () {
+            if (timerMap) {
+                clearTimeout(timerMap);
+            }
+
+            timerMap = setTimeout(function () {
+                repaintMap();
+            }, 500);
+        });
+
+        var timerResizeMap;
+
+        $(window).on('resize', function () {
+            if (timerResizeMap) {
+                clearTimeout(timerResizeMap);
+            }
+
+            timerResizeMap = setTimeout(function () {
+                repaintMap();
+            }, 500);
+        });
+    }
+
+    function repaintMap() {
+        var pointDataList = list.getVisiblePoints();
+        map.render(pointDataList);
     }
 
     return {
@@ -85,37 +150,13 @@ define(function (require) {
             });
 
 
-            // 列表和地图的关系绑定
+            
             list.init({
                 favorUrl: params.favorUrl
             });
 
-
-            map.init({
-                ak: params.mapak,
-                domId: params.mapDomId,
-                cityName: params.cityName,
-                feRoot: params.feRoot
-            });
-
-            var pointDataList = list.getPoints();
-
-            map.on('ready', function () {
-
-                map.render(pointDataList);
-
-                list.on('mouseover', function (ev, args) {
-                    map.highlight(args.id);
-                }).on('mouseout', function (ev, args) {
-                    map.unhighlight(args.id);
-                });
-
-                map.on('mouseover', function (ev, args) {
-                    list.highlight(args.id);
-                }).on('mouseout', function (ev, args) {
-                    list.unhighlight(args.id);
-                });
-            });
+            // 列表和地图的关系绑定
+            initMapAndList(params);
         }
     };
 

@@ -11,13 +11,30 @@ define(function (require) {
     var albumThumbs = albumList.find('li');
     var picCount = albumThumbs.size();
 
-    var showBox = albumBox.find('.pic-panel');
+    var showBox = albumBox.find('.pic-panel-main');
+    var showBoxCtrl = albumBox.find('.pic-panel-ctrl');
 
     var currentIndex = 0;
 
     function init() {
-        ctrlBtn.on('click', function () {
+        setCtrlBtnStyle();
+
+        if (picCount <= 1) {
+            return false;
+        }
+
+        albumBox.find('.pic-panel').hover(function () {
+            $(this).addClass('pic-panel-hover');
+        }, function () {
+            $(this).removeClass('pic-panel-hover');
+        });
+
+        ctrlBtn.add(showBoxCtrl).on('click', function () {
             var _me = $(this);
+            if (_me.hasClass('disabled')) {
+                return false;
+            }
+
             var cmd = _me.attr('data-command');
             var newIndex;
 
@@ -26,14 +43,6 @@ define(function (require) {
             }
             else if(cmd == 'next') {
                 newIndex = currentIndex + 1;
-            }
-
-            if (newIndex < 0) {
-                newIndex = picCount - 1;
-            }
-
-            if (newIndex > picCount - 1) {
-                newIndex = 0;
             }
 
             switchPic(newIndex);
@@ -69,11 +78,27 @@ define(function (require) {
             showBox.find('img').attr('src', target.attr('data-large'));
         }
 
-        
-
         currentIndex = index;
+        setCtrlBtnStyle();
 
         adjustLoc();
+        
+    }
+
+    function setCtrlBtnStyle() {
+
+        ctrlBtn.removeClass('disabled');
+        showBoxCtrl.removeClass('disabled');
+
+        if (currentIndex <= 0) {
+            ctrlBtn.filter(':eq(0)').addClass('disabled');
+            showBoxCtrl.filter(':eq(0)').addClass('disabled');
+        }
+        else if (currentIndex >= picCount - 1) {
+            ctrlBtn.filter(':eq(1)').addClass('disabled');
+            showBoxCtrl.filter(':eq(1)').addClass('disabled');
+        }
+        
     }
 
     function adjustLoc() {

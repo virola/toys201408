@@ -12,8 +12,8 @@ define(function (require) {
 
     var bdMap;
 
-    var pointList = [];
-    var pointMap = {};
+    var allPointList = [];
+    var allPointMap = {};
     var markerMap = {};
 
     // 将谷歌坐标Array转换成百度坐标Array，并回调
@@ -24,75 +24,93 @@ define(function (require) {
         BMap.Convertor.translateMore(ggPoints, 2, callback); 
     }
 
-    mapModule.addPoint = function (item) {
-        var point = item.point;
-        if (!point || point.length != 2 || !point[1] || !point[0]) {
-            return false;
-        }
+    
 
-        var bdPoint = new BMap.Point(point[1], point[0]);
+    mapModule.setDatasource = function (datasource, callback) {
+        var pointIndex = 0;
 
-        pointList.push(bdPoint);
-        pointMap[item.id] = {
-            point: bdPoint,
-            item: item
-        };
+        // foreach add marker
+        $.each(datasource, function (i, item) {
+            var point = item.point;
+            if (!point || point.length != 2 || !point[1] || !point[0]) {
+                return;
+            }
+
+            var bdPoint = new BMap.Point(point[1], point[0]);
+
+            allPointList.push(bdPoint);
+            allPointMap[item.id] = {
+                bdPoint: bdPoint,
+                item: item,
+                index: pointIndex++
+            };
+        });
+
+        var length = allPointList.length;
+
+        // translate ggpoints to bdpoints
+        pointTranslate(allPointList, function (results) {
+            if (length == results.length) {
+                allPointList = results;
+
+                $.each(allPointMap, function (id, data) {
+                    var index = data.index;
+                    var ggPoint = allPointList[index];
+                    if (!ggPoint) {
+                        return;
+                    }
+                    allPointMap[id].ggPoint = ggPoint;
+                });
+
+                if (callback) {
+                    callback();
+                }
+            }
+        });
     };
 
     mapModule.render = function (data) {
 
-        // foreach add marker
-        $.each(data, function (i, item) {
-            mapModule.addPoint(item);
-        });
+        // clear fisrt
+        bdMap.clearOverlays();
 
-        var length = pointList.length;
-
-        if (!data.length || !length) {
+        if (!data.length) {
             bdMap.centerAndZoom(cacheOptions.cityName);
             bdMap.zoomIn();
             return;
         }
 
-        // translate ggpoints to bdpoints
-        pointTranslate(pointList, function (results) {
+        var pointList = [];
 
-            if (results.length == length) {
-
-                pointList = results;
-
-                $.each(pointMap, function (id, data) {
-
-                    // add Marker
-                    var marker = new mapModule.MapOverlay(data.point, data.item);  // 创建标注
-                    bdMap.addOverlay(marker);
-                    markerMap[id] = marker;
-                });
-
-                // auto adjust viewport
-                setTimeout(function () {
-                    bdMap.setViewport(pointList, {
-                        delay: 500
-                    });
-                }, 1000);
-                
-            }
-            else {
-                pointList = [];
-                bdMap.centerAndZoom(cacheOptions.cityName);
-                bdMap.zoomIn();
+        // foreach add marker
+        $.each(data, function (i, item) {
+            var point = item.point;
+            if (!point || point.length != 2 || !point[1] || !point[0]) {
+                return;
             }
 
+            var itemData = allPointMap[item.id];
+            pointList.push(itemData.ggPoint);
+
+            // add Marker
+            var marker = new mapModule.MapOverlay(itemData.ggPoint, itemData.item);  // 创建标注
+            bdMap.addOverlay(marker);
+            markerMap[item.id] = marker;
         });
 
-
+        // auto adjust viewport
+        setTimeout(function () {
+            bdMap.setViewport(pointList, {
+                margins: [30, 150, 30, 30]
+            });
+        }, 500);
     };
 
     window.mapInitialize = function () {
 
         bdMap = new BMap.Map(cacheOptions.domId); 
-        // bdMap.setCurrentCity(cacheOptions.cityName);  
-        bdMap.centerAndZoom(cacheOptions.cityName);
+        bdMap.setCurrentCity(cacheOptions.cityName);  
+        bdMap.disableAutoResize();
 
         // control bar
         bdMap.addControl(new BMap.NavigationControl({

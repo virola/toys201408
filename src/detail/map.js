@@ -14,12 +14,16 @@ define(function (require) {
     var cacheOptions;
 
     var mapIndicator = $('#map-indicator');
+    var envList = $('#env-list');
 
     var bdLocation;
     var bdMap;
     var bdPoint;
+    var bdLocalSearch;
 
-    var SEARCH_RADIUS = 2000;
+    var SEARCH_RADIUS = 3000;
+
+    var _isMapReady;
 
 
     // 将谷歌坐标转换成百度坐标，并回调
@@ -50,50 +54,47 @@ define(function (require) {
             // add Marker
             bdMap.addOverlay(new BMap.Marker(bdPoint));
 
+            // ls
+            bdLocalSearch = new BMap.LocalSearch(bdMap, {
+                renderOptions: {
+                    map: bdMap,
+                    panel: 'map-result-list'
+                }
+            });
+
             callback();
         });
     };
 
+    // function bdSearch(keyword, searchObj, needClear) {
+    //     if (!searchObj) {
+    //         return false;
+    //     }
+    //     if (needClear) {
+    //         searchObj.clearResults();
+    //     }
 
-    // var PLACE_API = 'http://api.map.baidu.com/place/v2/search'; 
-
-    // var placeParams = {
-    //     ak : '',
-    //     filter: 'distance',
-    //     output: 'json',
-    //     query: '',
-    //     'page_size': 10,
-    //     'page_num': 0,
-    //     scope: 1,
-    //     location: '',
-    //     radius: SEARCH_RADIUS
-    // };
-
-    function bdSearch(keyword, searchObj, needClear) {
-        if (!searchObj) {
-            return false;
-        }
-        if (needClear) {
-            searchObj.clearResults();
-        }
-
-        searchObj.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
-    }
+    //     searchObj.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
+    // }
 
 
     /**
      * 真正的地图初始化函数
      */
     window.mapInitialize = function () {
+        bindIndicator();
 
         mapModule.render(cacheOptions.point, function () {
+            _isMapReady = 1;
+
+
 
              // render完成后触发ready事件
             mapModule.trigger('ready', mapModule);
 
-            getEnvResults();
+            var key = mapIndicator.find('a.on').text();
+            getEnvResults(key);
 
-            bindIndicator();
         });
 
        
@@ -104,64 +105,82 @@ define(function (require) {
 
     // 绑定左侧点击事件
     function bindIndicator() {
-        objLocalSearch = new BMap.LocalSearch(bdMap, {
-            renderOptions: { map: bdMap, autoViewport: false}
-        });
+        var ctrls = mapIndicator.find('a');
 
-        mapIndicator.find('a').on('click', function () {
+        ctrls.on('click', function () {
             var _me = $(this);
-            var title = _me.children('h5');
-            var keyword = title.attr('data-key') || title.text();
+            if (_me.hasClass('on')) {
+                return false;
+            }
 
-            bdSearch(keyword, objLocalSearch);
+            var keyword = _me.attr('data-key') || _me.text();
+
+            ctrls.removeClass('on');
+            _me.addClass('on');
+
+            getEnvResults(keyword, true);
+
             return false;
         });
     }
 
     // api search
-    function localSearchApi(keyword, callback) {
+    function localSearchApi(keyword, callback, needClear) {
+        if (!_isMapReady) {
+            return false;
+        }
         callback = callback || (function () {});
 
-        var options = {
-            onSearchComplete: function(results) {
-                // 判断状态是否正确
-                if (local.getStatus() == BMAP_STATUS_SUCCESS) {
-                    var s = [];
-                    for (var i = 0; i < results.getCurrentNumPois(); i ++) {
-                        s.push(results.getPoi(i).title + ', ' + results.getPoi(i).address);
-                    }
-
-                    callback(s);
-
-                    mapModule.trigger('serviceReady', {
-                        key: keyword,
-                        result: s
-                    });
+        bdLocalSearch.setSearchCompleteCallback(function(results) {
+            // 判断状态是否正确
+            if (bdLocalSearch.getStatus() == BMAP_STATUS_SUCCESS) {
+                var s = [];
+                for (var i = 0; i < results.getCurrentNumPois(); i ++) {
+                    s.push(results.getPoi(i));
                 }
-                else {
-                    callback([]);
-                }
+
+                callback(s);
             }
-        };
+            else {
+                callback([]);
+            }
+        });
 
-        var local = new BMap.LocalSearch(bdMap, options);
-        local.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
+        // bdLocalSearch.setResultsHtmlSetCallback(function (html) {
+        //     console.log(html);
+        // });
+        
+        if (needClear) {
+            bdLocalSearch.clearResults();
+        }
+        
+        bdLocalSearch.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
     }
+
+    var envResultList = envList.find('.result-list');
+
+    var _tplItem = '<dl></dl>';
 
     // 获取周边信息
-    function getEnvResults() {
+    function getEnvResults(keyword, needClear) {
 
-        mapIndicator.find('h5').each(function (i, item) {
-            var keyword = $(this).attr('data-key') || $(this).text();
+        localSearchApi(keyword, function (result) {
 
-            localSearchApi(keyword, function (result) {
-                updateCount(i, result.length);
+            var html = $.map(result, function (item) {
+                var distance = bdMap.getDistance(item.point, bdPoint);
+                return $.stringFormat(_tplItem, {
+                    title: item.title,
+                    desc: item.address,
+                    distance: distance
+                });
             });
-        });
-    }
 
-    function updateCount(index, num) {
-        mapIndicator.find('a').filter(':eq(' + index + ')').children('.count').text(num);
+            envList.find('h3').text(keyword);
+            // envResultList.html(html.join(''));
+
+            // updateCount(i, result.length);
+            // searchObj.searchNearby(keyword, bdPoint, SEARCH_RADIUS);
+        }, needClear);
     }
 
     mapModule.getLocalService = getEnvResults;

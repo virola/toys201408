@@ -75,16 +75,17 @@ define(function (require) {
                 chartDomId: 'chart-dom'
             });
 
+            require('./filter').init();
+
+            require('./album').init();
+
+            // map is last
             require('./map').init({
                 feRoot: params.feRoot,
                 ak: params.mapak,
                 domId: params.mapDomId,
                 point: params.coordinates
             });
-
-            require('./filter').init();
-
-            require('./album').init();
         }
     };
 });
