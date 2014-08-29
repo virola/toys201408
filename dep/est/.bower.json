@@ -1,0 +1,14 @@
+{
+  "name": "est",
+  "homepage": "https://github.com/ecomfe/est",
+  "version": "1.2.1",
+  "_release": "1.2.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.2.1",
+    "commit": "db093aac084af88ba3fe91061f1b9e39e1bad75d"
+  },
+  "_source": "https://github.com/ecomfe/est.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/ecomfe/est.git"
+}
