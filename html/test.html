@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+</head>
+<body>
+<script type="text/javascript"> 
+function showImg( url ) { 
+    var frameid = 'frameimg' + Math.random(); 
+    window.img = 
+    '<img id="img" src=\'' + url + '?' + Math.random() + '\' /><script>window.onload = function() { parent.document.getElementById(\'' + frameid + '\').height = document.getElementById(\'img\').height+\'px\'; }<'+'/script>'; 
+    document.write('<iframe id="' + frameid + '" src="javascript:parent.img;" frameBorder="0" scrolling="no" width="100%"></iframe>'); 
+}
+</script> 
+<h1>直接盗链：</h1><br> 
+<img src="http://image-7.verycd.com/5f95d1b249b411d069ecdb2c7a370e3c160890(600x)/thumb.jpg" /><br> 
+<h1>js破解盗链：</h1><br> 
+<div id="hotlinking"><script type="text/javascript">showImg('http://image-7.verycd.com/5f95d1b249b411d069ecdb2c7a370e3c160890(600x)/thumb.jpg');</script></div><br> 
+
+</body>
+</html>
